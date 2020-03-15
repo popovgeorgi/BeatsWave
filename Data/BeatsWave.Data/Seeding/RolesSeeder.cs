@@ -16,6 +16,8 @@
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
 
+            await SeedRoleAsync(roleManager, GlobalConstants.BeatmakerRoleName);
+            await SeedRoleAsync(roleManager, GlobalConstants.ArtistRoleName);
             await SeedRoleAsync(roleManager, GlobalConstants.AdministratorRoleName);
         }
 

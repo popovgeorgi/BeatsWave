@@ -1,7 +1,8 @@
 ﻿namespace BeatsWave.Web
 {
+    using System;
     using System.Reflection;
-
+    using System.Threading.Tasks;
     using BeatsWave.Data;
     using BeatsWave.Data.Common;
     using BeatsWave.Data.Common.Repositories;
@@ -16,6 +17,7 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -48,6 +50,7 @@
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddSingleton(this.configuration);
 
