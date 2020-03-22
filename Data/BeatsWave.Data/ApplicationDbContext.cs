@@ -26,6 +26,8 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<Beat> Beats { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -72,6 +74,11 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            builder.Entity<Beat>()
+                .HasOne(x => x.Producer)
+                .WithMany(b => b.Beats)
+                .HasForeignKey(x => x.ProducerId);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
