@@ -46,7 +46,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Beatmakers\Data\" />
-    <Folder Include="Areas\Beatmakers\Models\" />
+    <Folder Include="Areas\Producing\Data\" />
+    <Folder Include="Areas\Producing\Models\" />
+    <Folder Include="Areas\Rapping\Controllers\" />
+    <Folder Include="Areas\Rapping\Data\" />
+    <Folder Include="Areas\Rapping\Models\" />
+    <Folder Include="Areas\Rapping\Views\" />
   </ItemGroup>
 </Project>
