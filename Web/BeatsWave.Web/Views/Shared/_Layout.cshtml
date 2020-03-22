@@ -1,4 +1,5 @@
 ﻿@using BeatsWave.Common
+@using BeatsWave.Data.Models
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,19 +140,14 @@
         <!-- END SEARCH BAR SECTION  -->
         <!-- HEADER BACKGROUND IMAGE  -->
         <div class="bg_image" style="background-image: url('@Url.Content("~/images/migos.jpg")')"></div>
+
         <div class="overly"></div>
         <div class="header-continer">
             <div class="section">
                 <!-- LOGO -->
                 <div class="logo"><a href="01-Home.html"><img src="~/images/logo.png" alt="Logo"></a></div>
                 <div class="header_items">
-                    @*<span class="login-button btn btn-light">LOG IN</span>*@
-                    <div class="buy action-button">
-                        <a href="/Identity/Account/Login">LOG IN</a>
-                    </div>
-                    <div class="buy action-button">
-                        <a href="/Identity/Account/Register">REGISTER</a>
-                    </div>
+                    <partial name="_LoginPartial" />
                     <div class="search_icon">
                         <i class="fa fa-search" aria-hidden="true"></i>
                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 15.642 15.642" enable-background="new 0 0 15.642 15.642" width="21" height="21">
@@ -179,15 +175,15 @@
                 <!--<h1>beatswave</h1>-->
                 <img src="~/images/logo1.png" alt="Logo 1">
             </div>
-            @this.RenderBody()
         </div>
     </section>
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
+            @this.RenderBody()
         </main>
     </div>
-
     <!-- START FOOTER SECTION -->
     <footer id="footer" style="height: 300px;">
         <div class="bg_image" style="background-image: url('@Url.Content("~/images/travis.jpg")')"></div>

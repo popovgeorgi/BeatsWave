@@ -44,4 +44,9 @@
     <ProjectReference Include="..\BeatsWave.Web.Infrastructure\BeatsWave.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\BeatsWave.Web.ViewModels\BeatsWave.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Beatmakers\Data\" />
+    <Folder Include="Areas\Beatmakers\Models\" />
+  </ItemGroup>
 </Project>

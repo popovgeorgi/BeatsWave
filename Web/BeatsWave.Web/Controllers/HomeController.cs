@@ -1,9 +1,9 @@
 ﻿namespace BeatsWave.Web.Controllers
 {
     using System.Diagnostics;
-
+    using BeatsWave.Data.Models;
     using BeatsWave.Web.ViewModels;
-
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
