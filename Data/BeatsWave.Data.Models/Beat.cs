@@ -13,7 +13,7 @@
         public string Name { get; set; }
 
         //photoInCloudinary
-        public string ImageUrl { get; set; }
+        public int ImageUrl { get; set; }
 
         //beatInCloudinary
         public string BeatUrl { get; set; }
@@ -32,6 +32,7 @@
 
         public string Description { get; set; }
 
+        [Required]
         public string ProducerId { get; set; }
 
         public ApplicationUser Producer { get; set; }

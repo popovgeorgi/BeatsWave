@@ -62,6 +62,10 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ICloudImageService, CloudImageService>();
+            services.AddTransient<IPictureInfoWriterService, PictureInfoWriterService>();
+            services.AddTransient<IPictureService, PictureService>();
+            services.AddTransient<IProducersService, ProducersService>();
 
             Account account = new Account(
                 this.configuration["Cloudinary:AppName"],

@@ -12,16 +12,23 @@
     using Microsoft.AspNetCore.Mvc;
     using BeatsWave.Web.CloudinaryHelper;
     using CloudinaryDotNet;
+    using BeatsWave.Services.Data;
+    using Microsoft.AspNetCore.Identity;
+    using BeatsWave.Data.Models;
 
     [Authorize(Roles = GlobalConstants.BeatmakerRoleName)]
     [Area("Producing")]
     public class BeatmakersController : Controller
     {
         private readonly Cloudinary cloudinary;
+        private readonly IProducersService producersService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public BeatmakersController(Cloudinary cloudinary)
+        public BeatmakersController(Cloudinary cloudinary, IProducersService producersService, UserManager<ApplicationUser> userManager)
         {
             this.cloudinary = cloudinary;
+            this.producersService = producersService;
+            this.userManager = userManager;
         }
 
         public IActionResult Index()
@@ -42,9 +49,12 @@
                 return this.View(inputModel);
             }
 
-            await CloudinaryExtension.UploadAsync(this.cloudinary, inputModel.Image);
+            var userId = this.userManager.GetUserId(this.User);
 
-            return this.Json(inputModel);
+            await this.producersService.CreateBeatAsync(inputModel.Name, inputModel.Image, inputModel.BeatWav,
+                inputModel.StandartPrice, inputModel.Bpm, inputModel.Genre.ToString(), inputModel.Description, userId);
+
+            return this.RedirectToAction("Index", "Beatmakers", new { area = "Producing" });
         }
     }
 }

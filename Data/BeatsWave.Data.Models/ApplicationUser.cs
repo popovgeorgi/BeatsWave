@@ -29,6 +29,8 @@ namespace BeatsWave.Data.Models
 
         public virtual ICollection<Beat> Beats { get; set; }
 
+        public virtual ICollection<CloudinaryImage> Images { get; set; }
+
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
