@@ -1,8 +1,59 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Upload";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model BeatInputModel
 
-<h1>OK</h1>
+
+<div class="form">
+    <form asp-area="Producing" asp-controller="Beatmakers" asp-action="Upload"
+          enctype="multipart/form-data">
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="row fild_1">
+            <div class="col-sm-6 form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" placeholder="Name" class="form-control">
+                <span asp-validation-for="Name"></span>
+            </div>
+
+            <div class="form-group">
+                    <input asp-for="Image" type="file" name="image">
+            </div>
+
+            <div class="col-sm-6 form-group">
+                <label asp-for="StandartPrice"></label>
+                <input asp-for="StandartPrice" placeholder="Price" class="form-control">
+                <span asp-validation-for="StandartPrice"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+                <input asp-for="BeatWav" type="file" name="image">
+        </div>
+
+        <div class="col-sm-6 form-group">
+            <label asp-for="Bpm"></label>
+            <input asp-for="Bpm" placeholder="Bpm" class="form-control">
+            <span asp-validation-for="Bpm"></span>
+        </div>
+
+        <div class="col-sm-6 form-group">
+            <label asp-for="Genre"></label>
+            <select asp-for="Genre" class="form-control" asp-items="@Html.GetEnumSelectList<Genre>()"></select>
+            <span asp-validation-for="Genre"></span>
+        </div>
+
+        <div class="form-group form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Description"></textarea>
+            <span asp-validation-for="Description"></span>
+        </div>
+
+        <hr />
+
+        <input type="submit" value="Upload" class="btn btn-primary" />
+    </form>
+</div>
 

@@ -54,4 +54,11 @@
     <Folder Include="Areas\Rapping\Models\" />
     <Folder Include="Areas\Rapping\Views\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Producing\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
