@@ -10,6 +10,7 @@
     using BeatsWave.Data.Repositories;
     using BeatsWave.Data.Seeding;
     using BeatsWave.Services.Data;
+    using BeatsWave.Services.Data.Home;
     using BeatsWave.Services.Mapping;
     using BeatsWave.Services.Messaging;
     using BeatsWave.Web.ViewModels;
@@ -18,6 +19,7 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -66,15 +68,20 @@
             services.AddTransient<IPictureInfoWriterService, PictureInfoWriterService>();
             services.AddTransient<IPictureService, PictureService>();
             services.AddTransient<IProducersService, ProducersService>();
+            services.AddTransient<IBeatsService, BeatsService>();
 
-            Account account = new Account(
-                this.configuration["Cloudinary:AppName"],
-                this.configuration["Cloudinary:AppKey"],
-                this.configuration["Cloudinary:AppSecret"]);
+            Account cloudinaryCredentials = new Account(
+                this.configuration["Cloudinary:CloudName"],
+                this.configuration["Cloudinary:ApiKey"],
+                this.configuration["Cloudinary:ApiSecret"]);
 
-            Cloudinary cloudinary = new Cloudinary(account);
+            Cloudinary cloudinaryUtility = new Cloudinary(cloudinaryCredentials);
+            services.AddSingleton(cloudinaryUtility);
 
-            services.AddSingleton(cloudinary);
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

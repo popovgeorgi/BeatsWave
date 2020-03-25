@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace BeatsWave.Data.Migrations
+﻿namespace BeatsWave.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class ChangeImageUrlToInt : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

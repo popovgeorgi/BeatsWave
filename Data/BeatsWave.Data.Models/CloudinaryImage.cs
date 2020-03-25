@@ -1,9 +1,10 @@
 ﻿namespace BeatsWave.Data.Models
 {
-    using BeatsWave.Data.Common.Models;
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    using BeatsWave.Data.Common.Models;
 
     public class CloudinaryImage : BaseModel<int>
     {

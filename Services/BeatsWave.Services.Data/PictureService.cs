@@ -14,11 +14,10 @@
         private readonly IPictureInfoWriterService pictureInfoWriter;
         private readonly IRepository<CloudinaryImage> imageRepository;
 
-        public PictureService(ICloudImageService cloudinary, IPictureInfoWriterService pictureInfoWriter, IRepository<CloudinaryImage> imageRepository)
+        public PictureService(ICloudImageService cloudinary, IPictureInfoWriterService pictureInfoWriter)
         {
             this.cloudService = cloudinary;
             this.pictureInfoWriter = pictureInfoWriter;
-            this.imageRepository = imageRepository;
         }
 
         public async Task<int> UploadImageAsync(string userId, IFormFile pictureFile)

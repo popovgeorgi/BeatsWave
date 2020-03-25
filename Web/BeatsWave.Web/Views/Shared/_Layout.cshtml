@@ -147,6 +147,7 @@
                 <!-- LOGO -->
                 <div class="logo"><a href="01-Home.html"><img src="~/images/logo.png" alt="Logo"></a></div>
                 <div class="header_items">
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="All">BEATS</a>
                     <partial name="_ProducingPartial" />
                     <partial name="_LoginPartial" />
                     <div class="search_icon">
@@ -281,6 +282,10 @@
             </div>
         </div>
     </footer>
+
+    <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
     <script src="~/js/jquery-3.3.1.slim.min.js"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.js"></script>

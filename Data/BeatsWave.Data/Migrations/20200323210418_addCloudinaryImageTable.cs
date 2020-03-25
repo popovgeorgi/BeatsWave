@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace BeatsWave.Data.Migrations
+﻿namespace BeatsWave.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class addCloudinaryImageTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

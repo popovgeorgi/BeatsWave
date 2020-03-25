@@ -152,6 +152,9 @@ namespace BeatsWave.Data.Migrations
                     b.Property<int>("Bpm")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CloudinaryImageId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -181,6 +184,7 @@ namespace BeatsWave.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProducerId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("StandartPrice")
@@ -190,6 +194,8 @@ namespace BeatsWave.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CloudinaryImageId");
 
                     b.HasIndex("IsDeleted");
 
@@ -371,9 +377,15 @@ namespace BeatsWave.Data.Migrations
 
             modelBuilder.Entity("BeatsWave.Data.Models.Beat", b =>
                 {
+                    b.HasOne("BeatsWave.Data.Models.CloudinaryImage", "CloudinaryImage")
+                        .WithMany()
+                        .HasForeignKey("CloudinaryImageId");
+
                     b.HasOne("BeatsWave.Data.Models.ApplicationUser", "Producer")
                         .WithMany("Beats")
-                        .HasForeignKey("ProducerId");
+                        .HasForeignKey("ProducerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BeatsWave.Data.Models.CloudinaryImage", b =>

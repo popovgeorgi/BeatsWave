@@ -10,7 +10,6 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using BeatsWave.Web.CloudinaryHelper;
     using CloudinaryDotNet;
     using BeatsWave.Services.Data;
     using Microsoft.AspNetCore.Identity;
@@ -54,7 +53,7 @@
             await this.producersService.CreateBeatAsync(inputModel.Name, inputModel.Image, inputModel.BeatWav,
                 inputModel.StandartPrice, inputModel.Bpm, inputModel.Genre.ToString(), inputModel.Description, userId);
 
-            return this.RedirectToAction("Index", "Beatmakers", new { area = "Producing" });
+            return this.RedirectToAction("All", "Home", new { area = " "});
         }
     }
 }
