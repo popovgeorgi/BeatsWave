@@ -1,16 +1,34 @@
 ﻿@using BeatsWave.Web.ViewModels.Home
 @model IndexViewModel
-
 @{
     ViewData["Title"] = "All";
-}
-
-<div class="row">
-    @foreach (var beat in Model.Beats)
+    int itemsPerRow = 2;
+    List<IndexBeatViewModel> beats = Model.Beats.ToList();
+    for (int i = 0; i < 5; i++)
     {
-        <div class="col-md-4 media">
-            <img src="@(beat.ImageUrl)"/>
-        </div>
+        beats.AddRange(beats);
     }
-</div>
+}
+    
+        <div class="beats-container">
+    @for (int i = 0; i < beats.Count; i++) //10
+    {
+        
+        var beat = beats[i];
+        
+            <div class="media beat-element">
+                <img src="@(beat.ImageUrl)" width="100" class="mr-3" alt="@beat.Name"/>
+                <div class="media-body">
+                    <h5 class="mt-0">
+                        <a class="beat-name" href="@(beat.Url)">
+                            @beat.Name
+                        </a>
+                        <p class="beat-price">@beat.StandartPrice</p>
+                        @*<p class="beat-description">@beat.Description</p>*@
+                    <i class="fa fa-info-circle" data-toggle="tooltip"  rel="tooltip" title="@beat.Description"></i>
+                    </h5>
+                </div>
+            </div>
+    }
+        </div>
 

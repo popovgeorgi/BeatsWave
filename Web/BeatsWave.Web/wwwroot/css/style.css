@@ -10184,6 +10184,25 @@ body.net #header .nav > li ul.child-item{
     background-color: #2ac4b7;
 }
 
+.beats-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.beat-element {
+    width: 20%;
+}
+
+.beat-price {
+    font-size: 25px;
+}
+.beat-name {
+
+}
+.beat-description {
+    font-size: 30px;
+}
+
 
 
 

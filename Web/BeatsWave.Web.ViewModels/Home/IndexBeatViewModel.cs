@@ -14,6 +14,8 @@
 
         public string Description { get; set; }
 
+        public string Url => $"/b/{this.Name.Replace(' ', '-')}";
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration
