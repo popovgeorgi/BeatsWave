@@ -34,7 +34,7 @@
                 Bpm = bpm,
                 Genre = (Genre)Enum.Parse(typeof(Genre), genre),
                 Description = description,
-                ImageUrl = imageId,
+                CloudinaryImageId = imageId,
                 ProducerId = userId,
             };
 

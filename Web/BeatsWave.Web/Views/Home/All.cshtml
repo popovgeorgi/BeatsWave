@@ -1,0 +1,16 @@
+﻿@using BeatsWave.Web.ViewModels.Home
+@model IndexViewModel
+
+@{
+    ViewData["Title"] = "All";
+}
+
+<div class="row">
+    @foreach (var beat in Model.Beats)
+    {
+        <div class="col-md-4 media">
+            <img src="@(beat.ImageUrl)"/>
+        </div>
+    }
+</div>
+

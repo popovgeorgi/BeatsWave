@@ -4,14 +4,16 @@ using BeatsWave.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeatsWave.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200325195242_changeSomeBeatProperties")]
+    partial class changeSomeBeatProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,7 +154,7 @@ namespace BeatsWave.Data.Migrations
                     b.Property<int>("Bpm")
                         .HasColumnType("int");
 
-                    b.Property<int>("CloudinaryImageId")
+                    b.Property<int?>("CloudinaryImageId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -165,6 +167,9 @@ namespace BeatsWave.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Genre")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ImageUrl")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
@@ -376,9 +381,7 @@ namespace BeatsWave.Data.Migrations
                 {
                     b.HasOne("BeatsWave.Data.Models.CloudinaryImage", "CloudinaryImage")
                         .WithMany()
-                        .HasForeignKey("CloudinaryImageId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("CloudinaryImageId");
 
                     b.HasOne("BeatsWave.Data.Models.ApplicationUser", "Producer")
                         .WithMany("Beats")

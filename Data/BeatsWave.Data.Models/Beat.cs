@@ -14,7 +14,7 @@
 
         //photoInCloudinary
         //CloudinaryImageId
-        public int ImageUrl { get; set; }
+        public int CloudinaryImageId { get; set; }
 
         public CloudinaryImage CloudinaryImage { get; set; }
 
