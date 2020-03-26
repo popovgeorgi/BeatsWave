@@ -4,14 +4,18 @@
     ViewData["Title"] = "All";
     int itemsPerRow = 2;
     List<IndexBeatViewModel> beats = Model.Beats.ToList();
-    for (int i = 0; i < 5; i++)
-    {
-        beats.AddRange(beats);
-    }
 }
-    
+    <section id="page-title">
+        <div class="title-image">
+            <!--<h1>beatswave</h1>-->
+            <img src="~/images/logo1.png" alt="Logo 1">
+        </div>
+        <div class="global-title wow zoomIn">
+            <h1>NEWS FEED</h1>
+        </div>
+    </section>
         <div class="beats-container">
-    @for (int i = 0; i < beats.Count; i++) //10
+    @for (int i = 0; i < Model.Beats.Count(); i++) //10
     {
         
         var beat = beats[i];

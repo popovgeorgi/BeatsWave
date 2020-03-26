@@ -24,7 +24,9 @@
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 </head>
 <body>
-    <section id="header" style="height: 1000px;">
+    <div id="preloader"></div>
+    <!-- START HEADER SECTION -->
+    <section id="header">
         <!-- START MENU SECTION -->
         <div class="nav-menu">
             <!-- NAV BAR BACKGROUND IMAGE-->
@@ -138,16 +140,12 @@
             </form>
         </div>
         <!-- END SEARCH BAR SECTION  -->
-        <!-- HEADER BACKGROUND IMAGE  -->
-        <div class="bg_image" style="background-image: url('@Url.Content("~/images/migos.jpg")')"></div>
-
-        <div class="overly"></div>
         <div class="header-continer">
             <div class="section">
                 <!-- LOGO -->
                 <div class="logo"><a href="01-Home.html"><img src="~/images/logo.png" alt="Logo"></a></div>
                 <div class="header_items">
-                    <a class="nav-link text-dark" asp-controller="Home" asp-action="All">BEATS</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="All">BEATS</a>
                     <partial name="_ProducingPartial" />
                     <partial name="_LoginPartial" />
                     <div class="search_icon">
@@ -171,23 +169,18 @@
                 </div>
             </div>
         </div>
-        <!-- HEADER TITLE  -->
-        <div class="section section_1_title">
-            <div class="big-title">
-                <!--<h1>beatswave</h1>-->
-                <img src="~/images/logo1.png" alt="Logo 1">
-            </div>
-        </div>
     </section>
 
+    <section>
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @this.RenderBody()
         </main>
     </div>
+        </section>
     <!-- START FOOTER SECTION -->
-    <footer id="footer" style="height: 300px;">
+    <footer id="footer">
         <div class="bg_image" style="background-image: url('@Url.Content("~/images/travis.jpg")')"></div>
         <div class="overly"></div>
         <div class="section">
