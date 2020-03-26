@@ -10,6 +10,7 @@
     using BeatsWave.Data.Repositories;
     using BeatsWave.Data.Seeding;
     using BeatsWave.Services.Data;
+    using BeatsWave.Services.Data.CloudinaryWav;
     using BeatsWave.Services.Data.Home;
     using BeatsWave.Services.Mapping;
     using BeatsWave.Services.Messaging;
@@ -64,11 +65,19 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+
+            //Image cloud
             services.AddTransient<ICloudImageService, CloudImageService>();
             services.AddTransient<IPictureInfoWriterService, PictureInfoWriterService>();
             services.AddTransient<IPictureService, PictureService>();
+
             services.AddTransient<IProducersService, ProducersService>();
             services.AddTransient<IBeatsService, BeatsService>();
+
+            //Beat cloud
+            services.AddTransient<ICloudBeatService, CloudBeatService>();
+            services.AddTransient<IBeatsUploadCloudService, BeatsUploadCloudService>();
+            services.AddTransient<IBeatInfoWriterService, BeatInfoWriterService>();
 
             Account cloudinaryCredentials = new Account(
                 this.configuration["Cloudinary:CloudName"],

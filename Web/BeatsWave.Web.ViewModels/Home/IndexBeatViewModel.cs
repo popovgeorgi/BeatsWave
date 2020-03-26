@@ -10,6 +10,8 @@
 
         public string ImageUrl { get; set; }
         //mp3
+        public string BeatUrl { get; set; }
+
         public decimal StandartPrice { get; set; }
 
         public string Description { get; set; }
@@ -20,7 +22,8 @@
         {
             configuration
                 .CreateMap<Beat, IndexBeatViewModel>()
-                .ForMember(a => a.ImageUrl, m => m.MapFrom(a => a.CloudinaryImage.PictureUrl));
+                .ForMember(a => a.ImageUrl, m => m.MapFrom(a => a.CloudinaryImage.PictureUrl))
+                .ForMember(a => a.BeatUrl, m => m.MapFrom(a => a.CloudinaryBeat.BeatUrl));
         }
     }
 }

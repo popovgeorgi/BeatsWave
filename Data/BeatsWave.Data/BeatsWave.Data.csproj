@@ -15,6 +15,18 @@
     <Compile Remove="Migrations\20200316183815_addUsernamePropertyToTheUser.Designer.cs" />
     <Compile Remove="Migrations\20200322192141_AddTableBeatAndExtendUser.cs" />
     <Compile Remove="Migrations\20200322192141_AddTableBeatAndExtendUser.Designer.cs" />
+    <Compile Remove="Migrations\20200326195313_addCloudinaryBeatUrl.cs" />
+    <Compile Remove="Migrations\20200326195313_addCloudinaryBeatUrl.Designer.cs" />
+    <Compile Remove="Migrations\20200326210517_addTableBeats.cs" />
+    <Compile Remove="Migrations\20200326210517_addTableBeats.Designer.cs" />
+    <Compile Remove="Migrations\20200326210659_addTableBeat.cs" />
+    <Compile Remove="Migrations\20200326210659_addTableBeat.Designer.cs" />
+    <Compile Remove="Migrations\20200326211245_addTableBeat.cs" />
+    <Compile Remove="Migrations\20200326211245_addTableBeat.Designer.cs" />
+    <Compile Remove="Migrations\20200326211430_addBeatTable.cs" />
+    <Compile Remove="Migrations\20200326211430_addBeatTable.Designer.cs" />
+    <Compile Remove="Migrations\20200326211838_please.cs" />
+    <Compile Remove="Migrations\20200326211838_please.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

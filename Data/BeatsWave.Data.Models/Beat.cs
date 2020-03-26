@@ -12,14 +12,14 @@
         [Required]
         public string Name { get; set; }
 
-        //photoInCloudinary
-        //CloudinaryImageId
+        public int CloudinaryBeatId { get; set; }
+
+        public CloudinaryBeat CloudinaryBeat { get; set; }
+
         public int CloudinaryImageId { get; set; }
 
         public CloudinaryImage CloudinaryImage { get; set; }
 
-        //beatInCloudinary
-        public string BeatUrl { get; set; }
         //mp3
         public decimal StandartPrice { get; set; }
 

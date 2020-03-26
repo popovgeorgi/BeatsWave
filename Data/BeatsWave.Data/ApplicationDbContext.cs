@@ -30,6 +30,8 @@
 
         public DbSet<CloudinaryImage> CloudinaryImages { get; set; }
 
+        public DbSet<CloudinaryBeat> CloudinaryBeats { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -86,6 +88,12 @@
                 .HasOne(x => x.Uploader)
                 .WithMany(i => i.Images)
                 .HasForeignKey(x => x.UploaderId);
+
+            builder.Entity<CloudinaryBeat>()
+                .HasOne(x => x.Uploader)
+                .WithMany(b => b.CloudinaryBeats)
+                .HasForeignKey(x => x.UploaderId);
+
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

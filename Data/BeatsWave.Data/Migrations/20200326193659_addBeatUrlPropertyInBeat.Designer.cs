@@ -4,14 +4,16 @@ using BeatsWave.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeatsWave.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200326193659_addBeatUrlPropertyInBeat")]
+    partial class addBeatUrlPropertyInBeat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,10 +148,16 @@ namespace BeatsWave.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Bpm")
-                        .HasColumnType("int");
+                    b.Property<string>("BeatPublicId")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CloudinaryBeatId")
+                    b.Property<string>("BeatThumbnailUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BeatUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Bpm")
                         .HasColumnType("int");
 
                     b.Property<int>("CloudinaryImageId")
@@ -169,6 +177,9 @@ namespace BeatsWave.Data.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<long>("Length")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -192,8 +203,6 @@ namespace BeatsWave.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CloudinaryBeatId");
-
                     b.HasIndex("CloudinaryImageId");
 
                     b.HasIndex("IsDeleted");
@@ -201,49 +210,6 @@ namespace BeatsWave.Data.Migrations
                     b.HasIndex("ProducerId");
 
                     b.ToTable("Beats");
-                });
-
-            modelBuilder.Entity("BeatsWave.Data.Models.CloudinaryBeat", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BeatPublicId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BeatThumbnailUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BeatUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<long>("Length")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UploaderId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("UploaderId");
-
-                    b.ToTable("CloudinaryBeats");
                 });
 
             modelBuilder.Entity("BeatsWave.Data.Models.CloudinaryImage", b =>
@@ -419,12 +385,6 @@ namespace BeatsWave.Data.Migrations
 
             modelBuilder.Entity("BeatsWave.Data.Models.Beat", b =>
                 {
-                    b.HasOne("BeatsWave.Data.Models.CloudinaryBeat", "CloudinaryBeat")
-                        .WithMany()
-                        .HasForeignKey("CloudinaryBeatId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("BeatsWave.Data.Models.CloudinaryImage", "CloudinaryImage")
                         .WithMany()
                         .HasForeignKey("CloudinaryImageId")
@@ -436,13 +396,6 @@ namespace BeatsWave.Data.Migrations
                         .HasForeignKey("ProducerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BeatsWave.Data.Models.CloudinaryBeat", b =>
-                {
-                    b.HasOne("BeatsWave.Data.Models.ApplicationUser", "Uploader")
-                        .WithMany("CloudinaryBeats")
-                        .HasForeignKey("UploaderId");
                 });
 
             modelBuilder.Entity("BeatsWave.Data.Models.CloudinaryImage", b =>

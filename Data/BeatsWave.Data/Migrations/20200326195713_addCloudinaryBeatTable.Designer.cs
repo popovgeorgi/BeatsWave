@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeatsWave.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191224074400_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200326195713_addCloudinaryBeatTable")]
+    partial class addCloudinaryBeatTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
+                .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -139,6 +139,151 @@ namespace BeatsWave.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("BeatsWave.Data.Models.Beat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Bpm")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CloudinaryBeatId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CloudinaryBeatUrlId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CloudinaryImageId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Genre")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("PremiumPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ProducerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("StandartPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("TrackoutPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CloudinaryBeatId");
+
+                    b.HasIndex("CloudinaryImageId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ProducerId");
+
+                    b.ToTable("Beats");
+                });
+
+            modelBuilder.Entity("BeatsWave.Data.Models.CloudinaryBeat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BeatPublicId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BeatThumbnailUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BeatUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("Length")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UploaderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("UploaderId");
+
+                    b.ToTable("CloudinaryBeats");
+                });
+
+            modelBuilder.Entity("BeatsWave.Data.Models.CloudinaryImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("Length")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PicturePublicId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureThumbnailUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UploaderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UploaderId");
+
+                    b.ToTable("CloudinaryImages");
                 });
 
             modelBuilder.Entity("BeatsWave.Data.Models.Setting", b =>
@@ -275,6 +420,39 @@ namespace BeatsWave.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("BeatsWave.Data.Models.Beat", b =>
+                {
+                    b.HasOne("BeatsWave.Data.Models.CloudinaryBeat", "CloudinaryBeat")
+                        .WithMany()
+                        .HasForeignKey("CloudinaryBeatId");
+
+                    b.HasOne("BeatsWave.Data.Models.CloudinaryImage", "CloudinaryImage")
+                        .WithMany()
+                        .HasForeignKey("CloudinaryImageId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BeatsWave.Data.Models.ApplicationUser", "Producer")
+                        .WithMany("Beats")
+                        .HasForeignKey("ProducerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BeatsWave.Data.Models.CloudinaryBeat", b =>
+                {
+                    b.HasOne("BeatsWave.Data.Models.ApplicationUser", "Uploader")
+                        .WithMany("CloudinaryBeats")
+                        .HasForeignKey("UploaderId");
+                });
+
+            modelBuilder.Entity("BeatsWave.Data.Models.CloudinaryImage", b =>
+                {
+                    b.HasOne("BeatsWave.Data.Models.ApplicationUser", "Uploader")
+                        .WithMany("Images")
+                        .HasForeignKey("UploaderId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

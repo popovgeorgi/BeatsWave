@@ -17,6 +17,7 @@
         [Required]
         public IFormFile Image { get; set; }
 
+        [Required]
         public IFormFile BeatWav { get; set; }
 
         [Required]
