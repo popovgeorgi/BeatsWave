@@ -1,17 +1,9 @@
 ﻿@using BeatsWave.Web.ViewModels.Home
 @model IndexViewModel
 @{
-    ViewData["Title"] = "All";
+    ViewData["Title"] = "NEWS FEED";
 }
-<section id="page-title">
-    <div class="title-image">
-        <!--<h1>beatswave</h1>-->
-        <img src="~/images/logo1.png" alt="Logo 1">
-    </div>
-    <div class="global-title wow zoomIn">
-        <h1>NEWS FEED</h1>
-    </div>
-</section>
+
 
 <section id="cart-order">
     <div class="section">
@@ -19,36 +11,44 @@
             <div class="row cart-name">
                 <div class="col-6"><span>Image</span></div>
                 <div class="col-2"><span>Price</span></div>
+                <div class="col-4"><span>Beat</span></div>
             </div>
             @foreach (var beat in Model.Beats)
             {
-                <div class="row cart-item">
-                    <div class="col-sm-6">
-                        <div class="cart-image">
-                            <img src="@(beat.ImageUrl)" width="100" class="mr-3" alt="@beat.Name" />
-                        </div>
-                        <div class="cart-description">
-                            <a href="20-Single-Product.html"><h2>@beat.Name</h2></a>
-                            <p>
-                                @beat.Description
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-2 price-name-line">
-                        <div class="product-total">
-                            <div class="product-price">
-                                <span class="prise-mobile">PRICE</span><span>€ @beat.StandartPrice</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-1 delet-line">
-                        <div class="delete-product">
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 15.642 15.642" enable-background="new 0 0 15.642 15.642" width="21" height="21">
-                                <path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z" fill="#FFFFFF" />
-                            </svg>
-                        </div>
+        <div class="row cart-item">
+            <div class="col-sm-6">
+                <div class="cart-image">
+                    <img src="@(beat.ImageUrl)" width="100" class="mr-3" alt="@beat.Name" />
+                </div>
+                <div class="cart-description">
+                    <a href="20-Single-Product.html"><h2>@beat.Name</h2></a>
+                    <p>
+                        @beat.Description
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-2 price-name-line">
+                <div class="product-total">
+                    <div class="product-price">
+                        <span class="prise-mobile">PRICE</span><span>€ @beat.StandartPrice</span>
                     </div>
                 </div>
+            </div>
+            <div class="col music wow fadeInRightBig">
+                <div class="m_img" style="background-image: url('@Url.Content("~/images/travis.jpg")')"></div>
+                <div class="mp3 mp3_1">
+                    <span>@beat.Producer - @beat.Name</span>
+                    <audio controls class="audio1"><source src="@(beat.BeatUrl)" type="audio/mpeg"></audio>
+                </div>
+            </div>
+            <div class="col-sm-1 delet-line">
+                <div class="delete-product">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 15.642 15.642" enable-background="new 0 0 15.642 15.642" width="21" height="21">
+                        <path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z" fill="#FFFFFF" />
+                    </svg>
+                </div>
+            </div>
+        </div>
             }
         </div>
     </div>

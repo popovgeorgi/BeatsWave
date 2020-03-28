@@ -8,6 +8,8 @@
     {
         public string Name { get; set; }
 
+        public string Producer { get; set; }
+
         public string ImageUrl { get; set; }
         //mp3
         public string BeatUrl { get; set; }
@@ -23,7 +25,8 @@
             configuration
                 .CreateMap<Beat, IndexBeatViewModel>()
                 .ForMember(a => a.ImageUrl, m => m.MapFrom(a => a.CloudinaryImage.PictureUrl))
-                .ForMember(a => a.BeatUrl, m => m.MapFrom(a => a.CloudinaryBeat.BeatUrl));
+                .ForMember(a => a.BeatUrl, m => m.MapFrom(a => a.CloudinaryBeat.BeatUrl))
+                .ForMember(a => a.Producer, m => m.MapFrom(a => a.Producer.UserName));
         }
     }
 }

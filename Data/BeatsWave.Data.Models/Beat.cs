@@ -12,10 +12,12 @@
         [Required]
         public string Name { get; set; }
 
+        [Required]
         public int CloudinaryBeatId { get; set; }
 
         public CloudinaryBeat CloudinaryBeat { get; set; }
 
+        [Required]
         public int CloudinaryImageId { get; set; }
 
         public CloudinaryImage CloudinaryImage { get; set; }

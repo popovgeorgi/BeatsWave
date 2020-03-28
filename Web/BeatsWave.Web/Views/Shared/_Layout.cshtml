@@ -171,14 +171,22 @@
         </div>
     </section>
 
+    <section id="page-title">
+        <div class="title-image">
+            <!--<h1>beatswave</h1>-->
+            <img src="~/images/logo1.png" alt="Logo 1">
+        </div>
+        <div class="global-title wow zoomIn">
+            <h1>@this.ViewData["Title"]</h1>
+        </div>
+    </section>
+
     <section>
-    <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @this.RenderBody()
         </main>
-    </div>
-        </section>
+    </section>
     <!-- START FOOTER SECTION -->
     <footer id="footer">
         <div class="bg_image" style="background-image: url('@Url.Content("~/images/travis.jpg")')"></div>

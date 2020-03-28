@@ -126,10 +126,6 @@
                         {
                             return Redirect("https://google.com");
                         }
-                        //else
-                        //{
-                        //    return LocalRedirect(returnUrl);
-                        //}
                     }
                 }
                 foreach (var error in result.Errors)
