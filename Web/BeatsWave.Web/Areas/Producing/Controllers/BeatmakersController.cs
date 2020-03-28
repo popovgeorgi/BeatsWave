@@ -6,14 +6,14 @@
     using System.Threading.Tasks;
 
     using BeatsWave.Common;
+    using BeatsWave.Data.Models;
+    using BeatsWave.Services.Data;
     using BeatsWave.Web.ViewModels.Producing.Beatmakers;
+    using CloudinaryDotNet;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
-    using CloudinaryDotNet;
-    using BeatsWave.Services.Data;
     using Microsoft.AspNetCore.Identity;
-    using BeatsWave.Data.Models;
+    using Microsoft.AspNetCore.Mvc;
 
     [Authorize(Roles = GlobalConstants.BeatmakerRoleName)]
     [Area("Producing")]
@@ -53,7 +53,7 @@
             await this.producersService.CreateBeatAsync(inputModel.Name, inputModel.Image, inputModel.BeatWav,
                 inputModel.StandartPrice, inputModel.Bpm, inputModel.Genre.ToString(), inputModel.Description, userId);
 
-            return this.RedirectToAction("All", "Home", new { area = " "});
+            return this.RedirectToAction("All", "Home", new { area = " " });
         }
     }
 }

@@ -10,6 +10,7 @@
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
 
     public class CloudBeatService : ICloudBeatService
@@ -47,7 +48,7 @@
         public string GetBeatUrl(string beatPublicId)
         {
             var beatUrl = this.cloudinary.Api.UrlVideoUp
-                .BuildUrl(string.Format("{0}.mp3", beatPublicId));
+                .BuildUrl(string.Format("{0}.wav", beatPublicId));
 
             return beatUrl;
         }
@@ -60,11 +61,6 @@
                 {
                     File = new FileDescription(Guid.NewGuid().ToString(), memoryStream),
                     PublicId = $"{GlobalConstants.PublicPicIdPrefix}{Guid.NewGuid()}",
-                    Transformation = new Transformation().Crop(GlobalConstants.CropLimit).Width(800).Height(600),
-                    EagerTransforms = new List<Transformation>
-                    {
-                        new Transformation().Width(GlobalConstants.ThumbnailWidth).Height(GlobalConstants.ThumbnailHeight).Crop(GlobalConstants.CropThumb),
-                    },
                 };
 
                 var uploadResult = await this.cloudinary.UploadAsync(uploadParams);
@@ -75,7 +71,6 @@
 
         private void InitializeCloudinary()
         {
-
             var key = this.configuration.GetSection("Cloudinary:CloudName").Value;
             this.cloudinary = new Cloudinary(
                 new Account(

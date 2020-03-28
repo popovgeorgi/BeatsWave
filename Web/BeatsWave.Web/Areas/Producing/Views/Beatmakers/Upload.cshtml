@@ -15,31 +15,31 @@
 </section>
 
 <div class="form">
-    <form asp-area="Producing" asp-controller="Beatmakers" asp-action="Upload"
-          enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" asp-area="Producing" asp-controller="Beatmakers" asp-action="Upload">
 
         <div asp-validation-summary="All" class="text-danger"></div>
 
-        <div class="row fild_1">
-            <div class="col-sm-6 form-group">
-                <label asp-for="Name"></label>
-                <input asp-for="Name" placeholder="Name" class="form-control">
-                <span asp-validation-for="Name"></span>
-            </div>
-
-            <div class="form-group">
-                    <input asp-for="Image" type="file" name="image">
-            </div>
-
-            <div class="col-sm-6 form-group">
-                <label asp-for="StandartPrice"></label>
-                <input asp-for="StandartPrice" placeholder="Price" class="form-control">
-                <span asp-validation-for="StandartPrice"></span>
-            </div>
+        <div class="col-sm-6 form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" placeholder="Name" class="form-control">
+            <span asp-validation-for="Name"></span>
         </div>
 
         <div class="form-group">
-                <input asp-for="BeatWav" type="file" name="beat">
+            <label asp-for="Image"></label>
+            <input asp-for="Image" type="file" name="image">
+            <span asp-validation-for="Image"></span>
+        </div>
+
+        <div class="col-sm-6 form-group">
+            <label asp-for="StandartPrice"></label>
+            <input asp-for="StandartPrice" placeholder="Price" class="form-control">
+            <span asp-validation-for="StandartPrice"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="BeatWav"></label>
+            <input asp-for="BeatWav" type="file" name="beatWav">
         </div>
 
         <div class="col-sm-6 form-group">

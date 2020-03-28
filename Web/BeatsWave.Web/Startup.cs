@@ -25,6 +25,8 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.AspNetCore.Http.Features;
+    using BeatsWave.Web.Middlewares;
 
     public class Startup
     {
@@ -122,6 +124,7 @@
                 app.UseHsts();
             }
 
+            app.UseMiddleware<SetMaxRequestMiddleware>();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

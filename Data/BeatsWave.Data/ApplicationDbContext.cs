@@ -94,6 +94,8 @@
                 .WithMany(b => b.CloudinaryBeats)
                 .HasForeignKey(x => x.UploaderId);
 
+            builder.Entity<Beat>()
+                .HasKey(x => x.Id);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

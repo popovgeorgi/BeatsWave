@@ -11,13 +11,13 @@
     using BeatsWave.Services.Data.CloudinaryWav;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
 
     public class ProducersService : IProducersService
     {
         private readonly IDeletableEntityRepository<Beat> beatsRepository;
         private readonly IPictureService pictureService;
         private readonly IBeatsUploadCloudService beatsService;
-        private readonly UserManager<ApplicationUser> userManager;
 
         public ProducersService(IDeletableEntityRepository<Beat> beatsRepository, IPictureService pictureService, IBeatsUploadCloudService beatsService)
         {

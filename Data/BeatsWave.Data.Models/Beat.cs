@@ -39,7 +39,5 @@
         public string ProducerId { get; set; }
 
         public ApplicationUser Producer { get; set; }
-
-
     }
 }

@@ -18,13 +18,14 @@
         public IFormFile Image { get; set; }
 
         [Required]
+        [Display(Name = "Beat")]
         public IFormFile BeatWav { get; set; }
 
         [Required]
         public decimal StandartPrice { get; set; }
 
         [Required]
-        [Range(1, int.MaxValue)]
+        [Range(1, 300)]
         public int Bpm { get; set; }
 
         [Required]
