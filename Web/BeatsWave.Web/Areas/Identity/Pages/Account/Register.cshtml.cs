@@ -120,11 +120,11 @@
 
                         if (this.User.IsInRole(GlobalConstants.BeatmakerRoleName))
                         {
-                            return RedirectToAction("Index", "Beatmakers", new { area = "Beatmakers" });
+                            return this.RedirectToAction("Index", "Beatmakers", new { area = "Beatmakers" });
                         }
                         else if (this.User.IsInRole(GlobalConstants.ArtistRoleName))
                         {
-                            return Redirect("https://google.com");
+                            return this.RedirectToAction("Index", "Beatmakers", new { area = "Beatmakers" });
                         }
                     }
                 }

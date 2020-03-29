@@ -75,6 +75,7 @@
 
             services.AddTransient<IProducersService, ProducersService>();
             services.AddTransient<IBeatsService, BeatsService>();
+            services.AddTransient<IUsersService, UsersService>();
 
             //Beat cloud
             services.AddTransient<ICloudBeatService, CloudBeatService>();

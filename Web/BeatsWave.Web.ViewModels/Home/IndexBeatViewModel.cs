@@ -8,6 +8,8 @@
     {
         public string Name { get; set; }
 
+        public string ProducerId { get; set; }
+
         public string Producer { get; set; }
 
         public string ImageUrl { get; set; }

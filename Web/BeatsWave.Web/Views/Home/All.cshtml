@@ -21,7 +21,7 @@
                     <img src="@(beat.ImageUrl)" width="100" class="mr-3" alt="@beat.Name" />
                 </div>
                 <div class="cart-description">
-                    <a href="20-Single-Product.html"><h2>@beat.Name</h2></a>
+                    <h2>@beat.Name prod.by <a asp-controller="Users" asp-action="Profile" asp-route-id="@beat.ProducerId">@beat.Producer</a></h2>
                     <p>
                         @beat.Description
                     </p>
