@@ -10,14 +10,16 @@
 
     using BeatsWave.Common;
     using BeatsWave.Data.Models;
+    using BeatsWave.Services.Messaging;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
+    using SendGrid;
 
     [AllowAnonymous]
     public class RegisterModel : PageModel
@@ -26,17 +28,21 @@
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IConfiguration configuration;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IConfiguration configuration)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _logger = logger;
-            _emailSender = emailSender;
+            this._userManager = userManager;
+            this._signInManager = signInManager;
+            this._logger = logger;
+            this._emailSender = emailSender;
+            this.configuration = configuration;
+            this._userManager.Options.SignIn.RequireConfirmedAccount = true;
         }
 
         [BindProperty]
@@ -88,8 +94,8 @@
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
+            ExternalLogins = (await this._signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            if (this.ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.UserName, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -97,26 +103,27 @@
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    this._logger.LogInformation("User created a new account with password.");
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var code = await this._userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
+                    var callbackUrl = this.Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code = code },
-                        protocol: Request.Scheme);
+                        protocol: this.Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    var sendGrindEmailSender = new SendGridEmailSender(this.configuration.GetSection("SendGrid:SendGridKey").Value);
 
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                    if (this._userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
+                        await sendGrindEmailSender.SendEmailAsync("popov_02@abv.bg", "Georgi Popov", this.Input.Email, "Confirm your email", $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                        return this.RedirectToPage("RegisterConfirmation", new { email = this.Input.Email });
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        await this._signInManager.SignInAsync(user, isPersistent: false);
 
                         if (this.User.IsInRole(GlobalConstants.BeatmakerRoleName))
                         {
@@ -128,14 +135,15 @@
                         }
                     }
                 }
+
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    this.ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return Page();
+            return this.Page();
         }
     }
 }
