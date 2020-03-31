@@ -59,6 +59,11 @@
 
             services.AddSingleton(this.configuration);
 
+            services.AddResponseCompression(options =>
+            {
+                options.EnableForHttps = true;
+            });
+
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
@@ -125,6 +130,7 @@
                 app.UseHsts();
             }
 
+            app.UseResponseCompression();
             app.UseMiddleware<SetMaxRequestMiddleware>();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
