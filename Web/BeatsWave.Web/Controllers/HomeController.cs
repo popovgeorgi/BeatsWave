@@ -1,6 +1,8 @@
 ﻿namespace BeatsWave.Web.Controllers
 {
+    using System;
     using System.Diagnostics;
+    using BeatsWave.Common;
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Data;
     using BeatsWave.Web.ViewModels;
@@ -22,11 +24,14 @@
             return this.View();
         }
 
-        public IActionResult All()
+        public IActionResult All(int page = 1)
         {
             var viewModel = new IndexViewModel();
+            var beats = this.beatsService.GetAllBeats(GlobalConstants.ItemsPerPage, (int)(page - 1) * GlobalConstants.ItemsPerPage);
 
-            var beats = this.beatsService.GetAllBeats();
+            var count = (int)Math.Ceiling((double)this.beatsService.Count() / GlobalConstants.ItemsPerPage);
+            viewModel.PagesCount = count;
+            viewModel.CurrentPage = page;
             viewModel.Beats = beats;
 
             return this.View(viewModel);

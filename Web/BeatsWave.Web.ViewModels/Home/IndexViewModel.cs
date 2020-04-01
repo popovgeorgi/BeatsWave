@@ -9,6 +9,10 @@
 
     public class IndexViewModel
     {
+        public int PagesCount { get; set; }
+
+        public int CurrentPage { get; set; }
+
         public IEnumerable<IndexBeatViewModel> Beats { get; set; }
 
     }

@@ -8,8 +8,10 @@
 
     public interface IBeatsService
     {
-        IEnumerable<IndexBeatViewModel> GetAllBeats();
+        IEnumerable<IndexBeatViewModel> GetAllBeats(int? take = null, int skip = 0);
 
         T FindBeatById<T>(int id);
+
+        int Count();
     }
 }
