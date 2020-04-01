@@ -18,6 +18,12 @@
                     @beat.Description
                 </p>
             </div>
+            @if (this.User.Identity.Name == Model.UserName)
+            {
+                <div>
+                    <a class="fa fa-edit fa-5x" asp-area="Producing" asp-controller="Beats" asp-action="Edit" asp-route-id="@beat.BeatId"></a>
+                </div>
+            }
         </div>
         <div class="col-sm-2 price-name-line">
             <div class="product-total">
