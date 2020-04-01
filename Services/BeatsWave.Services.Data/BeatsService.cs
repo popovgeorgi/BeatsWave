@@ -1,4 +1,4 @@
-﻿namespace BeatsWave.Services.Data.Home
+﻿namespace BeatsWave.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -17,6 +17,17 @@
         public BeatsService(IDeletableEntityRepository<Beat> beatRepository)
         {
             this.beatRepository = beatRepository;
+        }
+
+        public T FindBeatById<T>(int id)
+        {
+            var beat = this.beatRepository
+                .All()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+
+            return beat;
         }
 
         public IEnumerable<IndexBeatViewModel> GetAllBeats()

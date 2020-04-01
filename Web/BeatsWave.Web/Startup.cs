@@ -11,7 +11,7 @@
     using BeatsWave.Data.Seeding;
     using BeatsWave.Services.Data;
     using BeatsWave.Services.Data.CloudinaryWav;
-    using BeatsWave.Services.Data.Home;
+    using BeatsWave.Services.Data;
     using BeatsWave.Services.Mapping;
     using BeatsWave.Services.Messaging;
     using BeatsWave.Web.ViewModels;

@@ -13,10 +13,12 @@
     public class UsersController : Controller
     {
         private readonly IUsersService usersService;
+        private readonly IBeatsService beatsService;
 
-        public UsersController(IUsersService usersService)
+        public UsersController(IUsersService usersService, IBeatsService beatsService)
         {
             this.usersService = usersService;
+            this.beatsService = beatsService;
         }
 
         public IActionResult Profile(string id)
@@ -29,6 +31,18 @@
             }
 
             return this.View(userViewModel);
+        }
+
+        public IActionResult Buy(int id)
+        {
+            var beatViewModel = this.beatsService.FindBeatById<BeatToBuyViewModel>(id);
+
+            if (beatViewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.View(beatViewModel);
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     using System.Diagnostics;
     using BeatsWave.Data.Models;
-    using BeatsWave.Services.Data.Home;
+    using BeatsWave.Services.Data;
     using BeatsWave.Web.ViewModels;
     using BeatsWave.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Identity;

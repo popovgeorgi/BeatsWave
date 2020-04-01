@@ -54,6 +54,7 @@
     <Folder Include="Areas\Rapping\Data\" />
     <Folder Include="Areas\Rapping\Models\" />
     <Folder Include="Areas\Rapping\Views\" />
+    <Folder Include="wwwroot\favicons\" />
   </ItemGroup>
 
   <ItemGroup>
