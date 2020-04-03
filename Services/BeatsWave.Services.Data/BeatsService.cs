@@ -1,14 +1,14 @@
 ﻿namespace BeatsWave.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using BeatsWave.Common;
+    using System.Threading.Tasks;
+
     using BeatsWave.Data.Common.Repositories;
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Mapping;
     using BeatsWave.Web.ViewModels.Home;
+    using Microsoft.EntityFrameworkCore;
 
     public class BeatsService : IBeatsService
     {
@@ -19,36 +19,50 @@
             this.beatRepository = beatRepository;
         }
 
-        public int Count()
+        public async Task<int> GetCountAsync()
         {
-            var count = this.beatRepository
+            var count = await this.beatRepository
                 .All()
-                .Count();
+                .CountAsync();
 
             return count;
         }
 
-        public T FindBeatById<T>(int id)
+        public async Task<T> FindBeatByIdAsync<T>(int id)
         {
-            var beat = this.beatRepository
+            var beat = await this.beatRepository
                 .All()
                 .Where(x => x.Id == id)
                 .To<T>()
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             return beat;
         }
 
-        public IEnumerable<IndexBeatViewModel> GetAllBeats(int? take = null, int skip = 0)
+        public async Task<IEnumerable<IndexBeatViewModel>> GetAllBeatsAsync(int? take = null, int skip = 0)
         {
-            var beats = this.beatRepository.All()
+            var beats = await this.beatRepository.All()
                 .OrderByDescending(x => x.CreatedOn)
                 .Skip(skip)
                 .Take((int)take)
                 .To<IndexBeatViewModel>()
-                .ToList();
+                .ToListAsync();
 
             return beats;
+        }
+
+        public async Task UpdateAsync(int id, string name, decimal standartPrice, string description)
+        {
+            var beat = await this.beatRepository
+                .All()
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
+
+            beat.Name = name;
+            beat.StandartPrice = standartPrice;
+            beat.Description = description;
+
+            await this.beatRepository.SaveChangesAsync();
         }
     }
 }

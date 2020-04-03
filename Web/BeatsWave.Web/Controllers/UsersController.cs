@@ -35,7 +35,7 @@
 
         public IActionResult Buy(int id)
         {
-            var beatViewModel = this.beatsService.FindBeatById<BeatToBuyViewModel>(id);
+            var beatViewModel = this.beatsService.FindBeatByIdAsync<BeatToBuyViewModel>(id);
 
             if (beatViewModel == null)
             {

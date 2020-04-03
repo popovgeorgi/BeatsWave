@@ -113,12 +113,11 @@
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: this.Request.Scheme);
 
-                    var sendGrindEmailSender = new SendGridEmailSender(this.configuration.GetSection("SendGrid:SendGridKey").Value);
-
                     if (this._userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        await sendGrindEmailSender.SendEmailAsync("popov_02@abv.bg", "Beatswave", this.Input.Email, "Confirm your email", $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        await this._emailSender.SendEmailAsync("popov_02@abv.bg", "Beatswave", this.Input.Email, "Confirm your email", $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
+                        await this._signInManager.SignInAsync(user, isPersistent: false);
                         return this.RedirectToPage("RegisterConfirmation", new { email = this.Input.Email });
                     }
                     else

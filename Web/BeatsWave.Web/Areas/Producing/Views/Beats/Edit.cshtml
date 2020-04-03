@@ -1,7 +1,71 @@
-﻿@{
-    ViewData["Title"] = "Home";
+﻿@using BeatsWave.Web.ViewModels.Beats
+@model EditBeatViewModel
+@{
+    ViewData["Title"] = "EDIT";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="row text-center pagination justify-content-center">
+    <div class="col-md-10 col-md-offset-1">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form asp-area="Producing" asp-controller="Beats" asp-action="Edit" asp-route-id="@Model.Id"
+              method="post">
+            <div class="form-group row">
+                <label asp-for="@Model.Name"></label>
+                <input asp-for="@Model.Name" class="form-control" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="@Model.StandartPrice"></label>
+                <input asp-for="@Model.StandartPrice" class="form-control" />
+                <span asp-validation-for="@Model.StandartPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="@Model.Description"></label>
+                <textarea asp-for="@Model.Description" rows="10" class="form-control"></textarea>
+                <span asp-validation-for="@Model.Description" class="text-danger"></span>
+            </div>
+            <hr />
+            <button type="submit" class="btn btn-default">Edit</button>
+        </form>
+    </div>
+</div>
 
-
+@*<section id="cart-order">
+    <div class="section">
+        <div class="product-cart">
+            <div class="row cart-name">
+                <div class="col-6"><span>Image</span></div>
+                <div class="col-2"><span>Price</span></div>
+            </div>
+                <div class="row cart-item">
+                    <div class="col-sm-6">
+                        <div class="cart-image">
+                            <img src="@(Model.ImageUrl)" width="100" class="mr-3" alt="@Model.Name" />
+                        </div>
+                        <div class="cart-description">
+                            <h2>@Model.Name</h2>
+                            <p>
+                                @Model.Description
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 price-name-line">
+                        <div class="product-total">
+                            <div class="product-price">
+                                <span class="prise-mobile">PRICE</span><span>€ @Model.StandartPrice</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 delet-line">
+                        <div class="delete-product">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 15.642 15.642" enable-background="new 0 0 15.642 15.642" width="21" height="21">
+                                <path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z" fill="#FFFFFF" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>*@

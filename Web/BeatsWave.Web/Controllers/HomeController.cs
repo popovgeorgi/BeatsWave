@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Threading.Tasks;
     using BeatsWave.Common;
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Data;
@@ -24,14 +25,15 @@
             return this.View();
         }
 
-        public IActionResult All(int page = 1)
+        public async Task<IActionResult> All(int page = 1)
         {
             var viewModel = new IndexViewModel();
-            var beats = this.beatsService.GetAllBeats(GlobalConstants.ItemsPerPage, (int)(page - 1) * GlobalConstants.ItemsPerPage);
 
-            var count = (int)Math.Ceiling((double)this.beatsService.Count() / GlobalConstants.ItemsPerPage);
+            var count = (int)Math.Ceiling((double)await this.beatsService.GetCountAsync() / GlobalConstants.ItemsPerPage);
             viewModel.PagesCount = count;
             viewModel.CurrentPage = page;
+
+            var beats = await this.beatsService.GetAllBeatsAsync(GlobalConstants.ItemsPerPage, (int)(page - 1) * GlobalConstants.ItemsPerPage);
             viewModel.Beats = beats;
 
             return this.View(viewModel);
