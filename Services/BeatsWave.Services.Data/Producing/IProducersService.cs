@@ -8,6 +8,6 @@
 
     public interface IProducersService
     {
-        Task<int> CreateBeatAsync(string name, IFormFile image, IFormFile beat, decimal price, int bpm, string genre, string description, string userId);
+        Task<int> CreateBeatAsync(string name, IFormFile image, IFormFile beat, int price, int bpm, string genre, string description, string userId);
     }
 }

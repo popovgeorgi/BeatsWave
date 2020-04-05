@@ -13,10 +13,12 @@
     public class BeatsService : IBeatsService
     {
         private readonly IDeletableEntityRepository<Beat> beatRepository;
+        private readonly IRepository<CloudinaryImage> imageRepository;
 
-        public BeatsService(IDeletableEntityRepository<Beat> beatRepository)
+        public BeatsService(IDeletableEntityRepository<Beat> beatRepository, IRepository<CloudinaryImage> imageRepository)
         {
             this.beatRepository = beatRepository;
+            this.imageRepository = imageRepository;
         }
 
         public async Task<int> GetCountAsync()
@@ -51,7 +53,7 @@
             return beats;
         }
 
-        public async Task UpdateAsync(int id, string name, decimal standartPrice, string description)
+        public async Task UpdateAsync(int id, string name, int standartPrice, string description)
         {
             var beat = await this.beatRepository
                 .All()
@@ -61,6 +63,42 @@
             beat.Name = name;
             beat.StandartPrice = standartPrice;
             beat.Description = description;
+
+            await this.beatRepository.SaveChangesAsync();
+        }
+
+        public async Task<int> GetCloudPictureId(int id)
+        {
+            var beat = await this.beatRepository
+                .All()
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
+
+            var cloudImageId = beat.CloudinaryImageId;
+
+            return cloudImageId;
+        }
+
+        public async Task<int> GetCloudBeatId(int id)
+        {
+            var beat = await this.beatRepository
+                .All()
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
+
+            var cloudBeatId = beat.CloudinaryBeatId;
+
+            return cloudBeatId;
+        }
+
+        public async Task Delete(int id)
+        {
+            var beat = await this.beatRepository
+                .All()
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
+
+            this.beatRepository.Delete(beat);
 
             await this.beatRepository.SaveChangesAsync();
         }

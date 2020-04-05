@@ -23,13 +23,13 @@
         public CloudinaryImage CloudinaryImage { get; set; }
 
         //mp3
-        public decimal StandartPrice { get; set; }
+        public int StandartPrice { get; set; }
 
         //mp3 + wav
-        public decimal? PremiumPrice { get; set; }
+        public int? PremiumPrice { get; set; }
 
         //mp3 + wav + trackStems
-        public decimal? TrackoutPrice { get; set; }
+        public int? TrackoutPrice { get; set; }
 
         public int Bpm { get; set; }
 

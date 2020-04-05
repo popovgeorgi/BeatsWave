@@ -33,9 +33,9 @@
             return this.View(userViewModel);
         }
 
-        public IActionResult Buy(int id)
+        public async Task<IActionResult> Buy(int id)
         {
-            var beatViewModel = this.beatsService.FindBeatByIdAsync<BeatToBuyViewModel>(id);
+            var beatViewModel = await this.beatsService.FindBeatByIdAsync<BeatToBuyViewModel>(id);
 
             if (beatViewModel == null)
             {

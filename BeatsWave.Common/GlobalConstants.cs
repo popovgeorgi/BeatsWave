@@ -18,5 +18,6 @@
         public const string CropThumb = "thumb";
 
         public const int ItemsPerPage = 4;
+        public const string PublicAuIdPrefix = "audio";
     }
 }

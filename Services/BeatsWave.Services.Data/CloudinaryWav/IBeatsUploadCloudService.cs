@@ -9,5 +9,7 @@ namespace BeatsWave.Services.Data.CloudinaryWav
     public interface IBeatsUploadCloudService
     {
         Task<int> UploadBeatAsync(string userId, IFormFile beatFile);
+
+        Task DeleteBeatAsync(int beatId);
     }
 }

@@ -12,7 +12,7 @@
 
         public string ImageUrl { get; set; }
 
-        public decimal StandartPrice { get; set; }
+        public int StandartPrice { get; set; }
 
         public string Description { get; set; }
 

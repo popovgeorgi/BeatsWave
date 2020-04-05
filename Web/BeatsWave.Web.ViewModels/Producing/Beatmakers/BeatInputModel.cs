@@ -22,7 +22,7 @@
         public IFormFile BeatWav { get; set; }
 
         [Required]
-        public decimal StandartPrice { get; set; }
+        public int StandartPrice { get; set; }
 
         [Required]
         [Range(1, 300)]

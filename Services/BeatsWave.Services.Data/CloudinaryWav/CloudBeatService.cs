@@ -31,6 +31,7 @@
             {
                 PublicIds = publicIds.ToList(),
                 Invalidate = true,
+                ResourceType = ResourceType.Video,
             };
 
             await this.cloudinary.DeleteResourcesAsync(delParams);
@@ -40,7 +41,7 @@
         {
             var beatUrl = this.cloudinary.Api.UrlVideoUp
                 .Transform(new Transformation().Height(200).Width(200).Crop("thumb"))
-                .BuildUrl(string.Format("{0}.mp3", beatThumbnailPublicId));
+                .BuildUrl(string.Format("{0}.wav", beatThumbnailPublicId));
 
             return beatUrl;
         }
@@ -60,7 +61,7 @@
                 var uploadParams = new VideoUploadParams
                 {
                     File = new FileDescription(Guid.NewGuid().ToString(), memoryStream),
-                    PublicId = $"{GlobalConstants.PublicPicIdPrefix}{Guid.NewGuid()}",
+                    PublicId = $"{GlobalConstants.PublicAuIdPrefix}{Guid.NewGuid()}",
                 };
 
                 var uploadResult = await this.cloudinary.UploadAsync(uploadParams);

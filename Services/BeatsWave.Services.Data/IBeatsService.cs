@@ -13,6 +13,12 @@
 
         Task<int> GetCountAsync();
 
-        Task UpdateAsync(int id, string name, decimal standartPrice, string description);
+        Task UpdateAsync(int id, string name, int standartPrice, string description);
+
+        Task<int> GetCloudPictureId(int id);
+
+        Task<int> GetCloudBeatId(int id);
+
+        Task Delete(int id);
     }
 }

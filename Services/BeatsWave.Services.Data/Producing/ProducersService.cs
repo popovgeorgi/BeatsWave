@@ -26,7 +26,7 @@
             this.beatsService = beatsService;
         }
 
-        public async Task<int> CreateBeatAsync(string name, IFormFile image, IFormFile beat, decimal price, int bpm, string genre, string description, string userId)
+        public async Task<int> CreateBeatAsync(string name, IFormFile image, IFormFile beat, int price, int bpm, string genre, string description, string userId)
         {
             var imageId = await this.pictureService.UploadImageAsync(userId, image);
             var beatUrlId = await this.beatsService.UploadBeatAsync(userId, beat);

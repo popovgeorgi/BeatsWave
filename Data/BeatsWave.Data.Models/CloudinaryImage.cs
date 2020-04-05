@@ -6,7 +6,7 @@
 
     using BeatsWave.Data.Common.Models;
 
-    public class CloudinaryImage : BaseModel<int>
+    public class CloudinaryImage : BaseDeletableModel<int>
     {
         public string PicturePublicId { get; set; }
 
