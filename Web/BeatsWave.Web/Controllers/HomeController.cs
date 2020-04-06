@@ -28,8 +28,8 @@
         public async Task<IActionResult> All(int page = 1)
         {
             var viewModel = new IndexViewModel();
-
-            var count = (int)Math.Ceiling((double)await this.beatsService.GetCountAsync() / GlobalConstants.ItemsPerPage);
+            var beatsCount = await this.beatsService.GetCountAsync();
+            var count = (int)Math.Ceiling((double)beatsCount / GlobalConstants.ItemsPerPage);
             viewModel.PagesCount = count;
             viewModel.CurrentPage = page;
 

@@ -3,6 +3,7 @@
     using AutoMapper;
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Mapping;
+    using System.Linq;
 
     public class IndexBeatViewModel : IMapFrom<Beat>, IHaveCustomMappings
     {
@@ -22,6 +23,8 @@
 
         public string Description { get; set; }
 
+        public int LikesCount { get; set; }
+
         public string Url => $"/b/{this.Name.Replace(' ', '-')}";
 
         public void CreateMappings(IProfileExpression configuration)
@@ -31,7 +34,8 @@
                 .ForMember(a => a.ImageUrl, m => m.MapFrom(a => a.CloudinaryImage.PictureUrl))
                 .ForMember(a => a.BeatUrl, m => m.MapFrom(a => a.CloudinaryBeat.BeatUrl))
                 .ForMember(a => a.Producer, m => m.MapFrom(a => a.Producer.UserName))
-                .ForMember(a => a.BeatId, m => m.MapFrom(a => a.Id));
+                .ForMember(a => a.BeatId, m => m.MapFrom(a => a.Id))
+                .ForMember(a => a.LikesCount, m => m.MapFrom(a => a.Likes.Sum(l => (int)l.Type)));
         }
     }
 }

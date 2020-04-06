@@ -1,8 +1,7 @@
 ﻿namespace BeatsWave.Web
 {
-    using System;
     using System.Reflection;
-    using System.Threading.Tasks;
+
     using BeatsWave.Data;
     using BeatsWave.Data.Common;
     using BeatsWave.Data.Common.Repositories;
@@ -11,22 +10,19 @@
     using BeatsWave.Data.Seeding;
     using BeatsWave.Services.Data;
     using BeatsWave.Services.Data.CloudinaryWav;
-    using BeatsWave.Services.Data;
     using BeatsWave.Services.Mapping;
     using BeatsWave.Services.Messaging;
+    using BeatsWave.Web.Middlewares;
     using BeatsWave.Web.ViewModels;
     using CloudinaryDotNet;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Microsoft.AspNetCore.Http.Features;
-    using BeatsWave.Web.Middlewares;
 
     public class Startup
     {
@@ -53,9 +49,17 @@
                         options.MinimumSameSitePolicy = SameSiteMode.None;
                     });
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            }).AddRazorRuntimeCompilation();
+
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSFR-TOKEN";
+            });
+
             services.AddRazorPages();
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddSingleton(this.configuration);
 
@@ -81,6 +85,7 @@
             services.AddTransient<IProducersService, ProducersService>();
             services.AddTransient<IBeatsService, BeatsService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<ILikeService, LikeService>();
 
             //Beat cloud
             services.AddTransient<ICloudBeatService, CloudBeatService>();
@@ -94,11 +99,6 @@
 
             Cloudinary cloudinaryUtility = new Cloudinary(cloudinaryCredentials);
             services.AddSingleton(cloudinaryUtility);
-
-            services.AddMvc(options =>
-            {
-                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

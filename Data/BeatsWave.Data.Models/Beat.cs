@@ -1,14 +1,17 @@
 ﻿namespace BeatsWave.Data.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
     using BeatsWave.Data.Common.Models;
 
     public class Beat : BaseDeletableModel<int>
     {
+        public Beat()
+        {
+            this.Likes = new HashSet<Like>();
+        }
+
         [Required]
         public string Name { get; set; }
 
@@ -41,5 +44,7 @@
         public string ProducerId { get; set; }
 
         public ApplicationUser Producer { get; set; }
+
+        public virtual ICollection<Like> Likes { get; set; }
     }
 }
