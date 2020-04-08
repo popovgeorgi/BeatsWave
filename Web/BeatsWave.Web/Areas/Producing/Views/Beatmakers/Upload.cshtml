@@ -5,7 +5,7 @@
 @model BeatInputModel
 
 
-<div class="form pagination justify-content-center">
+<div class="form pagination justify-content-center" style="background-image: url('@Url.Content("~/images/metro.jpg")');">
     <form method="post" enctype="multipart/form-data" asp-area="Producing" asp-controller="Beatmakers" asp-action="Upload">
 
         <div asp-validation-summary="All" class="text-danger"></div>

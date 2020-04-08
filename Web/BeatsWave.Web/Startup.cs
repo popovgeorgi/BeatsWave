@@ -59,6 +59,12 @@
                 options.HeaderName = "X-CSFR-TOKEN";
             });
 
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = this.configuration["Facebook:AppId"];
+                facebookOptions.AppSecret = this.configuration["Facebook:AppSecret"];
+            });
+
             services.AddRazorPages();
 
             services.AddSingleton(this.configuration);
