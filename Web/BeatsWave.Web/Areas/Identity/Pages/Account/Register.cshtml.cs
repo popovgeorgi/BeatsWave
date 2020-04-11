@@ -52,12 +52,6 @@
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public enum Role
-        {
-            Artist = 0,
-            Beatmaker = 1,
-            Administrator = 2,
-        }
 
         public class InputModel
         {
@@ -81,8 +75,6 @@
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-
-            public Role Role { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -99,7 +91,6 @@
             {
                 var user = new ApplicationUser { UserName = Input.UserName, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                await _userManager.AddToRoleAsync(user, this.Input.Role.ToString());
 
                 if (result.Succeeded)
                 {

@@ -8,6 +8,7 @@
     using BeatsWave.Services.Mapping;
     using BeatsWave.Web.ViewModels.Home;
     using BeatsWave.Web.ViewModels.Users;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class UsersController : Controller
@@ -33,6 +34,7 @@
             return this.View(userViewModel);
         }
 
+        [Authorize]
         public async Task<IActionResult> Buy(int id)
         {
             var beatViewModel = await this.beatsService.FindBeatByIdAsync<BeatToBuyViewModel>(id);
@@ -43,6 +45,16 @@
             }
 
             return this.View(beatViewModel);
+        }
+
+        public IActionResult ChooseRole()
+        {
+            return this.View();
+        }
+
+        public IActionResult Platform(int roleId)
+        {
+            return this.View();
         }
     }
 }

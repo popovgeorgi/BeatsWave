@@ -18,10 +18,11 @@
     <link href="~/css/bootstrap-formhelpers.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/chosen.css">
     <link rel="stylesheet" href="https://npmcdn.com/jquery-gray@1.6.0/css/gray.min.css">
-    <link href="~/css/style.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">\
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">\
     @*dollar favicon*@
     <link rel="apple-touch-icon" sizes="180x180" href="~favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="~favicons/favicon-32x32.png">
@@ -150,7 +151,7 @@
                 <!-- LOGO -->
                 <div class="logo"><a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="Logo"></a></div>
                 <div class="header_items">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="All">BEATS</a>
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="All">BEATS</a>
                     <partial name="_ProducingPartial" />
                     <partial name="_LoginPartial" />
                     <div class="search_icon">
@@ -293,6 +294,7 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
     <script src="~/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="~/lib/materialize/dist/js/materialize.js"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.js"></script>
     <script src="~/js/chosen.jquery.js"></script>

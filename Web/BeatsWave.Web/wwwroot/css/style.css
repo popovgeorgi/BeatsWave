@@ -168,7 +168,7 @@ a:focus,a:hover {
     position:relative;
     width:206px;
 }
-#header ul.nav > li > a{
+#header ul.nav > li > a {
     font-size: 40px;
     font-weight: 400;
     color: #ffffff;
@@ -181,17 +181,17 @@ a:focus,a:hover {
     -moz-transition: all .5s ease;
     transition: all .5s ease;
 }
-#header ul.nav li .nav-link.active{
+#header ul.nav li .nav-link.active {
     color: #2ac4b7;
 }
-#header ul.nav li a:hover{
+#header ul.nav li a:hover {
     color: #2ac4b7;
 }
-#header .nav > li ul.child-item{
+#header .nav > li ul.child-item {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
-    display:none;
+    display: none;
     position: absolute;
     left: 200px;
     top: 20%;
@@ -10196,12 +10196,29 @@ body.net #header .nav > li ul.child-item{
 .beat-price {
     font-size: 25px;
 }
-.beat-name {
-
-}
 .beat-description {
     font-size: 30px;
 }
+.progress-bar {
+    height: 35px;
+    width: 250px;
+    border: 2px solid white;
+}
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: lightblue;
+    display: flex;
+    align-items: center;
+    transition: width 0.25s;
+}
+
+.progress-bar-text {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+
 
 
 
