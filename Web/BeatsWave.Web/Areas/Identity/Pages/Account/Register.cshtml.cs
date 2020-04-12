@@ -13,6 +13,7 @@
     using BeatsWave.Services.Messaging;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -29,24 +30,30 @@
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly IConfiguration configuration;
+        private readonly IWebHostEnvironment hostingEnvironment;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IWebHostEnvironment hostingEnvironment)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
             this._logger = logger;
             this._emailSender = emailSender;
             this.configuration = configuration;
+            this.hostingEnvironment = hostingEnvironment;
             this._userManager.Options.SignIn.RequireConfirmedAccount = true;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int Id { get; set; }
 
         public string ReturnUrl { get; set; }
 
@@ -77,20 +84,22 @@
             public string ConfirmPassword { get; set; }
         }
 
+
         public async Task OnGetAsync(string returnUrl = null)
         {
-            ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            this.ReturnUrl = returnUrl;
+            this.ExternalLogins = (await this._signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
-            ExternalLogins = (await this._signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            this.ExternalLogins = (await this._signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.UserName, Email = Input.Email };
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                var user = new ApplicationUser { UserName = this.Input.UserName, Email = this.Input.Email };
+                var result = await this._userManager.CreateAsync(user, this.Input.Password);
+                await this._userManager.AddToRoleAsync(user, ((Role)this.Id).ToString());
 
                 if (result.Succeeded)
                 {
@@ -104,9 +113,9 @@
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: this.Request.Scheme);
 
-                    if (this._userManager.Options.SignIn.RequireConfirmedAccount)
+                    if (this.hostingEnvironment.EnvironmentName == "Production")
                     {
-                        await this._emailSender.SendEmailAsync("popov_02@abv.bg", "Beatswave", this.Input.Email, "Confirm your email", $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        await this._emailSender.SendEmailAsync("popov_02@abv.bg", "BeatsWave", this.Input.Email, "Confirm your email", $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                         await this._signInManager.SignInAsync(user, isPersistent: false);
                         return this.RedirectToPage("RegisterConfirmation", new { email = this.Input.Email });
@@ -115,14 +124,7 @@
                     {
                         await this._signInManager.SignInAsync(user, isPersistent: false);
 
-                        if (this.User.IsInRole(GlobalConstants.BeatmakerRoleName))
-                        {
-                            return this.RedirectToAction("Index", "Beatmakers", new { area = "Beatmakers" });
-                        }
-                        else if (this.User.IsInRole(GlobalConstants.ArtistRoleName))
-                        {
-                            return this.RedirectToAction("Index", "Beatmakers", new { area = "Beatmakers" });
-                        }
+                        return this.Redirect("/Home/All");
                     }
                 }
 

@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id}"
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
@@ -33,9 +33,9 @@
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
-    @*<div class="col-md-6 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-2">
         <section>
-            <h4>Use another service to register.</h4>
+            <h4 class="text-light">Use another service to register.</h4>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
@@ -62,7 +62,7 @@
                 }
             }
         </section>
-    </div>*@
+    </div>
 </div>
 
 @section Scripts {
