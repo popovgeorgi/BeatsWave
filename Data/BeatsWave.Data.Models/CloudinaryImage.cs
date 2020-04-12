@@ -19,5 +19,9 @@
         public string UploaderId { get; set; }
 
         public ApplicationUser Uploader { get; set; }
+
+        public string ProfilePictureUploaderId { get; set; }
+
+        public ApplicationUser ProfilePictureUploader { get; set; }
     }
 }

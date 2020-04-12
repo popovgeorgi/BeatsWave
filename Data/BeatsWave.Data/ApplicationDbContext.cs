@@ -98,6 +98,11 @@
                 .HasOne(x => x.Uploader)
                 .WithMany(b => b.CloudinaryBeats)
                 .HasForeignKey(x => x.UploaderId);
+
+            builder.Entity<ApplicationUser>()
+                .HasOne(x => x.ProfilePicture)
+                .WithOne(x => x.ProfilePictureUploader)
+                .HasForeignKey<CloudinaryImage>(x => x.ProfilePictureUploaderId);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

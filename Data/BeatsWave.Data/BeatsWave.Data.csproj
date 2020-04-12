@@ -15,6 +15,10 @@
     <Compile Remove="Migrations\20200328193429_initial.Designer.cs" />
     <Compile Remove="Migrations\20200328205351_ss.cs" />
     <Compile Remove="Migrations\20200328205351_ss.Designer.cs" />
+    <Compile Remove="Migrations\20200412112718_addImageToUser.cs" />
+    <Compile Remove="Migrations\20200412112718_addImageToUser.Designer.cs" />
+    <Compile Remove="Migrations\20200412115843_addImagePropertyToUser.cs" />
+    <Compile Remove="Migrations\20200412115843_addImagePropertyToUser.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -18,6 +18,10 @@ namespace BeatsWave.Data.Models
             this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
 
+        public int ProfilePictureId { get; set; }
+
+        public CloudinaryImage ProfilePicture { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
