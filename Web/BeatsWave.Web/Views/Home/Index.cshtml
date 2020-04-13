@@ -4,7 +4,6 @@
 }
 
 <!-- START TITLE SECTION -->
-
 <!-- END TITLE SECTION -->
 <!-- START CONTACT US SECTION -->
 <section id="contact-us" class="section_8" style="background-image: url('@Url.Content("~/images/form-bg.png")')">
@@ -44,3 +43,28 @@
     </div>
 </section>
 <!-- END START CONTACT US SECTION -->
+@section About
+    {
+    <li class="nav-item">
+        <a class="nav-link" asp-area="Home" asp-action="All">
+            About
+        </a>
+    </li>
+}
+@section Register
+    {
+    <li class="nav-item">
+        <a class="nav-link" asp-area="" asp-controller="Users" asp-action="ChooseRole">
+            Register
+        </a>
+    </li>
+}
+@section Login
+{
+    <li class="nav-item">
+        <a class="btn btn-outline-white ml-2" asp-area="Identity" asp-page="/Account/Login" title="Login">
+            <i class="fas fa-address-card"></i>  
+            Log in
+        </a>
+    </li>
+}

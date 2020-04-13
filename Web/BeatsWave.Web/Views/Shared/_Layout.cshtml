@@ -10,6 +10,8 @@
     <meta name="keywords" content="">
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
 
+
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css">
     <link rel="shortcut icon" type="image/icon" href="~/images/favicon.png" />
     <link href="~/css/font-awesome.css" rel="stylesheet">
     <link href="~/css/bootstrap.css" rel="stylesheet">
@@ -22,119 +24,14 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">\
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">\
-    @*dollar favicon*@
-    <link rel="apple-touch-icon" sizes="180x180" href="~favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="~favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="~favicons/favicon-16x16.png">
-    <link rel="manifest" href="~favicons/site.webmanifest">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">\\
 </head>
 <body>
     <div id="preloader"></div>
     <!-- START HEADER SECTION -->
     <section id="header">
         <!-- START MENU SECTION -->
-        <div class="nav-menu">
-            <!-- NAV BAR BACKGROUND IMAGE-->
-            <div class="section_bg_image" style="background-image: url('@Url.Content("~/images/background-1.png")')"></div>
-            <!-- START NAV BAR-->
-            <ul class="nav flex-column section">
-                <li class="nav-item">
-                    <a class="nav-link active" href="01-Home.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Music</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="02-Music-Discography.html">Discography</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="03-Music-Single-Album.html">Single Album</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Events</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="04-Events-All-Events.html">Upcoming Events</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="04-Events-All-Events.html">Past Events</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="04-Events-All-Events.html">All Events</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="05-Events-Single-Events.html">Single Event</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Videos</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="06-Videos.html">Videos List</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="07-Single-Video.html">Single Video</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Gallery</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="08-Gallery-Photogallery.html">Gallery List</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="09-Gallery-Single-Gallery.html">Single Gallery</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Blog</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="13-Blog-Mansory.html">Blog Masonry</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="10-Blog-Grid.html">Blog Grid</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="12-Blog-Standard.html">Blog Standard</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="11-Blog-Single-Post.html">Single Post</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Shop</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="19-Shop.html">Product List</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="20-Single-Product.html">Single Product</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="14-Cart.html">Cart</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="15-Checkout-Page.html">Checkout</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="16-Contact-Us.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="17-404.html">404</a>
-                </li>
-            </ul>
-            <!-- END NAV BAR-->
-        </div>
+        <partial name="_StartHeaderPartial.cshtml" />
         <!-- END MENU SECTION -->
         <!-- START SEARCH BAR SECTION -->
         <div class="search-bar">
@@ -151,9 +48,10 @@
                 <!-- LOGO -->
                 <div class="logo"><a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="Logo"></a></div>
                 <div class="header_items">
-                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="All">BEATS</a>
-                    <partial name="_ProducingPartial" />
-                    <partial name="_LoginPartial" />
+                    @RenderSection("About", required: false)
+                    @RenderSection("Register", required: false)
+                    @RenderSection("Login", required: false)
+
                     <div class="search_icon">
                         <i class="fa fa-search" aria-hidden="true"></i>
                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 15.642 15.642" enable-background="new 0 0 15.642 15.642" width="21" height="21">
@@ -194,101 +92,7 @@
         </main>
     </section>
     <!-- START FOOTER SECTION -->
-    <footer id="footer">
-        <div class="bg_image" style="background-image: url('@Url.Content("~/images/travis.jpg")')"></div>
-        <div class="overly"></div>
-        <div class="section">
-            <div class="row footer">
-                <div class="col">
-                    <h2>ABOUT BEATSWAVE</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit,
-                        sed do eiusmod tempor incididunt
-                        ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur.
-                    </p>
-                </div>
-                <div class="col">
-                    <div class="f-content">
-                        <h2>UPCOMING EVENT</h2>
-                        <div class="day_num">
-                            <a href="05-Events-Single-Events.html">
-                                <span>19</span>
-                                <div>
-                                    <p>Dec</p>
-                                    <p>2019</p>
-                                </div>
-                                <p>Torwar Festival</p>
-                            </a>
-                        </div>
-                        <div class="day_num">
-                            <a href="05-Events-Single-Events.html">
-                                <span>12</span>
-                                <div>
-                                    <p>Dec</p>
-                                    <p>2020</p>
-                                </div>
-                                <p>Lavaza Festival</p>
-                            </a>
-                        </div>
-                        <div class="day_num">
-                            <a href="05-Events-Single-Events.html">
-                                <span>15</span>
-                                <div>
-                                    <p>Dec</p>
-                                    <p>2020</p>
-                                </div>
-                                <p>Ladesno Festival</p>
-                            </a>
-                        </div>
-                        <div class="day_num">
-                            <a href="05-Events-Single-Events.html">
-                                <span>12</span>
-                                <div>
-                                    <p>Dec</p>
-                                    <p>2020</p>
-                                </div>
-                                <p>Coachella Festival</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="footer_logo">
-                        <img src="resources/images/logo.png" alt="Logo">
-                    </div>
-                    <div class="info">
-                        <p class="main_p">175 Grand Central Parkway</p>
-                        <p>Phone: +00 (0) 101 1010 101</p>
-                        <p>Fax: +00 (0) 101 1010 101</p>
-                        <p>Email: support@bets.com</p>
-                    </div>
-                    <div class="folow">
-                        <ul>
-                            <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                            <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                            <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href=""><i class="fa fa-tripadvisor"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row f_1">
-            <div class="col">
-                <div class="copyright">
-                    <span>Copyright © BeatsWave 2020</span>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <partial name="_FooterPartial" />
 
     <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>

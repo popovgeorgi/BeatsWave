@@ -1,32 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using BeatsWave.Data.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace BeatsWave.Web.Areas.Identity.Pages.Account.Manage
+﻿namespace BeatsWave.Web.Areas.Identity.Pages.Account.Manage
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using BeatsWave.Data.Models;
+    using BeatsWave.Services.Data;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+
     public partial class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IUsersService usersService;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            IUsersService usersService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            this.usersService = usersService;
         }
 
         public string Username { get; set; }
-
-        public IFormFile ProfileImage { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -39,6 +42,8 @@ namespace BeatsWave.Web.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            public IFormFile ProfileImage { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -83,7 +88,7 @@ namespace BeatsWave.Web.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, this.Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -91,8 +96,10 @@ namespace BeatsWave.Web.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            this.usersService.UploadProfilePictureAsync(user.Id, this.Input.ProfileImage);
+
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            this.StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
     }

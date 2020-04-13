@@ -35,5 +35,26 @@
 
             return image.Id;
         }
+
+        public async Task<int> WriteToProfileDbAsync(string uploaderId, string pictureUrl, string pictureThumbnailUrl,
+            string picPublicId, DateTime uploadedOn, long picLength, string profilePictureUploaderId)
+        {
+            var image = new CloudinaryImage
+            {
+                UploaderId = uploaderId,
+                PictureUrl = pictureUrl,
+                PictureThumbnailUrl = pictureThumbnailUrl,
+                PicturePublicId = picPublicId,
+                CreatedOn = uploadedOn,
+                Length = picLength,
+                ProfilePictureUploaderId = profilePictureUploaderId,
+            };
+
+            await this.imageRepository.AddAsync(image);
+
+            await this.imageRepository.SaveChangesAsync();
+
+            return image.Id;
+        }
     }
 }

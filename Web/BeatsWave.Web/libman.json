@@ -43,6 +43,19 @@
                 "dist/css/materialize.min.css",
                 "dist/js/materialize.js"
             ]
+        },
+        {
+            "provider": "unpkg",
+            "library": "font-awesome-5-css@5.4.1",
+            "destination": "wwwroot/lib/fontawesome",
+            "files": [
+                "css/all.css",
+                "css/all.min.css",
+                "css/brands.css",
+                "css/brands.min.css",
+                "css/fa-solid.css",
+                "css/fa-solid.min.css"
+            ]
         }
     ]
 }
