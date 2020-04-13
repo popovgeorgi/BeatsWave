@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using BeatsWave.Services.Data;
     using BeatsWave.Services.Mapping;
-    using BeatsWave.Web.ViewModels.Home;
+    using BeatsWave.Web.ViewModels.Beats;
     using BeatsWave.Web.ViewModels.Users;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;

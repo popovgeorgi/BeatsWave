@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using BeatsWave.Web.ViewModels.Home;
+    using BeatsWave.Web.ViewModels.Beats;
 
     public interface IBeatsService
     {

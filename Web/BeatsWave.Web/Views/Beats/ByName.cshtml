@@ -1,0 +1,54 @@
+﻿@using BeatsWave.Web.ViewModels.Beats
+@model IndexBeatViewModel
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<section id="cart-order">
+    <div class="section">
+        <div class="product-cart">
+            <div class="row cart-name"></div>
+            <div class="row cart-item">
+                <div class="col-sm-6">
+                    <div class="cart-image">
+                        <img src="@(Model.ImageUrl)" width="100" class="mr-3" alt="@Model.Name" />
+                    </div>
+                    <div class="cart-description">
+                        <h2>@Model.Name prod.by <a asp-controller="Users" asp-action="Profile" asp-route-id="@Model.ProducerId">@Model.Producer</a></h2>
+                        <p>
+                            @Model.Description
+                        </p>
+                    </div>
+                    <div>
+                        <a class="btn-floating btn-large cyan pulse"
+                           asp-controller="Users" asp-action="Buy" asp-route-id="@Model.BeatId"><i class="material-icons">cloud</i></a>
+                    </div>
+                </div>
+                <div class="col-sm-2 price-name-line">
+                    <div class="product-total">
+                        <div class="product-price">
+                            <span class="prise-mobile">PRICE</span><span>€ @Model.StandartPrice</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col music wow fadeInRightBig">
+                    <div class="m_img" style="background-image: url('@Url.Content("~/images/travis.jpg")')"></div>
+                    <div class="mp3 mp3_1">
+                        <span>@Model.Producer - @Model.Name</span>
+                        <audio controls class="audio1"><source src="@(Model.BeatUrl)" type="audio/mpeg"></audio>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <form id="likesForm" method="post"></form>
+                        <a onclick="like(@Model.BeatId)">
+                            <i class="fa fa-heart fa-4x"></i>
+                        </a>
+                    </div>
+                    <div id="likesCount">@Model.LikesCount</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

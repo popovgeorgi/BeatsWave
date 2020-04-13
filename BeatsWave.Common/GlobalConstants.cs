@@ -17,7 +17,7 @@
         public const int ThumbnailHeight = 200;
         public const string CropThumb = "thumb";
 
-        public const int ItemsPerPage = 4;
+        public const int ItemsPerPage = 9;
         public const string PublicAuIdPrefix = "audio";
     }
 }

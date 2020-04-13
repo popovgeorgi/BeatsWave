@@ -1,4 +1,4 @@
-﻿namespace BeatsWave.Web.ViewModels.Home
+﻿namespace BeatsWave.Web.ViewModels.Beats
 {
     using System;
     using System.Collections.Generic;

@@ -6,7 +6,7 @@
 
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Mapping;
-    using BeatsWave.Web.ViewModels.Home;
+    using BeatsWave.Web.ViewModels.Beats;
 
     public class UserViewModel : IMapFrom<ApplicationUser>
     {

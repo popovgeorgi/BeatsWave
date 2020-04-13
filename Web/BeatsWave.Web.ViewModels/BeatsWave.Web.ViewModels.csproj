@@ -24,4 +24,8 @@
     <ProjectReference Include="..\..\Services\BeatsWave.Services.Mapping\BeatsWave.Services.Mapping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Home\" />
+  </ItemGroup>
+
 </Project>

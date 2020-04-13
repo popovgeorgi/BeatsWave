@@ -7,7 +7,7 @@
     using BeatsWave.Data.Common.Repositories;
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Mapping;
-    using BeatsWave.Web.ViewModels.Home;
+    using BeatsWave.Web.ViewModels.Beats;
     using Microsoft.EntityFrameworkCore;
 
     public class BeatsService : IBeatsService
