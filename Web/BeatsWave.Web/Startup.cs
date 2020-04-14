@@ -12,6 +12,7 @@
     using BeatsWave.Services.Data.CloudinaryWav;
     using BeatsWave.Services.Mapping;
     using BeatsWave.Services.Messaging;
+    using BeatsWave.Web.Hubs;
     using BeatsWave.Web.Middlewares;
     using BeatsWave.Web.ViewModels;
     using CloudinaryDotNet;
@@ -36,6 +37,13 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            services.AddSignalR(
+                options =>
+                    {
+                        options.EnableDetailedErrors = true;
+                    });
+
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 
@@ -150,6 +158,7 @@
             app.UseEndpoints(
                 endpoints =>
                     {
+                        endpoints.MapHub<LikeHub>("/likehub");
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();

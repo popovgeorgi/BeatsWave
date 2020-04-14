@@ -45,17 +45,17 @@
 <!-- END START CONTACT US SECTION -->
 @section Beats
     {
+
     <li class="nav-item">
-        <a class="btn btn-outline-white ml-2" asp-area="Home" asp-action="All" title="Beats">
-            <i class="fas fa-music"></i>  
-            Beats
-        </a>
+        <div class="sm-title">
+            <h2>Beats</h2>
+        </div>
     </li>
 }
 @section Register
     {
     <li class="nav-item">
-        <a class="nav-link" asp-area="" asp-controller="Users" asp-action="ChooseRole">
+        <a class="btn btn-outline-white ml-2" asp-area="" asp-controller="Users" asp-action="ChooseRole">
             Register
         </a>
     </li>
@@ -64,7 +64,6 @@
 {
     <li class="nav-item">
         <a class="btn btn-outline-white ml-2" asp-area="Identity" asp-page="/Account/Login" title="Login">
-            <i class="fas fa-address-card"></i>  
             Log in
         </a>
     </li>

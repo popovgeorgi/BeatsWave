@@ -28,6 +28,16 @@
                             </div>
                         </p>
                     </div>
+                    <div class="post-share">
+                        <div>
+                            <form id="likesForm" method="post"></form>
+                            <span>Like :</span>
+                            <a id="beat-@Model.BeatId" class="likeButton" style="color:red;" onclick="like(@Model.BeatId)" href="#">
+                                <i id="heart" class="fas fa-heart" aria-hidden="true"></i>
+                            </a>
+                            <span id="likesCount">@Model.LikesCount</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-2 price-name-line">
                     <div class="product-total">
@@ -43,178 +53,35 @@
                         <audio controls class="audio1"><source src="@(Model.BeatUrl)" type="audio/mpeg"></audio>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <form id="likesForm" method="post"></form>
-                        <a onclick="like(@Model.BeatId)">
-                            <i class="fa fa-heart fa-4x"></i>
-                        </a>
-                    </div>
-                    <div id="likesCount">@Model.LikesCount</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-    
-<!-- START SINGLE PRODUCT SECTION -->
-<section id="single-product-section">
-    <div class="section">
-        <div class="single-tab-content">
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#description" role="tab" data-toggle="tab">FANS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#review" role="tab" data-toggle="tab">COMMENTS (0)</a>
-                </li>
-            </ul>
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane first-tab-pane fade in active" id="description">
-                    <p>
-                        Each t-shirt is unique with vintage finish and mini ribbed neckline.
-                        There is contrast stitching and raw edge detail around the collar,
-                        sleeves and bottom hem line.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt
-                        mollit anim id est laborum. Sed ut perspiciatis unde omnis
-                        iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
-                        quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-                        voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                        consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-                        consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore
-                    </p>
-                </div>
-                <div role="tabpanel" class="tab-pane secondt-tab-pane fade" id="review">
-                    <div id="blog-post" class="col-sm-9">
-                        <div class="post-author">
-                            <div class="author-info">
-                                <div class="author-image">
-                                    <img src="resources/images/no-pic.png" alt="No Pic" class="no-pic" style="display: none;">
-                                    <img src="resources/images/eye_spy.png" alt="Eye Spy">
-                                </div>
-                                <div class="author-name-date">
-                                    <p>Gavin Hoffman</p>
-                                    <p>5 hours ago</p>
-                                </div>
-                                <em>Your comment is awaiting moderation</em>
-                            </div>
-                            <div class="author-description">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                    nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form">
-                            <h2>ADD A REVIEW</h2>
-                            <form>
-                                <div class="comment-form-rating">
-                                    <label>Your rating</label>
-                                    <p class="stars selected">
-                                        <span>
-                                            <a class="star-1 active" href="javascript:void(0);">
-                                                <i class="fa fa-star star-rate" aria-hidden="true"></i>
-                                            </a>
-                                            <a class="star-2" href="javascript:void(0);">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                            <a class="star-3" href="javascript:void(0);">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                            </a>
-                                            <a class="star-4" href="javascript:void(0);">
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a class="star-5" href="javascript:void(0);">
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </a>
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="row fild_1">
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Full name">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Comment"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">SUBMIT</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
 </section>
 
+<!-- START SINGLE PRODUCT SECTION -->
+<partial name="_FansAndCommentsPartial" />
+
+<div class="row cart-name"></div>
 <!-- START RELEATED PRODUCT SECTION -->
-<section id="releated-products">
-    <div class="section">
-        <div class="related-product-title">
-            <h3>Related products</h3>
-        </div>
-        <div class="shop-items">
-            <div class="s-item wow fadeInUp">
-                <div class="s-item-image">
-                    <a href="#"><img src="resources/images/s-l.jpg" alt="Image"></a>
-                </div>
-                <div class="s-item-name">
-                    <a href="#"><h2>Textured Sweatshirt</h2></a>
-                    <p>$1,000<sup>.00</sup></p>
-                    <div class="ad-to-card-button">
-                        <a href="#">ADD TO CARD</a>
-                    </div>
-                </div>
-            </div>
-            <div class="s-item wow fadeInUp">
-                <div class="s-item-image">
-                    <a href="#"><img src="resources/images/hqdefault-1.jpg" alt="Image"></a>
-                </div>
-                <div class="s-item-name">
-                    <a href="#"><h2>Guns N Roses</h2></a>
-                    <p>$1,000<sup>.00</sup></p>
-                    <div class="ad-to-card-button">
-                        <a href="#">ADD TO CARD</a>
-                    </div>
-                </div>
-            </div>
-            <div class="s-item wow fadeInUp">
-                <div class="s-item-image">
-                    <a href="#"><img src="resources/images/s-l300.jpg" alt="Image"></a>
-                </div>
-                <div class="s-item-name">
-                    <a href="#"><h2>Printed T-Shirt</h2></a>
-                    <p>
-                        $899<sup>.00</sup>
-                        <span class="sale">$1000<sup>.00</sup></span>
-                    </p>
-                    <div class="ad-to-card-button">
-                        <a href="#">ADD TO CARD</a>
-                    </div>
-                </div>
-                <div class="best-offer" style="background-image: url('resources/images/offer-bg.png')">
-                    <h4>BEST!</h4>
-                    <p>OFFER</p>
-                    <hr>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<partial name="_RelatedProductsPartial" />
+
+@section Scripts {
+    <script>
+        function like(beatId) {
+            var token = $("#likesForm input[name=__RequestVerificationToken]").val();
+            var json = { beatId: beatId, __RequestVerificationToken: token };
+            $.ajax({
+                url: "/api/likes",
+                type: "POST",
+                data: JSON.stringify(json),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: { 'X-CSFR-TOKEN': token },
+                success: function (data) {
+                    $("#likesCount").html(data.likesCount)
+                }
+            });
+        }
+    </script>
+}

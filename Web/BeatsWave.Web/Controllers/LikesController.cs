@@ -27,7 +27,7 @@
         public async Task<ActionResult<LikesResponseModel>> Beat(LikeInputModel input)
         {
             var userId = this.userManager.GetUserId(this.User);
-            await this.likeService.VoteAsync(input.BeatId, userId, input.IsUpVote);
+            await this.likeService.VoteAsync(input.BeatId, userId);
             var likes = this.likeService.GetLikes(input.BeatId);
             return new LikesResponseModel { LikesCount = likes };
         }

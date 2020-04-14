@@ -46,15 +46,6 @@
                     <audio controls class="audio1"><source src="@(beat.BeatUrl)" type="audio/mpeg"></audio>
                 </div>
             </div>
-            <div>
-                <div>
-                    <form id="likesForm" method="post"></form>
-                        <a onclick="like(@beat.BeatId)">
-                            <i class="fa fa-heart fa-4x"></i>
-                        </a>    
-                </div>
-                <div id="likesCount">@beat.LikesCount</div>
-            </div>
         </div>
             }
         </div>
@@ -100,22 +91,3 @@
     </ul>
 </nav>
 
-@section Scripts {
-    <script>
-        function like(beatId) {
-            var token = $("#likesForm input[name=__RequestVerificationToken]").val();
-            var json = { beatId: beatId, isUpVote: true, __RequestVerificationToken: token };
-            $.ajax({
-                url: "/api/likes",
-                type: "POST",
-                data: JSON.stringify(json),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                headers: { 'X-CSFR-TOKEN': token },
-                success: function (data) {
-                    $("#likesCount").html(data.likesCount)
-                }
-            });
-        }
-    </script>
-}

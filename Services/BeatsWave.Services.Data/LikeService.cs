@@ -1,10 +1,12 @@
 ﻿namespace BeatsWave.Services.Data
 {
-    using BeatsWave.Data.Common.Repositories;
-    using BeatsWave.Data.Models;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using BeatsWave.Data.Common.Repositories;
+    using BeatsWave.Data.Models;
+    using BeatsWave.Web.Infrastructure;
 
     public class LikeService : ILikeService
     {
@@ -25,7 +27,38 @@
             return likes;
         }
 
-        public async Task VoteAsync(int beatId, string userId, bool isUpVote)
+        //public CheckResult GetUpdateOfLike(string userId, int beatId)
+        //{
+        //    var like = this.likeRepository
+        //        .All()
+        //        .FirstOrDefault(x => x.BeatId == beatId && x.UserId == userId);
+
+        //    if (like.Type == LikeType.Neutral && currentVote == true)
+        //    {
+        //        var result = new CheckResult
+        //        {
+        //            New = true,
+        //            Update = "emptyLike",
+        //        };
+
+        //        return result;
+        //    }
+
+        //    if (like.Type == LikeType.UpVote && currentVote == false)
+        //    {
+        //        var result = new CheckResult
+        //        {
+        //            New = true,
+        //            Update = "colourfulLike",
+        //        };
+
+        //        return result;
+        //    }
+
+        //    return new CheckResult { New = false };
+        //}
+
+        public async Task VoteAsync(int beatId, string userId)
         {
             var like = this.likeRepository
                 .All()
