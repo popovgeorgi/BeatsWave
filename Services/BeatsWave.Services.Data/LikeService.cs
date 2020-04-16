@@ -1,20 +1,45 @@
 ﻿namespace BeatsWave.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using BeatsWave.Data.Common.Repositories;
     using BeatsWave.Data.Models;
+    using BeatsWave.Services.Mapping;
     using BeatsWave.Web.Infrastructure;
+    using BeatsWave.Web.ViewModels.Likes;
+    using Microsoft.AspNetCore.Authorization;
 
     public class LikeService : ILikeService
     {
         private readonly IRepository<Like> likeRepository;
+        private readonly IDeletableEntityRepository<Beat> beatRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
 
-        public LikeService(IRepository<Like> likeRepository)
+        public LikeService(IRepository<Like> likeRepository, IDeletableEntityRepository<Beat> beatRepository, IDeletableEntityRepository<ApplicationUser> userRepository)
         {
             this.likeRepository = likeRepository;
+            this.beatRepository = beatRepository;
+            this.userRepository = userRepository;
+        }
+
+        public IEnumerable<FanViewModel> GetFansLikedTheBeat(int beatId)
+        {
+
+
+            var usersWhoLikedTheBeat = this.userRepository
+                .All()
+                .Where(x => x.Likes.Any(l => l.BeatId == beatId && l.Type == LikeType.UpVote))
+                .Select(x => new FanViewModel
+                {
+                    Name = x.UserName,
+                    CreatedOn = x.CreatedOn,
+                })
+                .ToList();
+
+            return usersWhoLikedTheBeat;
         }
 
         public int GetLikes(int beatId)
@@ -57,7 +82,6 @@
 
         //    return new CheckResult { New = false };
         //}
-
         public async Task VoteAsync(int beatId, string userId)
         {
             var like = this.likeRepository

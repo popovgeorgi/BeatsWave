@@ -1,8 +1,13 @@
 ﻿@using BeatsWave.Web.ViewModels.Beats
-@model IndexBeatViewModel
+@using BeatsWave.Common
+@model ByNameViewModel
 
 @{
-    ViewData["Title"] = Model.Name;
+    ViewData["Title"] = Model.Beat.Name;
+    @if (this.User.IsInRole(GlobalConstants.BeatmakerRoleName))
+    {
+        this.Layout = "~/Views/Shared/_LayoutBeatmaker.cshtml";
+    }
 }
 
 <section id="cart-order">
@@ -12,48 +17,48 @@
             <div class="row cart-item">
                 <div class="col-sm-6">
                     <div class="cart-image">
-                        <img src="@(Model.ImageUrl)" width="100" class="mr-3" alt="@Model.Name" />
+                        <img src="@(Model.Beat.ImageUrl)" width="100" class="mr-3" alt="@Model.Beat.Name" />
                     </div>
                     <div class="cart-description">
-                        <h2>@Model.Name prod.by <a asp-controller="Users" asp-action="Profile" asp-route-id="@Model.ProducerId">@Model.Producer</a></h2>
+                        <h2>@Model.Beat.Name prod.by <a asp-controller="Users" asp-action="Profile" asp-route-id="@Model.Beat.ProducerId">@Model.Beat.Producer</a></h2>
                         <p>
-                            @Model.Description
+                            @Model.Beat.Description
                         </p>
                         <p>
                             <div class="ad-to-card-button">
-                                <a class="btn btn-outline-white ml-2" asp-controller="Users" asp-action="Buy" asp-route-id="@Model.BeatId"
+                                <a class="btn btn-outline-white ml-2" asp-controller="Users" asp-action="Buy" asp-route-id="@Model.Beat.BeatId"
                                    title="Buy">
                                     <i class="fas fa-shopping-cart"></i>  Buy
                                 </a>
                             </div>
+                            <div class="post-share">
+                                <div>
+                                    <form id="likesForm" method="post"></form>
+                                    <span>Like :</span>
+                                    <a id="beat-@Model.Beat.BeatId" class="likeButton" style="color:red;" onclick="like(@Model.Beat.BeatId)" href="#">
+                                        <i id="heart" class="fas fa-heart" aria-hidden="true"></i>
+                                    </a>
+                                    <span id="likesCount">@Model.Beat.LikesCount</span>
+                                </div>
+                            </div>
                         </p>
-                    </div>
-                    <div class="post-share">
-                        <div>
-                            <form id="likesForm" method="post"></form>
-                            <span>Like :</span>
-                            <a id="beat-@Model.BeatId" class="likeButton" style="color:red;" onclick="like(@Model.BeatId)" href="#">
-                                <i id="heart" class="fas fa-heart" aria-hidden="true"></i>
-                            </a>
-                            <span id="likesCount">@Model.LikesCount</span>
-                        </div>
                     </div>
                 </div>
                 <div class="col-sm-2 price-name-line">
                     <div class="product-total">
                         <div class="product-price">
-                            <span class="prise-mobile">PRICE</span><span>€ @Model.StandartPrice</span>
+                            <span class="prise-mobile">PRICE</span><span>€ @Model.Beat.StandartPrice</span>
                         </div>
                     </div>
                 </div>
                 <div class="col music wow fadeInRightBig">
                     <div class="m_img" style="background-image: url('@Url.Content("~/images/travis.jpg")')"></div>
                     <div class="mp3 mp3_1">
-                        <span>@Model.Producer - @Model.Name</span>
-                        <audio controls class="audio1"><source src="@(Model.BeatUrl)" type="audio/mpeg"></audio>
+                        <span>@Model.Beat.Producer - @Model.Beat.Name</span>
+                        <audio controls class="audio1"><source src="@(Model.Beat.BeatUrl)" type="audio/mpeg"></audio>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

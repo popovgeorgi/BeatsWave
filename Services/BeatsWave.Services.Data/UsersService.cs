@@ -48,7 +48,10 @@
                 await this.pictureService.DeleteImageAsync(pictureId);
             }
 
-            await this.pictureService.UploadImageAsync(id, picture);
+            var profilePicId = await this.pictureService.UploadImageAsync(id, picture);
+
+            user.ProfilePictureId = profilePicId;
+            await this.usersRepository.SaveChangesAsync();
         }
     }
 }

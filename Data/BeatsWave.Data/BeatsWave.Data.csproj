@@ -19,6 +19,10 @@
     <Compile Remove="Migrations\20200412112718_addImageToUser.Designer.cs" />
     <Compile Remove="Migrations\20200412115843_addImagePropertyToUser.cs" />
     <Compile Remove="Migrations\20200412115843_addImagePropertyToUser.Designer.cs" />
+    <Compile Remove="Migrations\20200416210801_removeUselessEntities.cs" />
+    <Compile Remove="Migrations\20200416210801_removeUselessEntities.Designer.cs" />
+    <Compile Remove="Migrations\20200416211133_prpr.cs" />
+    <Compile Remove="Migrations\20200416211133_prpr.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

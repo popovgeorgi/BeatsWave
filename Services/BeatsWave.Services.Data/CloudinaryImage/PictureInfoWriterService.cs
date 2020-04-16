@@ -37,7 +37,7 @@
         }
 
         public async Task<int> WriteToProfileDbAsync(string uploaderId, string pictureUrl, string pictureThumbnailUrl,
-            string picPublicId, DateTime uploadedOn, long picLength, string profilePictureUploaderId)
+            string picPublicId, DateTime uploadedOn, long picLength)
         {
             var image = new CloudinaryImage
             {
@@ -47,7 +47,6 @@
                 PicturePublicId = picPublicId,
                 CreatedOn = uploadedOn,
                 Length = picLength,
-                ProfilePictureUploaderId = profilePictureUploaderId,
             };
 
             await this.imageRepository.AddAsync(image);

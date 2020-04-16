@@ -1,0 +1,123 @@
+﻿@using BeatsWave.Common
+@using BeatsWave.Data.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
+
+
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css">
+    <link href="~/css/font-awesome.css" rel="stylesheet">
+    <link href="~/css/bootstrap.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/css/animate.css" />
+    <link href="~/css/player.css" rel="stylesheet">
+    <link href="~/css/bootstrap-formhelpers.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/chosen.css">
+    <link rel="stylesheet" href="https://npmcdn.com/jquery-gray@1.6.0/css/gray.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div id="preloader"></div>
+    <!-- START HEADER SECTION -->
+    <section id="header">
+        <!-- START MENU SECTION -->
+        <partial name="_StartHeaderPartial.cshtml" />
+        <!-- END MENU SECTION -->
+        <!-- START SEARCH BAR SECTION -->
+        <div class="search-bar">
+            <!-- SEARCH BAR BACKGROUND IMAGE-->
+            <div class="section_bg_image" style="background-image: url('@Url.Content("~/images/maxresdefault-1.jpg")')"></div>
+            <form class="form-inline my-2 my-lg-0 search_form" action="18-Search-Result-Page.html">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </form>
+        </div>
+        <!-- END SEARCH BAR SECTION  -->
+        <div class="header-continer">
+            <div class="section">
+                <!-- LOGO -->
+                <div class="logo"><a asp-area="Producing" asp-controller="Beatmakers" asp-action="Index"><img src="~/images/logo.png" alt="Logo"></a></div>
+                <div class="header_items">
+                    @RenderSection("CreateBeat", required:false)
+                    @RenderSection("Beats", required: false)
+                    @RenderSection("Logout", required: false)
+                    @RenderSection("Profile", required: false)
+
+                    <div class="search_icon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 15.642 15.642" enable-background="new 0 0 15.642 15.642" width="21" height="21">
+                            <path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z" fill="#FFFFFF" />
+                        </svg>
+                    </div>
+                    <div class="shop_icon">
+                        <a href="14-Cart.html">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span class="card_count">2</span>
+                        </a>
+                    </div>
+                    <div class="menu_icon">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 15.642 15.642" enable-background="new 0 0 15.642 15.642" width="21" height="21">
+                            <path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z" fill="#FFFFFF" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-title">
+        <div class="title-image">
+            <!--<h1>beatswave</h1>-->
+            <img src="~/images/logo1.png" alt="Logo 1">
+        </div>
+        <div class="global-title wow zoomIn">
+            <h1>@this.ViewData["Title"]</h1>
+        </div>
+    </section>
+
+    <section>
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @this.RenderBody()
+        </main>
+    </section>
+    <!-- START FOOTER SECTION -->
+    <partial name="_FooterPartial" />
+
+    <script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="~/js/site.js">script</script>
+    <script src="~/lib/materialize/dist/js/materialize.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+    <script src="~/js/chosen.jquery.js"></script>
+    <script src="~/js/wow.js"></script>
+    <script src="~/js/html5media.min.js"></script>
+    <script src="~/js/player.js"></script>
+    <script src="~/js/youtube-embed.js"></script>
+    <script src="~/js/modernizr.custom.js"></script>
+    <script src="~/js/jquery.flexslider.min.js"></script>
+    <script src="~/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/js/masonry.pkgd.min.js"></script>
+    <script src="~/js/cbpGridGallery.js"></script>
+    <script src="~/js/bootstrap-formhelpers.js"></script>
+    <script src="~/js/magnify.js"></script>
+    <script src="~/js/custom.js"></script>
+    <div class="grid" style="display:none;"></div>
+
+    @this.RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,7 +1,12 @@
 ﻿@using BeatsWave.Web.ViewModels.Beats
+@using BeatsWave.Common
 @model IndexViewModel
 @{
     ViewData["Title"] = "NEWS FEED";
+    @if (this.User.IsInRole(GlobalConstants.BeatmakerRoleName))
+    {
+        this.Layout = "~/Views/Shared/_LayoutBeatmaker.cshtml";
+    }
 }
 
 <section id="blog-grid-gallery">

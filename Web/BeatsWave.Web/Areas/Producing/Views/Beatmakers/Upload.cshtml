@@ -1,6 +1,5 @@
 ﻿@{
     ViewData["Title"] = "Upload";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model BeatInputModel
 
@@ -55,7 +54,7 @@
 
         <input type="submit" value="Upload" class="btn btn-primary" />
 
-        <div class="progress-bar" >
+        <div class="progress-bar">
             <div id="progressBar" class="progress-bar-fill">
                 <span id="progressBar" class="progress-bar-text">0%</span>
             </div>
@@ -64,7 +63,17 @@
 </div>
 
 <script>
-    $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) { 
-    $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%'); 
-     });
+    $('.cloudinary-fileupload').bind('fileuploadprogress', function (e, data) {
+        $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
+    });
 </script>
+
+@section Profile
+{
+
+    <li class="nav-item">
+        <a class="btn btn-outline-white ml-2" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+            <i class="fas fa-address-card"></i>  Profile
+        </a>
+    </li>
+}

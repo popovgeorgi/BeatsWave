@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
+    using BeatsWave.Web.ViewModels.Likes;
 
     public interface ILikeService
     {
@@ -19,6 +20,6 @@
 
         int GetLikes(int beatId);
 
-        //CheckResult GetUpdateOfLike(string userId, int beatId);
+        IEnumerable<FanViewModel> GetFansLikedTheBeat(int beatId);
     }
 }
