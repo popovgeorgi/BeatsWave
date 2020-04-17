@@ -28,6 +28,8 @@
 
         public DbSet<Beat> Beats { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
         public DbSet<CloudinaryImage> CloudinaryImages { get; set; }
 
         public DbSet<CloudinaryBeat> CloudinaryBeats { get; set; }

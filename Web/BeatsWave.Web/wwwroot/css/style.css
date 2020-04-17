@@ -2916,7 +2916,7 @@ p.post-quote:before{
     margin-right: 15px;
     letter-spacing: 3px;
 }
-.post-share a{
+.post-share a {
     font-size: 18px;
     color: #656565;
     margin-right: 15px;
@@ -10216,8 +10216,6 @@ body.net #header .nav > li ul.child-item{
     margin-left: 10px;
     font-weight: bold;
 }
-
-
 
 
 

@@ -35,10 +35,18 @@
                                 <div>
                                     <form id="likesForm" method="post"></form>
                                     <span>Like :</span>
-                                    <a id="beat-@Model.Beat.BeatId" class="likeButton" style="color:red;" onclick="like(@Model.Beat.BeatId)" href="#">
-                                        <i id="heart" class="fas fa-heart" aria-hidden="true"></i>
+                                    <a class="likeButton" id="liked" onclick="like(@Model.Beat.BeatId)">
+                                        <i id="heart" class="far fa-heart" aria-hidden="true"></i>
                                     </a>
                                     <span id="likesCount">@Model.Beat.LikesCount</span>
+                                </div>
+                            </div>
+                            <div class="post-share">
+                                <div onclick="showAddCommentForm()">
+                                    <span>Comment :</span>
+                                    <a>
+                                        <i class="far fa-comments" aria-hidden="true"></i>
+                                    </a>
                                 </div>
                             </div>
                         </p>
@@ -61,8 +69,16 @@
 
             </div>
         </div>
+        <div id="AddCommentForm" class="coupon-form" style="display:none">
+            <form class="form-inline md-form form-sm" asp-controller="Comments" asp-action="Create" method="post">
+                <input type="hidden" name="BeatId" value="@this.Model.Beat.BeatId">
+                <input class="mr-sm-2" type="text" name="Content" id="Content" placeholder="Comment..." aria-label="">
+                <button class="search-btn" type="submit">Comment</button>
+            </form>
+        </div>
     </div>
 </section>
+
 
 <!-- START SINGLE PRODUCT SECTION -->
 <partial name="_FansAndCommentsPartial" />
@@ -73,6 +89,10 @@
 
 @section Scripts {
     <script>
+        function showAddCommentForm() {
+            $("#AddCommentForm").toggle();
+        }
+
         function like(beatId) {
             var token = $("#likesForm input[name=__RequestVerificationToken]").val();
             var json = { beatId: beatId, __RequestVerificationToken: token };

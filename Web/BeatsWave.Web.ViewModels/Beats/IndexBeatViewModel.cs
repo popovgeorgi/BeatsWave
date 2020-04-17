@@ -1,10 +1,13 @@
 ﻿namespace BeatsWave.Web.ViewModels.Beats
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+
     using AutoMapper;
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Mapping;
-    using System;
-    using System.Linq;
 
     public class IndexBeatViewModel : IMapFrom<Beat>, IHaveCustomMappings
     {
@@ -27,6 +30,8 @@
         public int LikesCount { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        public IEnumerable<BeatCommentViewModel> Comments { get; set; }
 
         public string Url => $"/b/{this.Name.Replace(' ', '-')}";
 

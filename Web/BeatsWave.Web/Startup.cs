@@ -100,6 +100,7 @@
             services.AddTransient<IBeatsService, BeatsService>();
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<ILikeService, LikeService>();
+            services.AddTransient<ICommentsService, CommentsService>();
 
             //Beat cloud
             services.AddTransient<ICloudBeatService, CloudBeatService>();
