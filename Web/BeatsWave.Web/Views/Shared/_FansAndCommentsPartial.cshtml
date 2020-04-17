@@ -29,7 +29,9 @@
                                     </div>
                                     <div class="author-name-date">
                                         <p>@fan.Name</p>
-                                        <p>@fan.CreatedOn</p>
+                                        <p>
+                                            <time datetime="@fan.CreatedOn.ToString("O")"></time>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +49,9 @@
                                     </div>
                                     <div class="author-name-date">
                                         <p>@comment.UserUserName</p>
-                                        <p>@comment.CreatedOn</p>
+                                        <p>
+                                            <time datetime="@comment.CreatedOn.ToString("O")"></time>
+                                        </p>
                                     </div>
                                     <em>@comment.Content</em>
                                 </div>
