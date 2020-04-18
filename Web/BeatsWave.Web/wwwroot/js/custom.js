@@ -24,7 +24,7 @@
 
  **/
 
-"use strict";
+"use strict"; 
 //Variable for caching
 var windowElement = jQuery(window);
 var body = jQuery("body");
@@ -42,21 +42,19 @@ var popup_images_arr = [];
 
 // Get track duration by source
 function getDuration(src) {
-    return new Promise(function (resolve) {
+    return new Promise(function(resolve) {
         var audio = new Audio();
-        $(audio).on("loadedmetadata", function () {
+        $(audio).on("loadedmetadata", function(){
             resolve(audio.duration);
         });
         audio.src = src;
     });
 }
-
 // Function for player
 function playerItemEnd() {
     $('.play-mp3').show();
     $('.pause-mp3').hide();
 }
-
 // Function For Gallery Popup Slider
 function changeSlide() {
 
@@ -64,16 +62,16 @@ function changeSlide() {
         return false;
     }
 
-    for (let i = 0; i < slides_length; i++) {
-        if (i === prev_slide) {
+    for (let i = 0; i<slides_length; i++) {
+        if  (i === prev_slide) {
             jQuery("a.popup-image").eq(i).css({"z-index": "1"}).stop().animate({
                 opacity: 0
             }, 500, function () {
-                jQuery(this).css("visibility", "hidden");
+                jQuery( this ).css("visibility", "hidden");
             })
         }
         if (i === current_slide) {
-            jQuery("a.popup-image").eq(i).css({"visibility": "visible", "z-index": "2"}).stop().animate({
+            jQuery("a.popup-image").eq(i).css({"visibility":"visible", "z-index": "2"}).stop().animate({
                 opacity: 1
             }, 500)
         }
@@ -89,10 +87,9 @@ function changeSlide() {
 
 }
 
-
 // Key Event Change Slider
-$(document).keydown(function (e) {
-    if ($('#popup-container').css('display') == "block") {
+$(document).keydown(function(e) {
+    if($('#popup-container').css('display')== "block") {
         switch (e.which) {
             case 37:
                 $('.popup_left').trigger('click');
@@ -108,29 +105,27 @@ $(document).keydown(function (e) {
                 return; // exit this handler for other keys
         }
     }
-    // Key Event Menu
-    else if ($('div.nav-menu').hasClass('active')) {
-        switch (e.which) {
-            case 27:
-                $('.menu_icon').trigger('click');
-                break;
+        // Key Event Menu
+    else if($('div.nav-menu').hasClass('active')){
+            switch(e.which) {
+                case 27:
+                    $('.menu_icon').trigger('click');
+                    break;
 
-            default:
-                return; // exit this handler for other keys
+                default: return; // exit this handler for other keys
+            }
         }
-    }
-    // Key Event Search
-    else if ($('div.search-bar').hasClass('active')) {
-        switch (e.which) {
-            case 27:
-                $('.search_icon').trigger('click');
-                break;
+        // Key Event Search
+        else if($('div.search-bar').hasClass('active')){
+            switch(e.which) {
+                case 27:
+                    $('.search_icon').trigger('click');
+                    break;
 
-            default:
-                return; // exit this handler for other keys
-        }
+                default: return; // exit this handler for other keys
+            }
         e.preventDefault(); // prevent the default action (scroll / move caret)
-    }
+        }
 });
 
 //Function for Music Discography banners equal width and height
@@ -141,7 +136,6 @@ function setTeamMemberHeight() {
     $('.music-banner-3').height($('.music-banner-3').width());
     $('.s-item-image').height($('.s-item-image').width());
 }
-
 //Function for Music Discography banners equal width and height after window resize
 windowElement.resize(function () {
     setTeamMemberHeight();
@@ -153,7 +147,7 @@ function msieversion() {
     var net = ua.indexOf("NET ");
 
     if (net > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
-        if (!Modernizr.objectfit) {
+        if ( ! Modernizr.objectfit ) {
             console.log(net)
             jQuery('.img_link').each(function () {
                 var $container = jQuery(this),
@@ -168,6 +162,7 @@ function msieversion() {
     }
     return false;
 } // End
+
 
 jQuery(function ($) {
     "use strict";
@@ -196,7 +191,7 @@ jQuery(function ($) {
     /* ----------------------------------------------------------- */
     /*  3. HEADER BACKGROUND AFTER PAGE LOAD
     /* ----------------------------------------------------------- */
-    if (windowElement.scrollTop() > 20) {
+    if ( windowElement.scrollTop() > 20) {
         $('.header-continer').addClass('active');
     } else {
         $('.header-continer').removeClass('active');
@@ -206,7 +201,7 @@ jQuery(function ($) {
     /* ----------------------------------------------------------- */
     /*  4. HEADER BACKGROUND AFTER PAGE SCROLL
     /* ----------------------------------------------------------- */
-    windowElement.on('scroll', function () {
+    windowElement.on('scroll',function () {
         if ($(this).scrollTop() > 20) {
             $('.header-continer').addClass('active');
         } else {
@@ -218,15 +213,15 @@ jQuery(function ($) {
     /* ----------------------------------------------------------- */
     /*  5. HEADER FULL HEIGHT
     /* ----------------------------------------------------------- */
-    $.fn.fullHeight = function () {
+    $.fn.fullHeight = function(){
         var self = this;
         var windowHeight = window.innerHeight;
-        var fullHeightFunction = function () {
+        var fullHeightFunction = function(){
             return self.css({
                 'height': windowHeight
             });
         }
-        windowElement.on('resize', function () {
+        windowElement.on('resize', function(){
             windowHeight = window.innerHeight;
             fullHeightFunction();
         });
@@ -244,13 +239,13 @@ jQuery(function ($) {
         /* Header Section Background Image */
         var st1 = $(this).scrollTop();
         $("#header .bg_image").css({
-            "background-position-y": (st1 / 3)
+            "background-position-y": (st1/3)
         });
 
         /* Tours Section Background Image */
         var st2 = $(this).scrollTop();
         $("#on-tour .section_bg_image").css({
-            "background-position-y": (-st2 / 20 + 100)
+            "background-position-y": (-st2/20 + 100)
         });
 
     });
@@ -278,7 +273,7 @@ jQuery(function ($) {
         controlNav: true,
         animationSpeed: 400,
         smoothHeight: true,
-        start: function () {
+        start: function() {
             $('.cd-testimonials').children('li').css({
                 'opacity': 1,
                 'position': 'relative'
@@ -307,7 +302,7 @@ jQuery(function ($) {
     });
 
     $('.pause-mp3').hide();
-    $('.play-mp3').on('click', function () {
+    $('.play-mp3').on('click',function () {
         $('.play-mp3').show();
         $('.pause-mp3').hide();
         $(this).closest('.play-pause').find('svg').toggle();
@@ -332,7 +327,7 @@ jQuery(function ($) {
 
     });
 
-    $('.pause-mp3').on('click', function () {
+    $('.pause-mp3').on('click',function () {
         $('.pause-mp3').hide();
         $('.play-mp3').show();
         $("#mp3_1").find("button").eq(1).trigger("click");
@@ -340,23 +335,23 @@ jQuery(function ($) {
 
     $("body").on("click", "#mp3_1 .plyr__controls button", function () {
         if ($(this).data("plyr") == "play") {
-            $("#playlist").find(".music_line").eq(current_track - 1).find(".play-pause .play-mp3").hide();
-            $("#playlist").find(".music_line").eq(current_track - 1).find(".play-pause .pause-mp3").show();
-        } else if ($(this).data("plyr") == "pause") {
+            $("#playlist").find(".music_line").eq(current_track-1).find(".play-pause .play-mp3").hide();
+            $("#playlist").find(".music_line").eq(current_track-1).find(".play-pause .pause-mp3").show();
+        } else if ($(this).data("plyr") == "pause"){
             $('.pause-mp3').hide();
             $('.play-mp3').show();
         }
     });
 
-    $(document).on('ready', function () {
+    $(document).on('ready',function () {
         var tracks_arr = [];
         $(".play-pause").each(function () {
             var that = $(this);
             getDuration($(this).data("src"))
-                .then(function (length) {
+                .then(function(length) {
                     let duration = parseInt(length);
-                    let minutes = Math.floor(duration / 60);
-                    let seconds = duration - minutes * 60;
+                    let minutes = Math.floor(duration/60);
+                    let seconds = duration - minutes*60;
                     if (seconds < 10) {
                         seconds = "0" + seconds;
                     }
@@ -420,7 +415,7 @@ jQuery(function ($) {
         }, 300);
     });
 
-    body.on("click", ".popup_left", function () {
+    body.on("click", ".popup_left",  function () {
         prev_slide = current_slide;
         if (current_slide) {
             current_slide--;
@@ -429,7 +424,7 @@ jQuery(function ($) {
         }
         changeSlide();
     });
-    body.on("click", ".popup_right", function () {
+    body.on("click", ".popup_right",  function () {
         prev_slide = current_slide;
         if (current_slide < slides_length - 1) {
             current_slide++;
@@ -446,7 +441,7 @@ jQuery(function ($) {
     });
 
     $("#popup-container").on("click", function (e) {
-        if (!$(e.target).is($("#slides-container a img")) && !$(e.target).is($("#popup-container ul li")) && !$(e.target).is($("#popup_block .popup_arrow")) && !$(e.target).is($("#popup_block .popup_arrow i")))
+        if ( !$(e.target).is($("#slides-container a img")) && !$(e.target).is($("#popup-container ul li")) && !$(e.target).is($("#popup_block .popup_arrow")) && !$(e.target).is($("#popup_block .popup_arrow i")) )
             $("#popup-container").animate({
                 opacity: 0
             }, 300, function () {
@@ -455,17 +450,18 @@ jQuery(function ($) {
 
     });
 
-    if ($('.nav li.active').length == 0) {
+    if($('.nav li.active').length == 0)
+    {
         $('.nav li:first-child').addClass('active');
     }
     $('.centered-bottom').attr('style', 'background-position: center bottom !important;');
     $('.carousel-inner .carousel-item:first-child').addClass('active');
-    for (i = 0; i < $('#carouselExampleIndicators .carousel-inner .carousel-item').length; i++) {
+    for(i=0 ; i < $('#carouselExampleIndicators .carousel-inner .carousel-item').length ; i++){
         let carousel_active = 'active';
-        if (i != 0) {
+        if(i != 0){
             carousel_active = ''
         }
-        $('#carouselExampleIndicators .carousel-indicators').append('<li data-target="#carouselExampleIndicators" data-slide-to="' + i + '" class="' + carousel_active + '"></li>')
+        $('#carouselExampleIndicators .carousel-indicators').append('<li data-target="#carouselExampleIndicators" data-slide-to="'+i+'" class="'+carousel_active+'"></li>')
     }
 
     /* ----------------------------------------------------------- */
@@ -478,14 +474,14 @@ jQuery(function ($) {
     /*  12.BLOG MANSORY
     /* ----------------------------------------------------------- */
 
-    window.msnry = new Masonry('.grid', {
+    window.msnry = new Masonry( '.grid', {
         columnWidth: '.grid-sizer',
         percentPosition: true
     });
 
 
     // This for demonstration need send ajax call to get new post
-    $('.more').on("click", function () {
+    $('.more').on("click", function(){
 
         var html = '<div class="grid-item grid-item--width1" >' +
             '<a href="11-Blog-Single-Post.html ">\n' +
@@ -538,7 +534,7 @@ jQuery(function ($) {
             '                </div>\n' +
             '            </a>' +
             '</div>'
-            + '<div class="grid-item grid-item--width4">' +
+            +'<div class="grid-item grid-item--width4">' +
             '<a href="11-Blog-Single-Post.html ">\n' +
             '                <div class="grid-item-img">\n' +
             '                    <img src="resources/images/mink-mingle.jpg" alt="">\n' +
@@ -557,7 +553,7 @@ jQuery(function ($) {
             '</div>';
         $("div.grid").append(html);
 
-        window.msnry = new Masonry('.grid', {
+        window.msnry = new Masonry( '.grid', {
             columnWidth: '.grid-sizer',
             percentPosition: true
         });
@@ -568,18 +564,18 @@ jQuery(function ($) {
     /*  13.CART NUMBER PICKER
     /* ----------------------------------------------------------- */
 
-    $.fn.numberPicker = function () {
+    $.fn.numberPicker = function() {
         var dis = 'disabled';
-        return this.each(function () {
+        return this.each(function() {
             var picker = $(this),
                 p = picker.find('button:last-child'),
                 m = picker.find('button:first-child'),
                 input = picker.find('input'),
                 min = parseInt(input.attr('min'), 10),
                 max = parseInt(input.attr('max'), 10),
-                inputFunc = function (picker) {
+                inputFunc = function(picker) {
                     var i = parseInt(input.val(), 10);
-                    if ((i <= min) || (!i)) {
+                    if ( (i <= min) || (!i) ) {
                         input.val(min);
                         p.prop(dis, false);
                         m.prop(dis, true);
@@ -592,7 +588,7 @@ jQuery(function ($) {
                         m.prop(dis, false);
                     }
                 },
-                changeFunc = function (picker, qty) {
+                changeFunc = function(picker, qty) {
                     var q = parseInt(qty, 10),
                         i = parseInt(input.val(), 10);
                     if ((i < max && (q > 0)) || (i > min && !(q > 0))) {
@@ -600,15 +596,9 @@ jQuery(function ($) {
                         inputFunc(picker);
                     }
                 };
-            m.on('click', function () {
-                changeFunc(picker, -1);
-            });
-            p.on('click', function () {
-                changeFunc(picker, 1);
-            });
-            input.on('change', function () {
-                inputFunc(picker);
-            });
+            m.on('click', function(){changeFunc(picker,-1);});
+            p.on('click', function(){changeFunc(picker,1);});
+            input.on('change', function(){inputFunc(picker);});
             inputFunc(picker); //init
         });
     };
@@ -629,7 +619,7 @@ jQuery(function ($) {
     /* ----------------------------------------------------------- */
     $(".dropdown-menu li a").on('click', function () {
         var selText = $(this).text();
-        $(this).parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
+        $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
     });
 
     /* ----------------------------------------------------------- */
@@ -642,38 +632,38 @@ jQuery(function ($) {
     /*  16.PAYMENT RADIO BUTTON
     /* ----------------------------------------------------------- */
 
-    $('.pay-text').css('display', 'none');
+    $('.pay-text').css('display','none');
     if ($(".paypal input").is(':checked')) {
-        $(".paypal input").closest('.custom-control').find('.pay-text').css('display', 'block');
-        $(".paypal input").closest('.custom-control').siblings().find('.pay-text').css('display', 'none');
+        $(".paypal input").closest('.custom-control').find('.pay-text').css('display','block');
+        $(".paypal input").closest('.custom-control').siblings().find('.pay-text').css('display','none');
     } else {
-        $(".ubs input").closest('.custom-control').find('.pay-text').css('display', 'block');
-        $(".ubs input").closest('.custom-control').siblings().find('.pay-text').css('display', 'none');
+        $(".ubs input").closest('.custom-control').find('.pay-text').css('display','block');
+        $(".ubs input").closest('.custom-control').siblings().find('.pay-text').css('display','none');
     }
     $(".paypal input, .ubs input").on("change", function () {
-        $(this).closest('.custom-control').find('.pay-text').css('display', 'block');
-        $(this).closest('.custom-control').siblings().find('.pay-text').css('display', 'none');
+            $(this).closest('.custom-control').find('.pay-text').css('display','block');
+            $(this).closest('.custom-control').siblings().find('.pay-text').css('display','none');
     });
 
     // Add To Cart
     var nav = $('.shop-view-cart'),
         animateTime = 300,
         navLink = $('.catd-button');
-    nav.css({'height': '0'});
-    navLink.on('click', function () {
-        nav.css({overflow: 'visible'});
-        if (nav.height() === 0) {
+    nav.css({'height':'0'});
+    navLink.on('click',function(){
+        nav.css({overflow:'visible'});
+        if(nav.height() === 0){
             autoHeightAnimate(nav, animateTime);
         }
     });
 
-    /* Function to animate height: auto */
+/* Function to animate height: auto */
     function autoHeightAnimate(element, time) {
-        var curHeight = element.height(), // Get Default Height
-            autoHeight = element.css('height', 'auto').height() + 30; // Get Auto Height
-        element.height(curHeight); // Reset to Default Height
-        element.stop().animate({height: autoHeight}, time); // Animate to Auto Height
-    }
+    var curHeight = element.height(), // Get Default Height
+        autoHeight = element.css('height', 'auto').height() + 30; // Get Auto Height
+    element.height(curHeight); // Reset to Default Height
+    element.stop().animate({height: autoHeight}, time); // Animate to Auto Height
+}
 
     // Auto complete Search focus
     body.on("click", ".chosen-single", function () {
@@ -682,8 +672,8 @@ jQuery(function ($) {
     });
 
     // for big title alignment
-    if (!$('.title-image img').length) {
-        $('.global-title').css('position', 'relative');
+    if(!$('.title-image img').length){
+        $('.global-title').css('position','relative');
     }
 
     /* ----------------------------------------------------------- */
@@ -723,21 +713,21 @@ jQuery(function ($) {
             }, 300, function () {
                 $(this).css("display", "none");
             });
-        $("#text-and-video").css('position', 'relative');
+        $("#text-and-video").css('position','relative');
     });
     $("body.single-events").on("click", function (event) {
         event.stopPropagation();
         $(".overly-1").css("display", "block").animate({
             opacity: 1
         }, 300);
-        $("#text-and-video").css('position', 'initial');
+        $("#text-and-video").css('position','initial');
     });
 
     /** Function for Explorer ****/
     $(document).ready(msieversion);
 
     if (navigator.userAgent.search("NET") >= 0) {
-        if (!Modernizr.objectfit) {
+        if ( ! Modernizr.objectfit ) {
             $('.music-banner .w-100').each(function () {
                 var $container = $(this),
                     imgUrl = $container.find('img').prop('src');
@@ -810,9 +800,10 @@ jQuery(function ($) {
         }
     }
 
-    /* ----------------------------------------------------------- */
-    /*  19.BLOG MASONRY HOVER FUNCTION
-     /* ----------------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/*  19.BLOG MASONRY HOVER FUNCTION
+ /* ----------------------------------------------------------- */
+
     jQuery("body").on("mouseover", "#blog-mansory-section > .grid > .grid-item", function () {
         jQuery(".grid-item").not(this).not(".active").addClass("active");
         jQuery(this).removeClass("active");
@@ -822,14 +813,13 @@ jQuery(function ($) {
             jQuery(".grid-item.active").removeClass("active");
         }
     });
-
 });
 
 /* ----------------------------------------------------------- */
 /*  20.PRE LOADER
 /* ----------------------------------------------------------- */
-windowElement.on('load', function () {
-    $('#preloader').fadeOut('slow', function () {
+windowElement.on('load', function(){
+    $('#preloader').fadeOut('slow',function(){
         $(this).remove();
     });
 });

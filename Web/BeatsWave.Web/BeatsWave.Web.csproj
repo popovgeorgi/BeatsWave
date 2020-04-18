@@ -60,6 +60,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\js\bootstrap-formhelpers.js" />
+    <None Include="wwwroot\js\bootstrap.js" />
+    <None Include="wwwroot\js\cbpGridGallery.js" />
+    <None Include="wwwroot\js\chosen.jquery.js" />
+    <None Include="wwwroot\js\custom.js" />
+    <None Include="wwwroot\js\html5media.min.js" />
+    <None Include="wwwroot\js\imagesloaded.pkgd.min.js" />
+    <None Include="wwwroot\js\jquery-3.3.1.slim.min.js" />
+    <None Include="wwwroot\js\jquery.flexslider.min.js" />
+    <None Include="wwwroot\js\magnify.js" />
+    <None Include="wwwroot\js\masonry.pkgd.min.js" />
+    <None Include="wwwroot\js\modernizr.custom.js" />
+    <None Include="wwwroot\js\player.js" />
+    <None Include="wwwroot\js\popper.min.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\site.min.js" />
+    <None Include="wwwroot\js\wow.js" />
+    <None Include="wwwroot\js\youtube-embed.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Areas\Producing\Views\_ViewImports.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

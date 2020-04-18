@@ -8,6 +8,7 @@
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Data;
     using BeatsWave.Web.ViewModels.Comments;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(CreateCommentInputModel inputModel)
         {
             var userId = this.userManager.GetUserId(this.User);

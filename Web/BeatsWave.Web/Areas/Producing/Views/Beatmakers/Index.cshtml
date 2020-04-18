@@ -2,37 +2,4 @@
 @{
     ViewData["Title"] = "Beatmaking";
 }
-@section CreateBeat
-    {
-    <li class="nav-item">
-        <a class="btn btn-outline-white ml-2" asp-area="Producing" asp-controller="Beatmakers" asp-action="Upload">
-            Upload
-        </a>
-    </li>
-}
-@section Beats
-{
-    <li class="nav-item">
-        <a class="btn btn-outline-white ml-2" asp-area="" asp-controller="Home" asp-action="Feed">
-            Beats
-        </a>
-    </li>
-}
-@section Logout
-{
-    <li class="nav-item">
-        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
-            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-@section Profile
-{
-
-    <li class="nav-item">
-        <a class="btn btn-outline-white ml-2" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-            <i class="fas fa-address-card"></i>  Profile
-        </a>
-    </li>
-}
 
