@@ -8,6 +8,8 @@
 
     public class ByNameViewModel
     {
+        public bool IsLikedByCurrentUser { get; set; }
+
         public IndexBeatViewModel Beat { get; set; }
 
         public IEnumerable<FanViewModel> Fans { get; set; }

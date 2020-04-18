@@ -18,6 +18,8 @@
         /// <returns></returns>
         Task<bool> VoteAsync(int beatId, string userId);
 
+        bool IsLikedByCurrentUser(string userId, int beatId);
+
         int GetLikes(int beatId);
 
         IEnumerable<FanViewModel> GetFansLikedTheBeat(int beatId);

@@ -42,7 +42,14 @@
                                     <form id="likesForm" method="post"></form>
                                     <span>Like :</span>
                                     <a class="likeButton" onclick="like(@Model.Beat.BeatId)">
-                                        <i id="heart" class="far fa-heart liked" aria-hidden="true"></i>
+                                        @if (Model.IsLikedByCurrentUser)
+                                        {
+                                            <i id="heart" class="far fa-heart liked" aria-hidden="true"></i>
+                                        }
+                                        else
+                                        {
+                                            <i id="heart" class="far fa-heart" aria-hidden="true"></i>
+                                        }
                                     </a>
                                     <span id="likesCount">@Model.Beat.LikesCount</span>
                                 </div>

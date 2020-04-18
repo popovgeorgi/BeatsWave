@@ -27,8 +27,6 @@
 
         public IEnumerable<FanViewModel> GetFansLikedTheBeat(int beatId)
         {
-
-
             var usersWhoLikedTheBeat = this.userRepository
                 .All()
                 .Where(x => x.Likes.Any(l => l.BeatId == beatId && l.Type == LikeType.UpVote))
@@ -50,6 +48,27 @@
                 .Sum(x => (int)x.Type);
 
             return likes;
+        }
+
+        public bool IsLikedByCurrentUser(string userId, int beatId)
+        {
+            var like = this.likeRepository
+                .All()
+                .FirstOrDefault(x => x.UserId == userId && x.BeatId == beatId);
+
+            if (like != null)
+            {
+                if (like.Type == LikeType.UpVote)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return false;
         }
 
         public async Task<bool> VoteAsync(int beatId, string userId)
