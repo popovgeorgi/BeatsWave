@@ -16,7 +16,7 @@
         /// <param name="userId"></param>
         /// <param name="isUpVote">If true - up vote, else - neutral. </param>
         /// <returns></returns>
-        Task VoteAsync(int beatId, string userId);
+        Task<bool> VoteAsync(int beatId, string userId);
 
         int GetLikes(int beatId);
 

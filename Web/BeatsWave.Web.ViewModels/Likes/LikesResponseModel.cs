@@ -7,5 +7,7 @@
     public class LikesResponseModel
     {
         public int LikesCount { get; set; }
+
+        public bool IsLiked { get; set; }
     }
 }

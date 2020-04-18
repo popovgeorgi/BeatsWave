@@ -52,38 +52,10 @@
             return likes;
         }
 
-        //public CheckResult GetUpdateOfLike(string userId, int beatId)
-        //{
-        //    var like = this.likeRepository
-        //        .All()
-        //        .FirstOrDefault(x => x.BeatId == beatId && x.UserId == userId);
-
-        //    if (like.Type == LikeType.Neutral && currentVote == true)
-        //    {
-        //        var result = new CheckResult
-        //        {
-        //            New = true,
-        //            Update = "emptyLike",
-        //        };
-
-        //        return result;
-        //    }
-
-        //    if (like.Type == LikeType.UpVote && currentVote == false)
-        //    {
-        //        var result = new CheckResult
-        //        {
-        //            New = true,
-        //            Update = "colourfulLike",
-        //        };
-
-        //        return result;
-        //    }
-
-        //    return new CheckResult { New = false };
-        //}
-        public async Task VoteAsync(int beatId, string userId)
+        public async Task<bool> VoteAsync(int beatId, string userId)
         {
+            bool isLiked = false;
+
             var like = this.likeRepository
                 .All()
                 .FirstOrDefault(x => x.BeatId == beatId && x.UserId == userId);
@@ -95,10 +67,12 @@
                 if (likeType == LikeType.UpVote)
                 {
                     like.Type = LikeType.Neutral;
+                    isLiked = false;
                 }
                 else
                 {
                     like.Type = LikeType.UpVote;
+                    isLiked = true;
                 }
             }
             else
@@ -110,10 +84,13 @@
                     Type = LikeType.UpVote,
                 };
 
+                isLiked = true;
+
                 await this.likeRepository.AddAsync(like);
             }
 
             await this.likeRepository.SaveChangesAsync();
+            return isLiked;
         }
     }
 }

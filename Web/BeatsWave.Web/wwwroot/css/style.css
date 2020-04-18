@@ -10217,7 +10217,9 @@ body.net #header .nav > li ul.child-item{
     font-weight: bold;
 }
 
-
+.liked {
+    color:red;
+}
 
 
 
