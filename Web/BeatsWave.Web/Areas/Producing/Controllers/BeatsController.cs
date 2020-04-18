@@ -1,10 +1,12 @@
 ﻿namespace BeatsWave.Web.Areas.Producing.Controllers
 {
     using BeatsWave.Common;
+    using BeatsWave.Data.Models;
     using BeatsWave.Services.Data;
     using BeatsWave.Services.Data.CloudinaryWav;
     using BeatsWave.Web.ViewModels.Beats;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
 
@@ -15,12 +17,14 @@
         private readonly IBeatsService beatsService;
         private readonly IBeatsUploadCloudService beatsCloudService;
         private readonly IPictureService pictureCloudService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public BeatsController(IBeatsService beatsService, IBeatsUploadCloudService beatsCloudService, IPictureService pictureCloudService)
+        public BeatsController(IBeatsService beatsService, IBeatsUploadCloudService beatsCloudService, IPictureService pictureCloudService, UserManager<ApplicationUser> userManager)
         {
             this.beatsService = beatsService;
             this.beatsCloudService = beatsCloudService;
             this.pictureCloudService = pictureCloudService;
+            this.userManager = userManager;
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -40,7 +44,7 @@
         {
             await this.beatsService.UpdateAsync(id, viewModel.Name, viewModel.StandartPrice, viewModel.Description);
 
-            return this.RedirectToAction("All", "Home", new { Area = " " });
+            return this.RedirectToAction("ByName", "Beats", new { Area = " ", Id = id });
         }
 
         public async Task<IActionResult> Delete(int id)
@@ -52,7 +56,9 @@
             await this.beatsCloudService.DeleteBeatAsync(cloudBeatId);
             await this.pictureCloudService.DeleteImageAsync(cloudImageId);
 
-            return this.RedirectToAction("All", "Home", new { Area = " " });
+            var userId = this.userManager.GetUserId(this.User);
+
+            return this.RedirectToAction("Profile", "Users", new { Area = " ", Id = userId });
         }
     }
 }

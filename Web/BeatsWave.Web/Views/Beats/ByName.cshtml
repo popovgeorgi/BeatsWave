@@ -4,10 +4,6 @@
 
 @{
     ViewData["Title"] = Model.Beat.Name;
-    @if (this.User.IsInRole(GlobalConstants.BeatmakerRoleName))
-    {
-        this.Layout = "~/Views/Shared/_LayoutBeatmaker.cshtml";
-    }
 }
 
 <style>
@@ -62,6 +58,21 @@
                                     </a>
                                 </div>
                             </div>
+                            @if (this.User.Identity.Name == Model.Beat.Producer)
+                            {
+                                <div class="post-share">
+                                    <span>Edit :</span>
+                                    <a asp-area="Producing" asp-controller="Beats" asp-action="Edit" asp-route-id="@Model.Beat.BeatId">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </div>
+                                <div class="post-share">
+                                    <span>Delete :</span>
+                                    <a asp-area="Producing" asp-controller="Beats" asp-action="Delete" asp-route-id="@Model.Beat.BeatId">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            }
                         </p>
                     </div>
                 </div>

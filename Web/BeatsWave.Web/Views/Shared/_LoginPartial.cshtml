@@ -7,7 +7,9 @@
 
     <ul class="nav flex-column">
         <li class="nav-item">
-            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Feed">Feed</a>
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Feed">
+                <i class="fas fa-music"></i>   Feed
+            </a>
         </li>
         @if (this.SignInManager.IsSignedIn(this.User))
         {
@@ -15,13 +17,26 @@
             {
                 <li class="nav-item">
                     <a class="nav-link" asp-area="Producing" asp-controller="Beatmakers" asp-action="Upload">
-                        Upload
+                        <i class="fas fa-upload"></i>   Upload
                     </a>
                 </li>
             }
-            <li class="nav-item">
-                <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity.Name)!</a>
+    <li class="nav-item">
+        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+            <i class="fas fa-address-card"></i>  Profile
+        </a>
+        <ul class="child-item">
+            @if (this.User.IsInRole(GlobalConstants.BeatmakerRoleName))
+            {
+                <li class="dropdown-child-item">
+                    <a class="nav-link" asp-area="@string.Empty" asp-controller="Users" asp-action="Profile" asp-route-id="@this.UserManager.GetUserId(this.User)">My beats</a>
+                </li>
+            }
+            <li class="dropdown-child-item">
+                <a class="nav-link" href="03-Music-Single-Album.html">Favourites</a>
             </li>
+        </ul>
+    </li>
             if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
             {
                 <li class="nav-item">
@@ -29,7 +44,9 @@
                 </li>
             }
             <li class="nav-item">
-                <a class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">Logout</a>
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                    <button type="submit" class="nav-link">Logout</button>
+                </form>
             </li>
         }
         else

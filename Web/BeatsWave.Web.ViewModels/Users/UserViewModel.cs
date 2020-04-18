@@ -12,6 +12,6 @@
     {
         public virtual string UserName { get; set; }
 
-        public virtual ICollection<IndexBeatViewModel> Beats { get; set; }
+        public virtual ICollection<UserBeatViewModel> Beats { get; set; }
     }
 }
