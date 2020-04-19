@@ -13,7 +13,7 @@
 
         public int CurrentPage { get; set; }
 
-        public IEnumerable<IndexBeatViewModel> Beats { get; set; }
+        public IEnumerable<FeedBeatViewModel> Beats { get; set; }
 
     }
 }

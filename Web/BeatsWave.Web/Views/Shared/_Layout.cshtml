@@ -199,7 +199,6 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
     <script src="~/lib/signalr/dist/browser/signalr.min.js" asp-append-version="true"></script>
-    <script src="~/lib/materialize/dist/js/materialize.js" asp-append-version="true"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.js"></script>
     <script src="~/js/chosen.jquery.js"></script>
@@ -216,8 +215,10 @@
     <script src="~/js/magnify.js"></script>
     <script src="~/js/custom.js"></script>
     <script src="~/lib/moment/min/moment-with-locales.min.js" asp-append-version="true"></script>
-    <script src="~/js/site.min.js"></script>
+    @*<script src="~/js/site.min.js"></script>*@
     <div class="grid" style="display:none;"></div>
+    <script src="~/js/site.js"></script>
+
 
     @this.RenderSection("Scripts", required: false)
 </body>

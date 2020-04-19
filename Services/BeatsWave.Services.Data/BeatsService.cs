@@ -41,13 +41,13 @@
             return beat;
         }
 
-        public async Task<IEnumerable<IndexBeatViewModel>> GetAllBeatsAsync(int? take = null, int skip = 0)
+        public async Task<IEnumerable<FeedBeatViewModel>> GetAllBeatsAsync(int? take = null, int skip = 0)
         {
             var beats = await this.beatRepository.All()
                 .OrderByDescending(x => x.CreatedOn)
                 .Skip(skip)
                 .Take((int)take)
-                .To<IndexBeatViewModel>()
+                .To<FeedBeatViewModel>()
                 .ToListAsync();
 
             return beats;
@@ -101,6 +101,50 @@
             this.beatRepository.Delete(beat);
 
             await this.beatRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<FeedBeatViewModel>> SortByPopularityAsync()
+        {
+            var sortedBeats = await this.beatRepository
+                .All()
+                .OrderByDescending(x => x.Likes)
+                .To<FeedBeatViewModel>()
+                .ToListAsync();
+
+            return sortedBeats;
+        }
+
+        public async Task<IEnumerable<FeedBeatViewModel>> SortByNewestAsync()
+        {
+            var sortedBeats = await this.beatRepository
+                 .All()
+                 .OrderByDescending(x => x.CreatedOn)
+                 .To<FeedBeatViewModel>()
+                 .ToListAsync();
+
+            return sortedBeats;
+        }
+
+        public async Task<IEnumerable<FeedBeatViewModel>> SortByOldestAsync()
+        {
+            var sortedBeats = await this.beatRepository
+                 .All()
+                 .OrderBy(x => x.CreatedOn)
+                 .To<FeedBeatViewModel>()
+                 .ToListAsync();
+
+            return sortedBeats;
+        }
+
+        public async Task<IEnumerable<FeedBeatViewModel>> SortByPriceAsync()
+        {
+            var sortedBeats = await this.beatRepository
+                 .All()
+                 .OrderByDescending(x => x.StandartPrice)
+                 .To<FeedBeatViewModel>()
+                 .ToListAsync();
+
+            return sortedBeats;
         }
     }
 }

@@ -15,16 +15,15 @@
                 <div class="results-select">
                     <div class="btn-group">
                         <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Sort by<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-item"><a href="#">Popularity</a></li>
-                            <li class="dropdown-item"><a href="#">Newest</a></li>
-                            <li class="dropdown-item"><a href="#">Oldest</a></li>
-                            <li class="dropdown-item"><a href="#">Price</a></li>
+                        <ul id="dropdownCollection" class="dropdown-menu" onchange="sort()">
+                            <li class="dropdown-item"><a>Newest</a></li>
+                            <li class="dropdown-item"><a>Oldest</a></li>
+                            <li class="dropdown-item"><a>Price</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <ul class="grid">
+            <ul class="grid" id="feed-list">
                 <li class="grid-sizer"></li>
                 @foreach (var beat in Model.Beats)
                 {
@@ -32,14 +31,14 @@
                         <a asp-controller="Beats" asp-action="ByName" asp-route-Id="@beat.BeatId">
                             <figure>
                                 <div class="blog-grid-image">
-                                    <img src="@(beat.ImageUrl)" alt="@beat.Name" />
+                                    <img class="photo" src="@(beat.ImageUrl)" alt="@beat.Name" />
                                 </div>
                                 <figcaption>
-                                    <h3>@beat.Name</h3>
-                                    <p>produced by @beat.Producer<p>
-                                    <p>$@beat.StandartPrice<sup>.00</sup></p>
+                                    <h3 class="beatName">@beat.Name</h3>
+                                    <p class="producerName">produced by @beat.Producer<p>
+                                    <p class="price">$@beat.StandartPrice<sup>.00</sup></p>
                                     @*<span class="post-publish-date">@beat.CreatedAt.Month @beat.CreatedAt.Day, @beat.CreatedAt.Year</span>*@
-                                    <p>
+                                    <p class="description">
                                         @beat.Description
                                     </p>
                                 </figcaption>

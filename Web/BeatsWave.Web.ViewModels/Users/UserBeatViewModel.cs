@@ -11,6 +11,7 @@
     public class UserBeatViewModel : IMapFrom<Beat>, IHaveCustomMappings
     {
         public int Id { get; set; }
+
         public string ImageUrl { get; set; }
 
         public string Name { get; set; }
