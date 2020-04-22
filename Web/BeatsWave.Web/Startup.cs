@@ -82,6 +82,7 @@
                 options.EnableForHttps = true;
             });
 
+            services.AddApplicationInsightsTelemetry();
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
@@ -141,11 +142,10 @@
             }
             else
             {
+                app.UseStatusCodePagesWithReExecute("/Home/Error");
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
-            app.UseStatusCodePagesWithReExecute("/Home/Error");
 
             app.UseResponseCompression();
             app.UseMiddleware<SetMaxRequestMiddleware>();

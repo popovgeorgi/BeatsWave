@@ -1,4 +1,5 @@
-﻿@using BeatsWave.Common
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@using BeatsWave.Common
 @using BeatsWave.Data.Models
 <!DOCTYPE html>
 <html>
@@ -24,6 +25,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body class="music-single-album home-demo-2">
     <div id="preloader"></div>
