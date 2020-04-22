@@ -34,6 +34,11 @@
             return this.View(userViewModel);
         }
 
+        public IActionResult Favourites(string id)
+        {
+            return this.View();
+        }
+
         [Authorize]
         public async Task<IActionResult> Buy(int id)
         {

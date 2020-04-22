@@ -76,42 +76,31 @@
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl = returnUrl ?? this.Url.Content("~/");
 
             if (this.ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await this._signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var result = await this._signInManager.PasswordSignInAsync(this.Input.UserName, this.Input.Password, this.Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByNameAsync(Input.UserName);
-                    var userRole = await _userManager.GetRolesAsync(user);
-                    _logger.LogInformation("User logged in.");
+                    var user = await this._userManager.FindByNameAsync(Input.UserName);
+                    var userRole = await this._userManager.GetRolesAsync(user);
+                    this._logger.LogInformation("User logged in.");
 
-                    if (userRole.FirstOrDefault() == GlobalConstants.BeatmakerRoleName)
-                    {
-                        return RedirectToAction("Index", "Beatmakers", new { area = "Producing" });
-                    }
-                    else if (userRole.FirstOrDefault() == GlobalConstants.ArtistRoleName)
-                    {
-                        return RedirectToAction("Index", "Home", new { area = "Rapping" });
-                    }
-                    else
-                    {
-                        return LocalRedirect(returnUrl);
-                    }
+                    return this.RedirectToAction("Index", "Home", new { area = " " });
                 }
 
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    return this.RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
 
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
+                    this._logger.LogWarning("User account locked out.");
+                    return this.RedirectToPage("./Lockout");
                 }
                 else
                 {

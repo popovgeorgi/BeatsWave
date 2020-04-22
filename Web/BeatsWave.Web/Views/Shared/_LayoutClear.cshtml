@@ -1,0 +1,64 @@
+﻿@using BeatsWave.Common
+@using BeatsWave.Data.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
+
+
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css">
+    <link href="~/css/font-awesome.css" rel="stylesheet">
+    <link href="~/css/bootstrap.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/css/animate.css" />
+    <link href="~/css/player.css" rel="stylesheet">
+    <link href="~/css/bootstrap-formhelpers.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/chosen.css">
+    <link rel="stylesheet" href="https://npmcdn.com/jquery-gray@1.6.0/css/gray.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="page-404 home-demo-2">
+
+    <section>
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @this.RenderBody()
+        </main>
+    </section>
+
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+    <script src="~/lib/signalr/dist/browser/signalr.min.js" asp-append-version="true"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+    <script src="~/js/chosen.jquery.js"></script>
+    <script src="~/js/wow.js"></script>
+    <script src="~/js/html5media.min.js"></script>
+    <script src="~/js/player.js"></script>
+    <script src="~/js/youtube-embed.js"></script>
+    <script src="~/js/modernizr.custom.js"></script>
+    <script src="~/js/jquery.flexslider.min.js"></script>
+    <script src="~/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/js/masonry.pkgd.min.js"></script>
+    <script src="~/js/cbpGridGallery.js"></script>
+    <script src="~/js/bootstrap-formhelpers.js"></script>
+    <script src="~/js/magnify.js"></script>
+    <script src="~/js/custom.js"></script>
+    <script src="~/lib/moment/min/moment-with-locales.min.js" asp-append-version="true"></script>
+    @*<script src="~/js/site.min.js"></script>*@
+    <div class="grid" style="display:none;"></div>
+    <script src="~/js/site.js"></script>
+
+
+    @this.RenderSection("Scripts", required: false)
+</body>
+</html>

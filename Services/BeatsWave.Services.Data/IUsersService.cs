@@ -5,6 +5,7 @@
     using System.Text;
 
     using BeatsWave.Data.Models;
+    using BeatsWave.Web.ViewModels.Users;
     using Microsoft.AspNetCore.Http;
 
     public interface IUsersService

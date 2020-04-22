@@ -1,25 +1,37 @@
 ﻿@model ErrorViewModel
 @{
     this.ViewData["Title"] = "Error";
+    this.Layout = "_LayoutClear";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<!-- START HEADER SECTION -->
+<section id="header-404">
+    <!-- HEADER BACKGROUND IMAGE  -->
+    <div class="bg_image" style="background-image: url('@Url.Content("~/images/savage.jpg")')"></div>
+    <div class="overly"></div>
+    <div class="section section_1_title">
+        <div class="big-title">
+            <!--<h1>404</h1>-->
+            <img src="~/images/404.png" alt="Logo 1">
+            <h2>Upps! nothing found</h2>
+        </div>
+        <div class="search-404">
+            <form class="form-inline md-form form-sm">
+                <input class="mr-sm-2" type="text" placeholder="Type any keyword" aria-label="">
+                <button class="search-btn" type="submit">SEARCH</button>
+            </form>
+        </div>
+        <div class="content-404">
+            <h2>Sorry!</h2>
+            <p>The page you are looking for does not exist or another error occurred</p>
+            <a asp-controller="Home" asp-action="Index"><i class="fa fa-home" aria-hidden="true"></i><span>GO BACK HOME</span></a>
+        </div>
+    </div>
+</section>
 
-@if (this.Model.ShowRequestId)
+@*@if (this.Model.ShowRequestId)
 {
-    <p>
-        <strong>Request ID:</strong> <code>@this.Model.RequestId</code>
-    </p>
-}
-
-<h3>Development Mode</h3>
 <p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
+    <strong>Request ID:</strong> <code>@this.Model.RequestId</code>
 </p>
-<p>
-    <strong>The Development environment shouldn't be enabled for deployed applications.</strong>
-    It can result in displaying sensitive information from exceptions to end users.
-    For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
-    and restarting the app.
-</p>
+}*@

@@ -33,7 +33,7 @@
                 </li>
             }
             <li class="dropdown-child-item">
-                <a class="nav-link" href="03-Music-Single-Album.html">Favourites</a>
+                <a class="nav-link" asp-area="@string.Empty" asp-controller="Users" asp-action="Favourites" asp-route-id="@this.UserManager.GetUserId(this.User)">Favourites</a>
             </li>
         </ul>
     </li>

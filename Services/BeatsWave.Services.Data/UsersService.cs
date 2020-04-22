@@ -15,13 +15,14 @@
     {
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
         private readonly IPictureService pictureService;
+        private readonly IDeletableEntityRepository<Beat> beatsRepository;
 
-        public UsersService(IDeletableEntityRepository<ApplicationUser> usersRepository, IPictureService pictureService)
+        public UsersService(IDeletableEntityRepository<ApplicationUser> usersRepository, IPictureService pictureService, IDeletableEntityRepository<Beat> beatsRepository)
         {
             this.usersRepository = usersRepository;
             this.pictureService = pictureService;
+            this.beatsRepository = beatsRepository;
         }
-
         public T GetById<T>(string id)
         {
             var user = this.usersRepository

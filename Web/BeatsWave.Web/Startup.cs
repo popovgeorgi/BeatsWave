@@ -145,6 +145,8 @@
                 app.UseHsts();
             }
 
+            app.UseStatusCodePagesWithReExecute("/Home/Error");
+
             app.UseResponseCompression();
             app.UseMiddleware<SetMaxRequestMiddleware>();
             app.UseHttpsRedirection();
