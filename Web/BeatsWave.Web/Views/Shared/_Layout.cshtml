@@ -12,6 +12,7 @@
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
 
 
+    <link type="text/css" href="~/lib/loadingio/dist/loading-bar.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css">
     <link href="~/css/font-awesome.css" rel="stylesheet">
     <link href="~/css/bootstrap.css" rel="stylesheet">
@@ -25,6 +26,9 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/ldbutton/dist/ldbtn.min.css">
+    <link rel="stylesheet" href="~/lib/loading/dist/loading.min.css">
+
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body class="music-single-album home-demo-2">
@@ -37,101 +41,7 @@
             <!-- NAV BAR BACKGROUND IMAGE-->
             <div class="section_bg_image" style="background-image: url('@Url.Content("~/images/maxresdefault-1.jpg")')"></div>
             <!-- START NAV BAR-->
-            <ul class="nav flex-column section">
-                <li class="nav-item">
-                    <a class="nav-link active" href="01-Home.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Music</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="02-Music-Discography.html">Discography</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="03-Music-Single-Album.html">Single Album</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Events</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="04-Events-All-Events.html">Upcoming Events</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="04-Events-All-Events.html">Past Events</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="04-Events-All-Events.html">All Events</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="05-Events-Single-Events.html">Single Event</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Videos</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="06-Videos.html">Videos List</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="07-Single-Video.html">Single Video</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Gallery</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="08-Gallery-Photogallery.html">Gallery List</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="09-Gallery-Single-Gallery.html">Single Gallery</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Blog</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="13-Blog-Mansory.html">Blog Masonry</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="10-Blog-Grid.html">Blog Grid</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="12-Blog-Standard.html">Blog Standard</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="11-Blog-Single-Post.html">Single Post</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);">Shop</a>
-                    <ul class="child-item">
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="19-Shop.html">Product List</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="20-Single-Product.html">Single Product</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="14-Cart.html">Cart</a>
-                        </li>
-                        <li class="dropdown-child-item">
-                            <a class="nav-link" href="15-Checkout-Page.html">Checkout</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="16-Contact-Us.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="17-404.html">404</a>
-                </li>
-            </ul>
+            <partial name="_MobileMenuPartial.cshtml">
             <!-- END NAV BAR-->
         </div>
         <!-- END MENU SECTION -->
@@ -197,9 +107,11 @@
     <!-- START FOOTER SECTION -->
     <partial name="_FooterPartial" />
 
+    <script type="text/javascript" src="~/lib/loadingio/dist/loading-bar.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-progress-upload.js"></script>
     <script src="~/lib/signalr/dist/browser/signalr.min.js" asp-append-version="true"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.js"></script>

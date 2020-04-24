@@ -33,7 +33,7 @@
             viewModel.PagesCount = count;
             viewModel.CurrentPage = page;
 
-            var beats = await this.beatsService.GetAllBeatsAsync(GlobalConstants.ItemsPerPage, (int)(page - 1) * GlobalConstants.ItemsPerPage);
+            var beats = await this.beatsService.GetAllBeatsAsync<FeedBeatViewModel>(GlobalConstants.ItemsPerPage, (int)(page - 1) * GlobalConstants.ItemsPerPage);
             viewModel.Beats = beats;
 
             return this.View(viewModel);
@@ -54,7 +54,7 @@
             viewModel.PagesCount = count;
             viewModel.CurrentPage = page;
 
-            var beats = await this.beatsService.GetAllBeatsAsync(GlobalConstants.ItemsPerPage, (int)(page - 1) * GlobalConstants.ItemsPerPage);
+            var beats = await this.beatsService.GetAllBeatsAsync<FeedBeatViewModel>(GlobalConstants.ItemsPerPage, (int)(page - 1) * GlobalConstants.ItemsPerPage);
             viewModel.Beats = beats;
 
             return this.View(viewModel);

@@ -1,0 +1,60 @@
+﻿@using BeatsWave.Common
+@using BeatsWave.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="nav flex-column section">
+    <li class="nav-item">
+        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Feed">
+            <i class="fas fa-music"></i>   Feed
+        </a>
+    </li>
+    @if (this.SignInManager.IsSignedIn(this.User))
+    {
+        @if (this.User.IsInRole(GlobalConstants.BeatmakerRoleName))
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Producing" asp-controller="Beatmakers" asp-action="Upload">
+                    <i class="fas fa-upload"></i>   Upload
+                </a>
+            </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                <i class="fas fa-address-card"></i>  Profile
+            </a>
+            <ul class="child-item">
+                @if (this.User.IsInRole(GlobalConstants.BeatmakerRoleName))
+                {
+                    <li class="dropdown-child-item">
+                        <a class="nav-link" asp-area="@string.Empty" asp-controller="Users" asp-action="Profile" asp-route-id="@this.UserManager.GetUserId(this.User)">My beats</a>
+                    </li>
+                }
+                <li class="dropdown-child-item">
+                    <a class="nav-link" asp-area="@string.Empty" asp-controller="Users" asp-action="Favourites" asp-route-id="@this.UserManager.GetUserId(this.User)">Favourites</a>
+                </li>
+                <li class="dropdown-child-item">
+                    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                        <button type="submit" class="nav-link">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">Admin</a>
+            </li>
+        }
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Users" asp-action="ChooseRole">Register</a>
+        </li>
+    }
+</ul>

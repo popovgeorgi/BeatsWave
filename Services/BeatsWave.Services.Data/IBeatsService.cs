@@ -7,7 +7,7 @@
 
     public interface IBeatsService
     {
-        Task<IEnumerable<FeedBeatViewModel>> GetAllBeatsAsync(int? take = null, int skip = 0);
+        Task<IEnumerable<T>> GetAllBeatsAsync<T>(int? take = null, int skip = 0);
 
         Task<T> FindBeatByIdAsync<T>(int id);
 

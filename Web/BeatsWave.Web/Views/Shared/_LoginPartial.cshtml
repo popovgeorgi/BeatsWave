@@ -35,6 +35,11 @@
             <li class="dropdown-child-item">
                 <a class="nav-link" asp-area="@string.Empty" asp-controller="Users" asp-action="Favourites" asp-route-id="@this.UserManager.GetUserId(this.User)">Favourites</a>
             </li>
+            <li class="dropdown-child-item">
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                    <button type="submit" class="nav-link">Logout</button>
+                </form>
+            </li>
         </ul>
     </li>
             if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
@@ -43,11 +48,6 @@
                     <a class="nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">Admin</a>
                 </li>
             }
-            <li class="nav-item">
-                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
-                    <button type="submit" class="nav-link">Logout</button>
-                </form>
-            </li>
         }
         else
         {

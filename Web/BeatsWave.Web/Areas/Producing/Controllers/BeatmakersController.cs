@@ -53,7 +53,7 @@
             await this.producersService.CreateBeatAsync(inputModel.Name, inputModel.Image, inputModel.BeatWav,
                 inputModel.StandartPrice, inputModel.Bpm, inputModel.Genre.ToString(), inputModel.Description, userId);
 
-            return this.RedirectToAction("All", "Home", new { area = " " });
+            return this.RedirectToAction("Feed", "Home", new { area = " " });
         }
     }
 }

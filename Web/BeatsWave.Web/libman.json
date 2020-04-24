@@ -1,67 +1,96 @@
-﻿{
+{
   "version": "1.0",
   "defaultProvider": "jsdelivr",
-    "libraries": [
-        {
-            "library": "jquery@3.4.1",
-            "destination": "wwwroot/lib/jquery/",
-            "files": [
-                "dist/jquery.min.js",
-                "dist/jquery.js"
-            ]
-        },
-        {
-            "library": "bootstrap@4.4.1",
-            "destination": "wwwroot/lib/bootstrap/",
-            "files": [
-                "dist/css/bootstrap.css",
-                "dist/css/bootstrap.min.css",
-                "dist/js/bootstrap.js",
-                "dist/js/bootstrap.min.js"
-            ]
-        },
-        {
-            "library": "jquery-validation@1.19.1",
-            "destination": "wwwroot/lib/jquery-validation/",
-            "files": [
-                "dist/jquery.validate.js",
-                "dist/jquery.validate.min.js"
-            ]
-        },
-        {
-            "library": "jquery-validation-unobtrusive@3.2.11",
-            "destination": "wwwroot/lib/jquery-validation-unobtrusive/",
-            "files": [
-                "dist/jquery.validate.unobtrusive.js",
-                "dist/jquery.validate.unobtrusive.min.js"
-            ]
-        },
-        {
-            "library": "materialize-css@1.0.0",
-            "destination": "wwwroot/lib/materialize/",
-            "files": [
-                "dist/css/materialize.min.css",
-                "dist/js/materialize.js"
-            ]
-        },
-        {
-            "provider": "cdnjs",
-            "library": "font-awesome@5.13.0",
-            "destination": "wwwroot/lib/font-awesome/"
-        },
-        {
-            "library": "@microsoft/signalr@3.1.3",
-            "destination": "wwwroot/lib/signalr",
-            "files": [
-                "dist/browser/signalr.min.js"
-            ]
-        },
-        {
-            "library": "moment@2.24.0",
-            "destination": "wwwroot/lib/moment/",
-            "files": [
-                "min/moment-with-locales.min.js"
-            ]
-        }
-    ]
+  "libraries": [
+    {
+      "library": "jquery@3.4.1",
+      "destination": "wwwroot/lib/jquery/",
+      "files": [
+        "dist/jquery.min.js",
+        "dist/jquery.js"
+      ]
+    },
+    {
+      "library": "bootstrap@4.4.1",
+      "destination": "wwwroot/lib/bootstrap/",
+      "files": [
+        "dist/css/bootstrap.css",
+        "dist/css/bootstrap.min.css",
+        "dist/js/bootstrap.js",
+        "dist/js/bootstrap.min.js"
+      ]
+    },
+    {
+      "library": "jquery-validation@1.19.1",
+      "destination": "wwwroot/lib/jquery-validation/",
+      "files": [
+        "dist/jquery.validate.js",
+        "dist/jquery.validate.min.js"
+      ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/",
+      "files": [
+        "dist/jquery.validate.unobtrusive.js",
+        "dist/jquery.validate.unobtrusive.min.js"
+      ]
+    },
+    {
+      "library": "materialize-css@1.0.0",
+      "destination": "wwwroot/lib/materialize/",
+      "files": [
+        "dist/css/materialize.min.css",
+        "dist/js/materialize.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "font-awesome@5.13.0",
+      "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "@microsoft/signalr@3.1.3",
+      "destination": "wwwroot/lib/signalr",
+      "files": [
+        "dist/browser/signalr.min.js"
+      ]
+    },
+    {
+      "library": "moment@2.24.0",
+      "destination": "wwwroot/lib/moment/",
+      "files": [
+        "min/moment-with-locales.min.js"
+      ]
+    },
+    {
+        "library": "loading-bar@0.0.2",
+        "destination": "wwwroot/lib/loading-bar/",
+        "files": [
+            "index.min.js"
+        ]
+    },
+    {
+        "library": "loadingio-bar@0.1.1",
+        "destination": "wwwroot/lib/loadingio",
+        "files": [
+            "dist/loading-bar.min.css",
+            "dist/loading-bar.min.js"
+        ]
+    },
+    {
+        "library": "ldbutton@1.0.2",
+        "destination": "wwwroot/lib/ldbutton",
+        "files": [
+            "dist/ldbtn.min.css"
+        ]
+    },
+    {
+        "library": "@loadingio/loading.css@2.0.0",
+        "destination": "wwwroot/lib/loading",
+        "files": [
+            "dist/loading.min.css"
+        ]
+    }
+  ]
 }

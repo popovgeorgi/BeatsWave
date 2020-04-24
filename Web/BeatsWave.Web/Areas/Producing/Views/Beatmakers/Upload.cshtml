@@ -4,66 +4,55 @@
 @model BeatInputModel
 
 
-<div class="form pagination justify-content-center" style="background-image: url('@Url.Content("~/images/metro.jpg")');">
-    <form id="uploadForm" method="post" enctype="multipart/form-data" asp-area="Producing" asp-controller="Beatmakers" asp-action="Upload">
-
-        <div asp-validation-summary="All" class="text-danger"></div>
-
-        <div class="col-sm-12 form-group">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" placeholder="Name" class="form-control">
-            <span asp-validation-for="Name"></span>
+<section id="contact-us" class="section_8" style="background-image: url('@Url.Content("~/images/sizzle.jpg")')">
+    <div class="overly"></div>
+    <div class="section">
+        <div class="form">
+            <form name="submit-form" id="uploadForm" method="post" enctype="multipart/form-data" asp-area="Producing" asp-controller="Beatmakers" asp-action="Upload">
+                <div class="row fild_1">
+                    <div class="col-sm-6">
+                        <input asp-for="Name" type="text" class="form-control" placeholder="Name">
+                        <span asp-validation-for="Name"></span>
+                    </div>
+                    <div class="col-sm-6">
+                        <i class="far fa-images fa-3x" style="color:grey"></i>
+                        <input asp-for="Image" type="file" name="image">
+                        <span asp-validation-for="Image"></span>
+                    </div>
+                </div>
+                <div class="row fild_1">
+                    <div class="col-sm-6">
+                        <input asp-for="StandartPrice" class="form-control" placeholder="Price">
+                        <span asp-validation-for="StandartPrice"></span>
+                    </div>
+                    <div class="col-sm-6">
+                        <input asp-for="Bpm" class="form-control" placeholder="Bpm">
+                        <span asp-validation-for="Bpm"></span>
+                    </div>
+                </div>
+                <div class="row fild_2">
+                    <div class="col-sm">
+                        <select asp-for="Genre" class="form-control" placeholder="Genre" asp-items="@Html.GetEnumSelectList<Genre>()"></select>
+                        <span asp-validation-for="Genre"></span>
+                    </div>
+                </div>
+                <div class="row fild_2">
+                    <div class="col-sm">
+                        <i class="fas fa-music fa-3x" style="color:grey"></i>
+                        <input id="fileInput" asp-for="BeatWav" type="file" name="beatWav">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea asp-for="Description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+                    <span asp-validation-for="Description"></span>
+                </div>
+                @*<div class="btn btn-primary ld-ext-right running" onclick="document.forms['submit-form'].submit();">
+                UPLOAD
+                <div class="ld ld-ring ld-spin"></div>
+        </div>*@
+                <button type="submit" class="btn btn-primary">UPLOAD</button>
+            </form>
         </div>
+    </div>
+</section>
 
-        <div class="form-group">
-            <label asp-for="Image"></label>
-            <input asp-for="Image" type="file" name="image">
-            <span asp-validation-for="Image"></span>
-        </div>
-
-        <div class="col-sm-12 form-group">
-            <label asp-for="StandartPrice"></label>
-            <input asp-for="StandartPrice" placeholder="Price" class="form-control">
-            <span asp-validation-for="StandartPrice"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="BeatWav"></label>
-            <input id="cloudinary-fileupload" asp-for="BeatWav" type="file" name="beatWav">
-        </div>
-
-        <div class="col-sm-6 form-group">
-            <label asp-for="Bpm"></label>
-            <input asp-for="Bpm" placeholder="Bpm" class="form-control">
-            <span asp-validation-for="Bpm"></span>
-        </div>
-
-        <div class="col-sm-12 form-group">
-            <label asp-for="Genre"></label>
-            <select asp-for="Genre" class="form-control" asp-items="@Html.GetEnumSelectList<Genre>()"></select>
-            <span asp-validation-for="Genre"></span>
-        </div>
-
-        <div class="col-sm-12form-group">
-            <label asp-for="Description"></label>
-            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Description"></textarea>
-            <span asp-validation-for="Description"></span>
-        </div>
-
-        <hr />
-
-        <input type="submit" value="Upload" class="btn btn-primary" />
-
-        <div class="progress-bar">
-            <div id="progressBar" class="progress-bar-fill">
-                <span id="progressBar" class="progress-bar-text">0%</span>
-            </div>
-        </div>
-    </form>
-</div>
-
-<script>
-    $('.cloudinary-fileupload').bind('fileuploadprogress', function (e, data) {
-        $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
-    });
-</script>

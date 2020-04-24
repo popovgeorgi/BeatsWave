@@ -1,6 +1,7 @@
 ﻿namespace BeatsWave.Services.Data.Tests
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeatsWave.Data;
@@ -79,6 +80,47 @@
             var result = service.IsLikedByCurrentUser("1", 1);
 
             Assert.False(result);
+        }
+
+        [Fact]
+        public void CheckIfGetsFansLikedTheBeatWorks()
+        {
+            var beatRepository = new Mock<IDeletableEntityRepository<Beat>>();
+            var userRepository = new Mock<IDeletableEntityRepository<ApplicationUser>>();
+            userRepository.Setup(r => r.All()).Returns(new List<ApplicationUser>
+            {
+                new ApplicationUser
+                {
+                    UserName = "John",
+                    Likes = new List<Like>
+                    {
+                        new Like
+                        {
+                        BeatId = 1,
+                        Type = LikeType.UpVote,
+                        },
+                    },
+                },
+                new ApplicationUser
+                {
+                    UserName = "Peter",
+                    Likes = new List<Like>
+                    {
+                        new Like
+                        {
+                        BeatId = 1,
+                        Type = LikeType.UpVote,
+                        },
+                    },
+                },
+            }.AsQueryable());
+
+            var likeRepository = new Mock<IRepository<Like>>();
+
+            var service = new LikeService(likeRepository.Object, beatRepository.Object, userRepository.Object);
+            var result = service.GetFansLikedTheBeat(1);
+
+            Assert.Equal(2, result.Count());
         }
     }
 }

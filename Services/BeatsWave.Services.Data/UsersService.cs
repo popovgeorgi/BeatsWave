@@ -1,10 +1,7 @@
 ﻿namespace BeatsWave.Services.Data
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+
     using BeatsWave.Data.Common.Repositories;
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Mapping;
@@ -23,6 +20,7 @@
             this.pictureService = pictureService;
             this.beatsRepository = beatsRepository;
         }
+
         public T GetById<T>(string id)
         {
             var user = this.usersRepository

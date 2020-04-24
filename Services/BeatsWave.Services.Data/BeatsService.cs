@@ -41,13 +41,13 @@
             return beat;
         }
 
-        public async Task<IEnumerable<FeedBeatViewModel>> GetAllBeatsAsync(int? take = null, int skip = 0)
+        public async Task<IEnumerable<T>> GetAllBeatsAsync<T>(int? take = null, int skip = 0)
         {
             var beats = await this.beatRepository.All()
                 .OrderByDescending(x => x.CreatedOn)
                 .Skip(skip)
                 .Take((int)take)
-                .To<FeedBeatViewModel>()
+                .To<T>()
                 .ToListAsync();
 
             return beats;
