@@ -8,6 +8,7 @@
     using AutoMapper;
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Mapping;
+    using BeatsWave.Web.ViewModels.Base;
 
     public class IndexBeatViewModel : IMapFrom<Beat>, IHaveCustomMappings
     {

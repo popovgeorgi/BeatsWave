@@ -19,5 +19,8 @@
 
         public const int ItemsPerPage = 9;
         public const string PublicAuIdPrefix = "audio";
+
+        public const string CartContain = "Your cart already contain this beat!";
+        public const string CartSuccess = "Beat is successfully added to cart!";
     }
 }

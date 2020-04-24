@@ -1,6 +1,5 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
 @using BeatsWave.Common
-@using BeatsWave.Data.Models
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +41,7 @@
             <div class="section_bg_image" style="background-image: url('@Url.Content("~/images/maxresdefault-1.jpg")')"></div>
             <!-- START NAV BAR-->
             <partial name="_MobileMenuPartial.cshtml">
-            <!-- END NAV BAR-->
+                <!-- END NAV BAR-->
         </div>
         <!-- END MENU SECTION -->
         <!-- START SEARCH BAR SECTION -->
@@ -74,7 +73,7 @@
                     <div class="shop_icon">
                         <a href="14-Cart.html">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span class="card_count">2</span>
+                            <span id="cartCount" class="card_count">0</span>
                         </a>
                     </div>
                     <div class="menu_icon">

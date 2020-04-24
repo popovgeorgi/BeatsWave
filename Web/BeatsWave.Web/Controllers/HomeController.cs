@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Security.Claims;
     using System.Threading.Tasks;
     using BeatsWave.Common;
     using BeatsWave.Data.Models;
@@ -14,10 +15,12 @@
     public class HomeController : BaseController
     {
         private readonly IBeatsService beatsService;
+        private readonly ICartsService cartsService;
 
-        public HomeController(IBeatsService beatsService)
+        public HomeController(IBeatsService beatsService, ICartsService cartsService)
         {
             this.beatsService = beatsService;
+            this.cartsService = cartsService;
         }
 
         public IActionResult Index()

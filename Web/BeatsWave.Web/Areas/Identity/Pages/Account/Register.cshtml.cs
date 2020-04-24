@@ -10,6 +10,7 @@
 
     using BeatsWave.Common;
     using BeatsWave.Data.Models;
+    using BeatsWave.Services.Data;
     using BeatsWave.Services.Messaging;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
@@ -31,6 +32,7 @@
         private readonly IEmailSender _emailSender;
         private readonly IConfiguration configuration;
         private readonly IWebHostEnvironment hostingEnvironment;
+        private readonly ICartsService cartsService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
@@ -38,7 +40,8 @@
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             IConfiguration configuration,
-            IWebHostEnvironment hostingEnvironment)
+            IWebHostEnvironment hostingEnvironment,
+            ICartsService cartsService)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
@@ -46,6 +49,7 @@
             this._emailSender = emailSender;
             this.configuration = configuration;
             this.hostingEnvironment = hostingEnvironment;
+            this.cartsService = cartsService;
             this._userManager.Options.SignIn.RequireConfirmedAccount = true;
         }
 
@@ -100,6 +104,7 @@
                 var user = new ApplicationUser { UserName = this.Input.UserName, Email = this.Input.Email };
                 var result = await this._userManager.CreateAsync(user, this.Input.Password);
                 await this._userManager.AddToRoleAsync(user, ((Role)this.Id).ToString());
+                await this.cartsService.CreateCart(user.Id);
 
                 if (result.Succeeded)
                 {
@@ -124,7 +129,7 @@
                     {
                         await this._signInManager.SignInAsync(user, isPersistent: false);
 
-                        return this.Redirect("/Home/All");
+                        return this.Redirect("/Home/Feed");
                     }
                 }
 

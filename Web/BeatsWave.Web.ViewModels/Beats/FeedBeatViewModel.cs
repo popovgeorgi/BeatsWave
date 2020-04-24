@@ -7,6 +7,7 @@
     using AutoMapper;
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Mapping;
+    using BeatsWave.Web.ViewModels.Base;
 
     public class FeedBeatViewModel : IMapFrom<Beat>, IHaveCustomMappings
     {

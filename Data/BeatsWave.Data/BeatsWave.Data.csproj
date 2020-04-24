@@ -25,6 +25,8 @@
     <Compile Remove="Migrations\20200416211133_prpr.Designer.cs" />
     <Compile Remove="Migrations\20200416212021_addProfilePicEntityToUser.cs" />
     <Compile Remove="Migrations\20200416212021_addProfilePicEntityToUser.Designer.cs" />
+    <Compile Remove="Migrations\20200424170129_addCartTable.cs" />
+    <Compile Remove="Migrations\20200424170129_addCartTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

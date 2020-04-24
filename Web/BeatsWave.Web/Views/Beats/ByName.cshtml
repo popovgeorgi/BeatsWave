@@ -28,7 +28,8 @@
                         </p>
                         <p>
                             <div class="ad-to-card-button">
-                                <a class="btn btn-outline-white ml-2" asp-controller="Users" asp-action="Buy" asp-route-id="@Model.Beat.BeatId"
+                                <form id="cartForm" method="post"></form>
+                                <a onclick="addToCart(@Model.Beat.BeatId)" class="btn btn-outline-white ml-2"
                                    title="Buy">
                                     <i class="fas fa-shopping-cart"></i>  Buy
                                 </a>
@@ -109,12 +110,31 @@
 
 <div class="row cart-name"></div>
 <!-- START RELEATED PRODUCT SECTION -->
-<partial name="_RelatedProductsPartial" />
+@*TODO*@
+@*<partial name="_RelatedProductsPartial" />*@
 
 @section Scripts {
     <script>
         function showAddCommentForm() {
             $("#AddCommentForm").toggle();
+        }
+
+        function addToCart(beatId) {
+            var token = $("#cartForm input[name=__RequestVerificationToken]").val();
+            var json = { beatId: beatId, __RequestVerificationToken: token };
+            console.log(json);
+            $.ajax({
+                url: "/api/carts",
+                type: "POST",
+                data: JSON.stringify(json),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: { 'X-CSFR-TOKEN': token },
+                success: function (dataa) {
+                    $("#cartCount").html(dataa.cartCount);
+                    alert(dataa.message);
+                }
+            })
         }
 
         function like(beatId) {

@@ -6,6 +6,7 @@
 
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Mapping;
+    using BeatsWave.Web.ViewModels.Base;
 
     public class IndexViewModel
     {
