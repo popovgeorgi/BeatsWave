@@ -55,11 +55,11 @@
             <div class="section">
                 <!-- LOGO -->
                 <<div class="logo"><a asp-controller="Home" asp-action="Index" asp-area=""><img src="~/images/logo.png" alt="Logo"></a></div>
-                <div class="nav-menu nav-demo-2">
-                    <!-- START NAV BAR-->
-                    <partial name="_LoginPartial.cshtml" />
-                    <!-- END NAV BAR-->
-                </div>
+                 <div class="nav-menu nav-demo-2">
+                     <!-- START NAV BAR-->
+                     <partial name="_LoginPartial.cshtml" />
+                     <!-- END NAV BAR-->
+                 </div>
                 <div class="header_items">
                     <div class="search_icon">
                         <i class="fa fa-search" aria-hidden="true"></i>
@@ -67,12 +67,7 @@
                             <path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z" fill="#FFFFFF" />
                         </svg>
                     </div>
-                    <div class="shop_icon">
-                        <a href="14-Cart.html">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span class="card_count">2</span>
-                        </a>
-                    </div>
+                    <vc:cart></vc:cart>
                     <div class="menu_icon">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 15.642 15.642" enable-background="new 0 0 15.642 15.642" width="21" height="21">
