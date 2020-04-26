@@ -1,0 +1,37 @@
+﻿@using BeatsWave.Web.ViewModels.Cart
+@model TotalPriceViewModel
+
+<div class="order-coupon">
+    <div class="enter-coupon">
+        <div class="coupon-title">
+            <h3>Enter Coupon</h3>
+            <span>to get discount</span>
+        </div>
+        <div class="coupon-form">
+            <form class="form-inline md-form form-sm">
+                <input class="mr-sm-2" type="text" placeholder="Enter Coupon" aria-label="">
+                <button class="search-btn" type="submit">APPLY</button>
+            </form>
+        </div>
+    </div>
+    <div class="order-button">
+        <div class="glob-price">
+            <div class="o-t">
+                <span>Order Total :</span>
+            </div>
+            <div class="g-p">
+                <span>€ @Model.TotalPrice</span>
+            </div>
+        </div>
+        <div class="cart-buttons">
+            <a href="#">UPDATE CART</a>
+            <a href="15-Checkout-Page.html">CHECKOUT</a>
+        </div>
+        <div class="c-t">
+            <p>
+                Taxes and shipping credit will be calculated after
+                you enter your shipping information in the next step.
+            </p>
+        </div>
+    </div>
+</div>

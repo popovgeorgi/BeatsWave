@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BeatsWave.Services.Data
+﻿namespace BeatsWave.Services.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using BeatsWave.Data.Models;
+    using BeatsWave.Web.ViewModels.Beats;
+
     public interface ICartsService
     {
         Task<string> AddAsync(int beatId, string userId);
@@ -12,5 +15,11 @@ namespace BeatsWave.Services.Data
         Task CreateCart(string userId);
 
         int Count(string userId);
+
+        T GetCartBeats<T>(string userId);
+
+        bool Remove(int beatId, string userId);
+
+        int TotalPrice(string userId);
     }
 }

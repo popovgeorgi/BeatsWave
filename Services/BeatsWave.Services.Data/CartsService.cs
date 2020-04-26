@@ -5,19 +5,24 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using AutoMapper;
     using BeatsWave.Common;
     using BeatsWave.Data.Common.Repositories;
     using BeatsWave.Data.Models;
+    using BeatsWave.Services.Mapping;
+    using BeatsWave.Web.ViewModels.Beats;
 
     public class CartsService : ICartsService
     {
         private readonly IRepository<Cart> cartRepository;
         private readonly IDeletableEntityRepository<Beat> beatsRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
 
-        public CartsService(IRepository<Cart> cartRepository, IDeletableEntityRepository<Beat> beatsRepository)
+        public CartsService(IRepository<Cart> cartRepository, IDeletableEntityRepository<Beat> beatsRepository, IDeletableEntityRepository<ApplicationUser> userRepository)
         {
             this.cartRepository = cartRepository;
             this.beatsRepository = beatsRepository;
+            this.userRepository = userRepository;
         }
 
         public async Task<string> AddAsync(int beatId, string userId)
@@ -64,6 +69,44 @@
 
             await this.cartRepository.AddAsync(cart);
             await this.cartRepository.SaveChangesAsync();
+        }
+
+        public T GetCartBeats<T>(string userId)
+        {
+            var beats = this.cartRepository
+                .All()
+                .Where(x => x.UserId == userId)
+                .To<T>()
+                .FirstOrDefault();
+
+            return beats;
+        }
+
+        public bool Remove(int beatId, string userId)
+        {
+            var beat = this.beatsRepository
+                .All()
+                .Where(x => x.Id == beatId)
+                .FirstOrDefault();
+
+            var isRemoved = this.cartRepository
+                .All()
+                .FirstOrDefault(x => x.UserId == userId)
+                .Beats
+                .Remove(beat);
+
+            return isRemoved;
+        }
+
+        public int TotalPrice(string userId)
+        {
+            var price = this.cartRepository
+                .All()
+                .Where(x => x.UserId == userId)
+                .Select(x => x.Beats.Sum(b => b.StandartPrice))
+                .FirstOrDefault();
+
+            return price;
         }
     }
 }
