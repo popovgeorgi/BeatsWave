@@ -11,6 +11,7 @@
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Mapping;
     using BeatsWave.Web.ViewModels.Beats;
+    using BeatsWave.Web.ViewModels.Checkout;
 
     public class CartsService : ICartsService
     {
@@ -80,6 +81,26 @@
                 .FirstOrDefault();
 
             return beats;
+        }
+
+        public ICollection<CheckoutBeatViewModel> GetCartBeatsSecond(string userId)
+        {
+            var beats = this.cartRepository
+                 .All()
+                 .Where(x => x.UserId == userId)
+                 .Select(x => x.Beats)
+                 .FirstOrDefault();
+;
+
+            var output = beats
+                .Select(x => new CheckoutBeatViewModel
+                {
+                    Name = x.Name,
+                    StandartPrice = x.StandartPrice,
+                })
+                .ToList();
+
+            return output;
         }
 
         public bool Remove(int beatId, string userId)

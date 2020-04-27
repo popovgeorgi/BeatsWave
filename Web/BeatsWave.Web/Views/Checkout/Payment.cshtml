@@ -1,0 +1,88 @@
+﻿@using BeatsWave.Web.ViewModels.Checkout
+@model CheckoutListViewModel
+@{
+    ViewData["Title"] = "CHECKOUT";
+}
+<section id="checkout-list">
+    <div class="section">
+        <form class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="payment-method">
+                    <h3>PAYMENT METHOD</h3>
+                    <div class="custom-control custom-radio ubs">
+                        <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" checked>
+                        <label class="custom-control-label" for="defaultChecked">
+                            <span>Check Payments</span>
+                        </label>
+                        <div class="pay-text">
+                            <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                        </div>
+                    </div>
+                    <div class="custom-control custom-radio paypal">
+                        <input type="radio" class="custom-control-input" id="defaultUnchecked1" name="defaultExampleRadios">
+                        <label class="custom-control-label" for="defaultUnchecked1">
+                            <img src="~/images/PayPal.png" alt="PayPal">
+                        </label>
+                        <div class="what-is-paypal">
+                            <a href="#" target="_blank">What is PayPal?</a>
+                        </div>
+                        <div class="pay-text">
+                            <p>Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="create-password">
+                    <div class="checkbox">
+                        <label data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseOne">
+                            <input type="checkbox" />
+                            <span class="label-text">Create Account?</span>
+                        </label>
+                    </div>
+                    <div id="collapseOne" class="collapse">
+                        <div class="form-group">
+                            <P>
+                                Create an accoumt by entering the information below.
+                                If you are a returning customer please login at the top of
+                            </P>
+                            <label for="inputPassword">Password</label>
+                            <input type="password" class="form-control" id="inputPassword" placeholder="" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h3>REVIEW YOUR ORDER</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="1">Beat</th>
+                            <th colspan="2">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var beat in Model.Beats)
+                        {
+                            <tr>
+                                <td>@beat.Name</td>
+                                <td>@(beat.StandartPrice).00</td>
+                            </tr>
+                        }
+                    <tr>
+                        <th>Order Total</th>
+                        <th colspan="3">€ @Model.OrderTotal</th>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="privacy-policy">
+                    <p>
+                        Your personal data will be used to process your order,
+                        support your experience throughout this website,
+                        and for other purposes described in our
+                        <a href="#" class="woocommerce-privacy-policy-link" target="_blank">privacy policy</a>.
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </div>
+        </form>
+    </div>
+</section>

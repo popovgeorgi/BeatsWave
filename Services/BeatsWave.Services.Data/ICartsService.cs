@@ -7,6 +7,7 @@
 
     using BeatsWave.Data.Models;
     using BeatsWave.Web.ViewModels.Beats;
+    using BeatsWave.Web.ViewModels.Checkout;
 
     public interface ICartsService
     {
@@ -21,5 +22,7 @@
         bool Remove(int beatId, string userId);
 
         int TotalPrice(string userId);
+
+        ICollection<CheckoutBeatViewModel> GetCartBeatsSecond(string userId);
     }
 }
