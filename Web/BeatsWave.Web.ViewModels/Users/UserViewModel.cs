@@ -10,6 +10,8 @@
 
     public class UserViewModel : IMapFrom<ApplicationUser>
     {
+        public string Id { get; set; }
+
         public virtual string UserName { get; set; }
 
         public virtual ICollection<UserBeatViewModel> Beats { get; set; }

@@ -4,28 +4,56 @@
 @{
     ViewData["Title"] = Model.UserName;
 }
-    <section id="discography">
-        <div class="section">
-            <div class="row">
-                @foreach (var beat in Model.Beats)
-                {
-                    <div class="w-100 col-md-4 music-banner">
-                        <div class="w-100">
-                            <img class="music-banner-image" src="@(beat.ImageUrl)" alt="@beat.Name">
-                            <div class="music-banner-text">
-                                <div class="dis-name">
-                                    <h2>@beat.Name</h2>
-                                    <p>@beat.Producer</p>
-                                    <p>@beat.Bpm bpm</p>
-                                </div>
+<section id="discography">
+    <div class="section">
+        <div class="row">
+            @foreach (var beat in Model.Beats)
+            {
+                <div class="w-100 col-md-4 music-banner">
+                    <div class="w-100">
+                        <img class="music-banner-image" src="@(beat.ImageUrl)" alt="@beat.Name">
+                        <div class="music-banner-text">
+                            <div class="dis-name">
+                                <h2>@beat.Name</h2>
+                                <p>@beat.Producer</p>
+                                <p>@beat.Bpm bpm</p>
                             </div>
-                            <a asp-controller="Beats" asp-action="ByName" asp-route-id="@beat.Id" class="music-banner-link"></a>
                         </div>
+                        <a asp-controller="Beats" asp-action="ByName" asp-route-id="@beat.Id" class="music-banner-link"></a>
                     </div>
-                }
-            </div>
+                </div>
+            }
         </div>
-    </section>
+    </div>
+</section>
 }
 
+@section Follow {
+    <div class="form">
+        <form id="followForm" method="post"></form>
+        <a class="btn btn-primary" style="color:white" onclick="follow(@Model.Id)">
+            <i class="fas fa-user-friends" style="color:white"></i>  FOLLOW
+        </a>
+    </div>
+}
 
+@section Scripts {
+    <script>
+        function follow(followedId) {
+            var token = $("#followForm input[name=__RequestVerificationToken]").val();
+            var json = { followedId: followedId, __RequestVerificationToken: token };
+            console.log(json);
+            $.ajax({
+                url: "/api/carts",
+                type: "POST",
+                data: JSON.stringify(json),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: { 'X-CSFR-TOKEN': token },
+                success: function (dataa) {
+                    $("#cartCount").html(dataa.cartCount);
+                    alert(dataa.message);
+                }
+            })
+    </script>
+}

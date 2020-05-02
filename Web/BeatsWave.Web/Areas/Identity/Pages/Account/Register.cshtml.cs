@@ -33,6 +33,7 @@
         private readonly IConfiguration configuration;
         private readonly IWebHostEnvironment hostingEnvironment;
         private readonly ICartsService cartsService;
+        private readonly IFollowService followService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
@@ -41,7 +42,8 @@
             IEmailSender emailSender,
             IConfiguration configuration,
             IWebHostEnvironment hostingEnvironment,
-            ICartsService cartsService)
+            ICartsService cartsService,
+            IFollowService followService)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
@@ -50,6 +52,7 @@
             this.configuration = configuration;
             this.hostingEnvironment = hostingEnvironment;
             this.cartsService = cartsService;
+            this.followService = followService;
             this._userManager.Options.SignIn.RequireConfirmedAccount = true;
         }
 
@@ -105,6 +108,7 @@
                 var result = await this._userManager.CreateAsync(user, this.Input.Password);
                 await this._userManager.AddToRoleAsync(user, ((Role)this.Id).ToString());
                 await this.cartsService.CreateCart(user.Id);
+                await this.followService.Create(user.Id);
 
                 if (result.Succeeded)
                 {

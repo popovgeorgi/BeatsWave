@@ -1,5 +1,6 @@
 ﻿namespace BeatsWave.Web
 {
+    using System;
     using System.Reflection;
 
     using BeatsWave.Data;

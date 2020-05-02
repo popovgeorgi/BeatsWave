@@ -1,7 +1,8 @@
 ﻿namespace BeatsWave.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
-
+    using AutoMapper;
     using BeatsWave.Data.Common.Repositories;
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Mapping;
@@ -30,6 +31,39 @@
                  .FirstOrDefault();
 
             return user;
+        }
+
+        public IEnumerable<Beat> GetLikedBeats(string id)
+        {
+            var beatIds = this.usersRepository
+                 .All()
+                 .Where(x => x.Id == id)
+                 .To<UsersLikedBeatsViewModel>()
+                 .FirstOrDefault();
+
+            var beatsCollection = new List<Beat>();
+
+            foreach (var like in beatIds.Likes)
+            {
+                if (like.Type == LikeType.UpVote)
+                {
+                    var beat = this.beatsRepository.All().FirstOrDefault(x => x.Id == like.BeatId);
+
+                    beatsCollection.Add(beat);
+                }
+            }
+
+            beatsCollection
+                .Select(x => new UserBeatViewModel
+                {
+                    Bpm = x.Bpm,
+                    ImageUrl = x.CloudinaryImage.PictureUrl,
+                    Name = x.Name,
+                    Producer = x.Producer.UserName,
+                })
+                .ToList();
+
+            return beatsCollection;
         }
 
         public async void UploadProfilePictureAsync(string id, IFormFile picture)

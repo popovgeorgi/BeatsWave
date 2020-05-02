@@ -7,6 +7,6 @@
     {
         public int BeatId { get; set; }
 
-        public int Type { get; set; }
+        public LikeType Type { get; set; }
     }
 }

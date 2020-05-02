@@ -1,8 +1,29 @@
-﻿@using BeatsWave.Web.ViewModels.Users
-@model UserViewModel
+﻿@*@using BeatsWave.Web.ViewModels.Users
+@model UserBeatViewModel
 
 @{
     ViewData["Title"] = "Liked beats";
 }
 
-<h1 class="text-light">In Development</h1>
+    <section id="discography">
+        <div class="section">
+            <div class="row">
+                @foreach (var beat in Model.)
+                {
+                    <div class="w-100 col-md-4 music-banner">
+                        <div class="w-100">
+                            <img class="music-banner-image" src="@(beat.ImageUrl)" alt="@beat.Name">
+                            <div class="music-banner-text">
+                                <div class="dis-name">
+                                    <h2>@beat.Name</h2>
+                                    <p>@beat.Producer</p>
+                                    <p>@beat.Bpm bpm</p>
+                                </div>
+                            </div>
+                            <a asp-controller="Beats" asp-action="ByName" asp-route-id="@beat.Id" class="music-banner-link"></a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>*@

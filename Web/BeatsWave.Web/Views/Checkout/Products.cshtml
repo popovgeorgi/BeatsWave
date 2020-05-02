@@ -11,35 +11,35 @@
                 <div class="col-6"><span>Product</span></div>
                 <div class="col-4"><span>Price</span></div>
             </div>
-            @foreach (var beat in Model.Beats)
-            {
-        <div class="row cart-item">
-            <div class="col-sm-6">
-                <div class="cart-image">
-                    <a href="20-Single-Product.html"><img src="@(beat.ImageUrl)" alt="@beat.Name"></a>
-                </div>
-                <div class="cart-description">
-                    <a href="20-Single-Product.html"><h2>@beat.Name</h2></a>
-                    <p>
-                        @beat.Description
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-4 price-name-line">
-                <div class="product-total">
-                    <div class="product-price">
-                        <span class="prise-mobile">PRICE</span><span>€ @beat.StandartPrice</span>
+                @foreach (var beat in Model.Beats)
+                {
+                    <div class="row cart-item">
+                        <div class="col-sm-6">
+                            <div class="cart-image">
+                                <a href="20-Single-Product.html"><img src="@(beat.ImageUrl)" alt="@beat.Name"></a>
+                            </div>
+                            <div class="cart-description">
+                                <a href="20-Single-Product.html"><h2>@beat.Name</h2></a>
+                                <p>
+                                    @beat.Description
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 price-name-line">
+                            <div class="product-total">
+                                <div class="product-price">
+                                    <span class="prise-mobile">PRICE</span><span>€ @beat.StandartPrice</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 delet-line">
+                            <div class="delete-product">
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 15.642 15.642" enable-background="new 0 0 15.642 15.642" width="21" height="21">
+                                    <path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z" fill="#FFFFFF" />
+                                </svg>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-1 delet-line">
-                    <div class="delete-product">
-                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 15.642 15.642" enable-background="new 0 0 15.642 15.642" width="21" height="21">
-                            <path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z" fill="#FFFFFF" />
-                        </svg>
-                    </div>
-            </div>
-         </div>
             }
             <vc:total-price></vc:total-price>
         </div>

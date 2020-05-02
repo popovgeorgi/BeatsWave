@@ -13,5 +13,7 @@
         T GetById<T>(string id);
 
         void UploadProfilePictureAsync(string id, IFormFile picture);
+
+        IEnumerable<Beat> GetLikedBeats(string id);
     }
 }

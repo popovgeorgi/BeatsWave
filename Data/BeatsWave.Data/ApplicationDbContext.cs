@@ -26,6 +26,8 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<FollowInfo> FollowInfos { get; set; }
+
         public DbSet<Beat> Beats { get; set; }
 
         public DbSet<Cart> Carts { get; set; }

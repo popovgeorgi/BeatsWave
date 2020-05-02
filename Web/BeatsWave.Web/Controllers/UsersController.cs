@@ -36,7 +36,9 @@
 
         public IActionResult Favourites(string id)
         {
-            return this.View();
+            var viewModel = this.usersService.GetLikedBeats(id);
+
+            return this.View(viewModel);
         }
 
         [Authorize]
