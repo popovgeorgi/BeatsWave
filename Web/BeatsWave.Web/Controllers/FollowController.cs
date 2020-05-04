@@ -4,9 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Data;
     using BeatsWave.Web.ViewModels.Follow;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -23,10 +25,12 @@
             this.followService = followService;
         }
 
-        public ActionResult<FollowResponseModel> Follow(FollowInputModel inputModel)
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult<FollowResponseModel>> FollowAsync(FollowInputModel inputModel)
         {
             var followingUserId = this.userManager.GetUserId(this.User);
-            bool isFollowed = this.followService.Follow(inputModel.FollowedUserId, followingUserId);
+            bool isFollowed = await this.followService.FollowAsync(inputModel.FollowedUserId, followingUserId);
             return new FollowResponseModel { IsFollowed = isFollowed };
         }
     }

@@ -108,7 +108,7 @@
                 var result = await this._userManager.CreateAsync(user, this.Input.Password);
                 await this._userManager.AddToRoleAsync(user, ((Role)this.Id).ToString());
                 await this.cartsService.CreateCart(user.Id);
-                await this.followService.Create(user.Id);
+                //await this.followService.Create(user.Id);
 
                 if (result.Succeeded)
                 {

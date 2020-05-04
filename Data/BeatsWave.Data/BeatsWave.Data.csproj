@@ -27,6 +27,8 @@
     <Compile Remove="Migrations\20200416212021_addProfilePicEntityToUser.Designer.cs" />
     <Compile Remove="Migrations\20200424170129_addCartTable.cs" />
     <Compile Remove="Migrations\20200424170129_addCartTable.Designer.cs" />
+    <Compile Remove="Migrations\20200503123257_addFollowersAndFollowings.cs" />
+    <Compile Remove="Migrations\20200503123257_addFollowersAndFollowings.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

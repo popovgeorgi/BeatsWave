@@ -12,6 +12,8 @@
     {
         public string Id { get; set; }
 
+        public bool IsFollowedByCurrentUser { get; set; }
+
         public virtual string UserName { get; set; }
 
         public virtual ICollection<UserBeatViewModel> Beats { get; set; }

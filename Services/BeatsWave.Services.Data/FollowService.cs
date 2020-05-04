@@ -1,70 +1,81 @@
 ﻿namespace BeatsWave.Services.Data
 {
-    using BeatsWave.Data.Common.Repositories;
-    using BeatsWave.Data.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
 
+    using BeatsWave.Data.Common.Repositories;
+    using BeatsWave.Data.Models;
+
     public class FollowService : IFollowService
     {
-        private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
-        private readonly IRepository<FollowInfo> followRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
+        private readonly IDeletableEntityRepository<Follower> followsRepository;
 
-        public FollowService(IDeletableEntityRepository<ApplicationUser> userRepository, IRepository<FollowInfo> followRepository)
+        public FollowService(IDeletableEntityRepository<ApplicationUser> usersRepository, IDeletableEntityRepository<Follower> followsRepository)
         {
-            this.userRepository = userRepository;
-            this.followRepository = followRepository;
+            this.usersRepository = usersRepository;
+            this.followsRepository = followsRepository;
         }
 
-        public async Task Create(string id)
+        public async Task<bool> FollowAsync(string followedUserId, string followingUserId)
         {
-            var element = new FollowInfo
-            {
-                UserId = id,
-            };
-
-            await this.followRepository.AddAsync(element);
-        }
-
-        public bool Follow(string followedUserId, string followingUserId)
-        {
-            var followedUserInfo = this.followRepository
-                .All()
-                .FirstOrDefault(x => x.UserId == followedUserId);
-
-            var followedUser = this.userRepository
+            var followedUser = this.usersRepository
                 .All()
                 .FirstOrDefault(x => x.Id == followedUserId);
 
-            var followingUserInfo = this.followRepository
-                .All()
-                .FirstOrDefault(x => x.UserId == followingUserId);
-
-            var followingUser = this.userRepository
+            var followingUser = this.usersRepository
                 .All()
                 .FirstOrDefault(x => x.Id == followingUserId);
 
-            var isFollowed = false;
 
-            if (followedUserInfo.Followers.Contains(followingUser))
-            {
-                isFollowed = false;
+            bool isFollowed = false;
 
-                followedUserInfo.Followers.Remove(followingUser);
-                followingUserInfo.Following.Remove(followedUser);
-            }
-            else
+            var isUserAlreadyFollower = this.followsRepository.All().Where(x => x.User == followedUser).Any(x => x.FollowedBy == followingUser && x.FollowerType == FollowerType.Follower);
+
+            if (!isUserAlreadyFollower)
             {
                 isFollowed = true;
 
-                followedUserInfo.Followers.Add(followingUser);
-                followingUserInfo.Following.Add(followedUser);
+                var follower = new Follower
+                {
+                    FollowerType = FollowerType.Follower,
+                    UserId = followedUserId,
+                    FollowedById = followingUserId,
+                };
+
+                await this.followsRepository.AddAsync(follower);
+                await this.followsRepository.SaveChangesAsync();
+            }
+            else
+            {
+                isFollowed = false;
+
+                var follow = this.followsRepository.All().FirstOrDefault(x => x.User == followedUser && x.FollowedBy == followingUser && x.FollowerType == FollowerType.Follower);
+
+                this.followsRepository.Delete(follow);
+                await this.followsRepository.SaveChangesAsync();
+
             }
 
             return isFollowed;
+        }
+
+        public bool IsFollowed(string followedUserId, string followingUserId)
+        {
+            var followedUser = this.usersRepository
+                .All()
+                .FirstOrDefault(x => x.Id == followedUserId);
+
+            var followingUser = this.usersRepository
+                .All()
+                .FirstOrDefault(x => x.Id == followingUserId);
+
+            var isUserAlreadyFollower = this.followsRepository.All().Where(x => x.User == followedUser).Any(x => x.FollowedBy == followingUser && x.FollowerType == FollowerType.Follower);
+
+            return isUserAlreadyFollower;
         }
     }
 }

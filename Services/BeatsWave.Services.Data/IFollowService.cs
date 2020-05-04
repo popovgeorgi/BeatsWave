@@ -7,8 +7,8 @@
 
     public interface IFollowService
     {
-        bool Follow(string followedUserId, string followingUserId);
+        Task<bool> FollowAsync(string followedUserId, string followingUserId);
 
-        Task Create(string id);
+        bool IsFollowed(string followedUserId, string followingUserId);
     }
 }

@@ -26,7 +26,7 @@
 
         public DbSet<Setting> Settings { get; set; }
 
-        public DbSet<FollowInfo> FollowInfos { get; set; }
+        public DbSet<Follower> Followers { get; set; }
 
         public DbSet<Beat> Beats { get; set; }
 
@@ -104,6 +104,16 @@
                 .HasOne(x => x.Uploader)
                 .WithMany(b => b.CloudinaryBeats)
                 .HasForeignKey(x => x.UploaderId);
+
+            builder.Entity<Follower>()
+                        .HasOne(m => m.User)
+                        .WithMany(m => m.Followers)
+                        .HasForeignKey(k => k.UserId);
+
+            builder.Entity<Follower>()
+                        .HasOne(m => m.FollowedBy)
+                        .WithMany(m => m.Following)
+                        .HasForeignKey(k => k.FollowedById);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

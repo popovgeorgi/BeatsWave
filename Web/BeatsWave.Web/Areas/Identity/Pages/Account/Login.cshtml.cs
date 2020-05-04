@@ -85,8 +85,7 @@
                 var result = await this._signInManager.PasswordSignInAsync(this.Input.UserName, this.Input.Password, this.Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    var user = await this._userManager.FindByNameAsync(Input.UserName);
-                    var userRole = await this._userManager.GetRolesAsync(user);
+                    var user = await this._userManager.FindByNameAsync(this.Input.UserName);
                     this._logger.LogInformation("User logged in.");
 
                     return this.RedirectToAction("Index", "Home", new { area = " " });
@@ -94,7 +93,7 @@
 
                 if (result.RequiresTwoFactor)
                 {
-                    return this.RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    return this.RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = this.Input.RememberMe });
                 }
 
                 if (result.IsLockedOut)

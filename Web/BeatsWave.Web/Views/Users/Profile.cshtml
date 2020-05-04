@@ -31,29 +31,47 @@
 @section Follow {
     <div class="form">
         <form id="followForm" method="post"></form>
-        <a class="btn btn-primary" style="color:white" onclick="follow(@Model.Id)">
-            <i class="fas fa-user-friends" style="color:white"></i>  FOLLOW
-        </a>
+
+        @if (Model.IsFollowedByCurrentUser == false)
+        {
+            <a id="followText" onclick="follow('@Model.Id')" class="btn btn-primary" style="color:white">
+                <i id="followIcon" class="fas fa-user-friends" style="color:white"></i>  FOLLOW
+            </a>
+        }
+        else
+        {
+            <a id="followText" onclick="follow('@Model.Id')" class="btn btn-primary" style="color:white">
+                <i id="followIcon" class="far fa-window-close" style="color:white"></i>  UNFOLLOW
+            </a>
+        }
     </div>
 }
 
 @section Scripts {
     <script>
-        function follow(followedId) {
+        function follow(followedUserId) {
             var token = $("#followForm input[name=__RequestVerificationToken]").val();
-            var json = { followedId: followedId, __RequestVerificationToken: token };
-            console.log(json);
+            var json = { followedUserId: followedUserId, __RequestVerificationToken: token };
             $.ajax({
-                url: "/api/carts",
+                url: "/api/follow",
                 type: "POST",
                 data: JSON.stringify(json),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 headers: { 'X-CSFR-TOKEN': token },
-                success: function (dataa) {
-                    $("#cartCount").html(dataa.cartCount);
-                    alert(dataa.message);
+                success: function (data) {
+                    if (data.isFollowed == true) {
+                        $("#followText").contents().last().replaceWith('  UNFOLLOW')
+                        $("#followIcon").removeClass("fas fa-user-friends")
+                        $("#followIcon").addClass("far fa-window-close")
+                    }
+                    else {
+                        $("#followText").contents().last().replaceWith('  FOLLOW')
+                        $("#followIcon").removeClass("far fa-window-close")
+                        $("#followIcon").addClass("fas fa-user-friends")
+                    }
                 }
             })
+        }
     </script>
 }
