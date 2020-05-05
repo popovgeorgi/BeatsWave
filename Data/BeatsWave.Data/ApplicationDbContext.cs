@@ -32,6 +32,8 @@
 
         public DbSet<Cart> Carts { get; set; }
 
+        public DbSet<Notification> Notifications { get; set; }
+
         public DbSet<Comment> Comments { get; set; }
 
         public DbSet<CloudinaryImage> CloudinaryImages { get; set; }
@@ -114,6 +116,11 @@
                         .HasOne(m => m.FollowedBy)
                         .WithMany(m => m.Following)
                         .HasForeignKey(k => k.FollowedById);
+
+            builder.Entity<Notification>()
+                .HasOne(x => x.User)
+                .WithMany(x => x.Notifications)
+                .HasForeignKey(x => x.UserId);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

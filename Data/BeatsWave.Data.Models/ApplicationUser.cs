@@ -35,6 +35,8 @@ namespace BeatsWave.Data.Models
 
         public virtual ICollection<Follower> Following { get; set; }
 
+        public virtual ICollection<Notification> Notifications { get; set; }
+
         public virtual ICollection<CloudinaryImage> Images { get; set; }
 
         public virtual ICollection<CloudinaryBeat> CloudinaryBeats { get; set; }
