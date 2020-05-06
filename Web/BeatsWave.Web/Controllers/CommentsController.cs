@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using BeatsWave.Common;
     using BeatsWave.Data.Models;
     using BeatsWave.Services.Data;
     using BeatsWave.Web.ViewModels.Comments;
@@ -16,11 +16,15 @@
     {
         private readonly ICommentsService commentsService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly INotificationsService notificationsService;
+        private readonly IBeatsService beatsService;
 
-        public CommentsController(ICommentsService commentsService, UserManager<ApplicationUser> userManager)
+        public CommentsController(ICommentsService commentsService, UserManager<ApplicationUser> userManager, INotificationsService notificationsService, IBeatsService beatsService)
         {
             this.commentsService = commentsService;
             this.userManager = userManager;
+            this.notificationsService = notificationsService;
+            this.beatsService = beatsService;
         }
 
         [HttpPost]
@@ -29,6 +33,11 @@
         {
             var userId = this.userManager.GetUserId(this.User);
             await this.commentsService.Create(inputModel.BeatId, userId, inputModel.Content);
+
+            var targetId = this.beatsService.FindUserIdByBeatId(inputModel.BeatId);
+            var beatName = this.beatsService.GetBeatNameByBeatId(inputModel.BeatId);
+            await this.notificationsService.SendNotificationAsync(userId, targetId, string.Format(GlobalConstants.CommentNotification, $"{this.User.Identity.Name}", $"{beatName}"), "Comment");
+
             return this.RedirectToAction("ByName", "Beats", new { id = inputModel.BeatId });
         }
     }

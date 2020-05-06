@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BeatsWave.Services.Data
+﻿namespace BeatsWave.Services.Data
 {
-    interface INotificationsService
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    public interface INotificationsService
     {
+        Task SendNotificationAsync(string senderId, string targetId, string message, string type);
     }
 }

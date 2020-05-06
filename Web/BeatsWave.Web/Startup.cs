@@ -105,6 +105,7 @@
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<ICartsService, CartsService>();
             services.AddTransient<IFollowService, FollowService>();
+            services.AddTransient<INotificationsService, NotificationsService>();
 
             //Beat cloud
             services.AddTransient<ICloudBeatService, CloudBeatService>();

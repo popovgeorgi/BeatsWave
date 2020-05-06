@@ -14,11 +14,13 @@
     {
         private readonly IDeletableEntityRepository<Beat> beatRepository;
         private readonly IRepository<CloudinaryImage> imageRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
 
-        public BeatsService(IDeletableEntityRepository<Beat> beatRepository, IRepository<CloudinaryImage> imageRepository)
+        public BeatsService(IDeletableEntityRepository<Beat> beatRepository, IRepository<CloudinaryImage> imageRepository, IDeletableEntityRepository<ApplicationUser> usersRepository)
         {
             this.beatRepository = beatRepository;
             this.imageRepository = imageRepository;
+            this.usersRepository = usersRepository;
         }
 
         public async Task<int> GetCountAsync()
@@ -145,6 +147,28 @@
                  .ToListAsync();
 
             return sortedBeats;
+        }
+
+        public string FindUserIdByBeatId(int beatId)
+        {
+            var userId = this.beatRepository
+                .All()
+                .Where(x => x.Id == beatId)
+                .Select(x => x.ProducerId)
+                .FirstOrDefault();
+
+            return userId;
+        }
+
+        public string GetBeatNameByBeatId(int beatId)
+        {
+            var beatName = this.beatRepository
+                .All()
+                .Where(x => x.Id == beatId)
+                .Select(x => x.Name)
+                .FirstOrDefault();
+
+            return beatName;
         }
     }
 }

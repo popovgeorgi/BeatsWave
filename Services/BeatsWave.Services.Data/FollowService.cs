@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    using BeatsWave.Common;
     using BeatsWave.Data.Common.Repositories;
     using BeatsWave.Data.Models;
 
@@ -13,11 +14,13 @@
     {
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
         private readonly IDeletableEntityRepository<Follower> followsRepository;
+        private readonly INotificationsService notificationsService;
 
-        public FollowService(IDeletableEntityRepository<ApplicationUser> usersRepository, IDeletableEntityRepository<Follower> followsRepository)
+        public FollowService(IDeletableEntityRepository<ApplicationUser> usersRepository, IDeletableEntityRepository<Follower> followsRepository, INotificationsService notificationsService)
         {
             this.usersRepository = usersRepository;
             this.followsRepository = followsRepository;
+            this.notificationsService = notificationsService;
         }
 
         public async Task<bool> FollowAsync(string followedUserId, string followingUserId)
@@ -57,7 +60,11 @@
 
                 this.followsRepository.Delete(follow);
                 await this.followsRepository.SaveChangesAsync();
+            }
 
+            if (isFollowed == true)
+            {
+                await this.notificationsService.SendNotificationAsync(followingUserId, followedUserId, string.Format(GlobalConstants.FollowNotification, followingUser.UserName), "Follow");
             }
 
             return isFollowed;

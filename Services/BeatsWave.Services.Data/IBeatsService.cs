@@ -28,5 +28,9 @@
         Task<IEnumerable<FeedBeatViewModel>> SortByOldestAsync();
 
         Task<IEnumerable<FeedBeatViewModel>> SortByPriceAsync();
+
+        string FindUserIdByBeatId(int beatId);
+
+        string GetBeatNameByBeatId(int beatId);
     }
 }
