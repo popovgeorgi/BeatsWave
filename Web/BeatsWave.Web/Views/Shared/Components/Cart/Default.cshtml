@@ -1,8 +1,18 @@
 ﻿@model BeatsWave.Web.ViewModels.Cart.CartViewModel
 
 <div class="shop_icon">
-    <a asp-area="" asp-controller="Checkout" asp-action="Products">
+    <a onclick="checkIfNoItems(@Model.CartCount)" asp-area="" asp-controller="Checkout" asp-action="Products">
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         <span id="cartCount" class="card_count">@Model.CartCount</span>
     </a>
 </div>
+
+
+<script>
+
+    function checkIfNoItems(cartCount) {
+        if (cartCount == 0) {
+            alert("Your cart is empty!");
+        }
+    }
+</script>
