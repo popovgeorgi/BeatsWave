@@ -1,5 +1,6 @@
 ﻿namespace BeatsWave.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -169,6 +170,20 @@
                 .FirstOrDefault();
 
             return beatName;
+        }
+
+        public async Task<IEnumerable<T>> GetBeatsByGenre<T>(string genre)
+        {
+            Genre parsedGenre = (Genre)Enum.Parse(typeof(Genre), genre);
+
+            var beats = await this.beatRepository
+                .All()
+                .OrderByDescending(x => x.CreatedOn)
+                .Where(x => x.Genre == parsedGenre)
+                .To<T>()
+                .ToListAsync();
+
+            return beats;
         }
     }
 }

@@ -32,5 +32,7 @@
         string FindUserIdByBeatId(int beatId);
 
         string GetBeatNameByBeatId(int beatId);
+
+        Task<IEnumerable<T>> GetBeatsByGenre<T>(string genre);
     }
 }

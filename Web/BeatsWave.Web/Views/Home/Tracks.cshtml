@@ -1,0 +1,167 @@
+﻿@using BeatsWave.Web.ViewModels.Beats
+@using BeatsWave.Common
+@model IndexViewModel
+@{
+    ViewData["Title"] = "TRACKS";
+}
+
+    <section id="blog-post">
+        <div class="section">
+            <div class="row blog-content">
+                <div class="col-sm-9 post-content">
+                    @*<div class="featured-image">
+                        <div class="featured-overly"></div>
+                        <img src="~/images/mohammad-metri.png" alt="">
+                    </div>*@
+                    <div class="post-text">
+                        <div class="post-heading">
+                            <h2>YOU ARE WHAT YOU LISTEN TO</h2>
+                            <div class="post-by">
+                                <span>April 16, 2018 </span>
+                                <span>By <a href="#" class="categories-name">Admin </a></span>
+                                <span class="post-category">In <a href="#" class="categories-name">Travelling</a></span>
+                            </div>
+                        </div>
+                        <section id="blog-grid-gallery">
+                            <div id="grid-gallery" class="grid-gallery">
+                                <section class="grid-wrap section">
+                                    <div class="results">
+                                        <div class="results-text">
+                                            <span>Showing all @Model.Beats.Count() results</span>
+                                        </div>
+                                        <div class="results-select">
+                                            <div class="btn-group">
+                                                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Sort by<span class="caret"></span></a>
+                                                <ul id="dropdownCollection" class="dropdown-menu" onchange="sort()">
+                                                    <li class="dropdown-item"><a>Newest</a></li>
+                                                    <li class="dropdown-item"><a>Oldest</a></li>
+                                                    <li class="dropdown-item"><a>Price</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="grid" id="feed-list">
+                                        <li class="grid-sizer"></li>
+                                        @foreach (var beat in Model.Beats)
+                                        {
+                                            <li class="wow fadeInUp">
+                                                <a asp-controller="Beats" asp-action="ByName" asp-route-Id="@beat.BeatId">
+                                                    <figure>
+                                                        <div class="blog-grid-image">
+                                                            <img class="photo" src="@(beat.ImageUrl)" alt="@beat.Name" />
+                                                        </div>
+                                                        <figcaption>
+                                                            <h3 class="beatName">@beat.Name</h3>
+                                                            <p class="producerName">produced by @beat.Producer<p>
+                                                            <p class="price">$@beat.StandartPrice<sup>.00</sup></p>
+                                                            @*<span class="post-publish-date">@beat.CreatedAt.Month @beat.CreatedAt.Day, @beat.CreatedAt.Year</span>*@
+                                                            <p class="description">
+                                                                @beat.Description
+                                                            </p>
+                                                        </figcaption>
+                                                    </figure>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </section><!-- // grid-wrap -->
+                            </div><!-- // grid-gallery -->
+                        </section>
+                    </div>
+                    <div class="post-share">
+                        <span>SHARE :</span>
+                        <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="col-sm-3 sitebar">
+                    <div class="blog-search">
+                        <form class="form-inline md-form mr-auto mb-4">
+                            <input class="mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
+                            <button class="search-btn" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="blog-categories">
+                        <h2>GENRES</h2>
+                        <div class="p-categories">
+                            <a asp-controller="Home" asp-action="Tracks" asp-route-genre="Trap" class="categories-line">
+                                <span class="c-name">Trap</span>
+                                <span class="c-count">98</span>
+                            </a>
+                            <a asp-controller="Home" asp-action="Tracks" asp-route-genre="HipHopNRap" class="categories-line">
+                                <span class="c-name">Hip Hop</span>
+                                <span class="c-count">102</span>
+                            </a>
+                            <a asp-controller="Home" asp-action="Tracks" asp-route-genre="Techno" class="categories-line">
+                                <span class="c-name">Techno</span>
+                                <span class="c-count">83</span>
+                            </a>
+                            <a asp-controller="Home" asp-action="Tracks" asp-route-genre="House" class="categories-line">
+                                <span class="c-name">House</span>
+                                <span class="c-count">04</span>
+                            </a>
+                            <a asp-controller="Home" asp-action="Tracks" asp-route-genre="Rock" class="categories-line">
+                                <span class="c-name">Rock</span>
+                                <span class="c-count">109</span>
+                            </a>
+                            <a asp-controller="Home" asp-action="Tracks" asp-route-genre="Reggaeton" class="categories-line">
+                                <span class="c-name">Reggaeton</span>
+                                <span class="c-count">50</span>
+                            </a>
+                            <a asp-controller="Home" asp-action="Tracks" asp-route-genre="Dancehall" class="categories-line">
+                                <span class="c-name">Dancehall</span>
+                                <span class="c-count">102</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="blog-recent-post">
+                        <h2>BEATS YOU MAY LIKE</h2>
+                        <div class="p-recent-posts">
+                            <a href="#" class="resent-posts-line">
+                                <div class="recent-post-image">
+                                    <img src="resources/images/toa-heftiba.png" alt="Toa Heftiba">
+                                </div>
+                                <div class="recent-post-name">
+                                    <h3>jurney towards a lifestyle</h3>
+                                    <span>Jun. 16 2019</span>
+                                </div>
+                            </a>
+                            <a href="#" class="resent-posts-line">
+                                <div class="recent-post-image">
+                                    <img src="resources/images/photo.png" alt="Photo">
+                                </div>
+                                <div class="recent-post-name">
+                                    <h3>Fashionable shoes</h3>
+                                    <span>Jun. 18 2019</span>
+                                </div>
+                            </a>
+                            <a href="#" class="resent-posts-line">
+                                <div class="recent-post-image">
+                                    <img src="resources/images/photo-1.png" alt="Photo 1">
+                                </div>
+                                <div class="recent-post-name">
+                                    <h3>really awesome’s Adventure</h3>
+                                    <span>Jun. 23 2019</span>
+                                </div>
+                            </a>
+                            <a href="#" class="resent-posts-line">
+                                <div class="recent-post-image">
+                                    <img src="resources/images/photo-2.png" alt="Photo 2">
+                                </div>
+                                <div class="recent-post-name">
+                                    <h3>Man Hunting in jungle</h3>
+                                    <span>Jun. 25 2019</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
