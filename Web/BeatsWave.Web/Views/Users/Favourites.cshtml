@@ -1,5 +1,5 @@
-﻿@*@using BeatsWave.Web.ViewModels.Users
-@model UserBeatViewModel
+﻿@using BeatsWave.Web.ViewModels.Users
+@model UsersLikedBeatsViewModel
 
 @{
     ViewData["Title"] = "Liked beats";
@@ -8,22 +8,22 @@
     <section id="discography">
         <div class="section">
             <div class="row">
-                @foreach (var beat in Model.)
+                @foreach (var like in Model.Likes)
                 {
                     <div class="w-100 col-md-4 music-banner">
                         <div class="w-100">
-                            <img class="music-banner-image" src="@(beat.ImageUrl)" alt="@beat.Name">
+                            <img class="music-banner-image" src="@(like.Beat.ImageUrl)" alt="@like.Beat.Name">
                             <div class="music-banner-text">
                                 <div class="dis-name">
-                                    <h2>@beat.Name</h2>
-                                    <p>@beat.Producer</p>
-                                    <p>@beat.Bpm bpm</p>
+                                    <h2>@like.Beat.Name</h2>
+                                    <p>@like.Beat.Producer</p>
+                                    <p>@like.Beat.Bpm bpm</p>
                                 </div>
                             </div>
-                            <a asp-controller="Beats" asp-action="ByName" asp-route-id="@beat.Id" class="music-banner-link"></a>
+                            <a asp-controller="Beats" asp-action="ByName" asp-route-id="@like.Beat.Id" class="music-banner-link"></a>
                         </div>
                     </div>
                 }
             </div>
         </div>
-    </section>*@
+    </section>

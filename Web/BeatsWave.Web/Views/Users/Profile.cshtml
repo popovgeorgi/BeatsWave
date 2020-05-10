@@ -31,18 +31,20 @@
 @section Follow {
     <div class="form">
         <form id="followForm" method="post"></form>
-
-        @if (Model.IsFollowedByCurrentUser == false)
+        @if (Model.UserName != this.User.Identity.Name)
         {
-            <a id="followText" onclick="follow('@Model.Id')" class="btn btn-primary" style="color:white">
-                <i id="followIcon" class="fas fa-user-friends" style="color:white"></i>  FOLLOW
-            </a>
-        }
-        else
-        {
-            <a id="followText" onclick="follow('@Model.Id')" class="btn btn-primary" style="color:white">
-                <i id="followIcon" class="far fa-window-close" style="color:white"></i>  UNFOLLOW
-            </a>
+            @if (Model.IsFollowedByCurrentUser == false)
+            {
+                <a id="followText" onclick="follow('@Model.Id')" class="btn btn-primary" style="color:white">
+                    <i id="followIcon" class="fas fa-user-friends" style="color:white"></i>  FOLLOW
+                </a>
+            }
+            else
+            {
+                <a id="followText" onclick="follow('@Model.Id')" class="btn btn-primary" style="color:white">
+                    <i id="followIcon" class="far fa-window-close" style="color:white"></i>  UNFOLLOW
+                </a>
+            }
         }
     </div>
 }

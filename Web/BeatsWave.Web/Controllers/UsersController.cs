@@ -48,7 +48,7 @@
 
         public IActionResult Favourites(string id)
         {
-            var viewModel = this.usersService.GetLikedBeats(id);
+            var viewModel = this.usersService.GetById<UsersLikedBeatsViewModel>(id);
 
             return this.View(viewModel);
         }

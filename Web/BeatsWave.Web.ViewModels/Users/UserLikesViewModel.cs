@@ -7,6 +7,8 @@
     {
         public int BeatId { get; set; }
 
+        public UserBeatViewModel Beat { get; set; }
+
         public LikeType Type { get; set; }
     }
 }
