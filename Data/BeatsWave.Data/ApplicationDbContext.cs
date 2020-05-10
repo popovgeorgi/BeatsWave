@@ -117,9 +117,9 @@
                         .WithMany(m => m.Following)
                         .HasForeignKey(k => k.FollowedById);
 
-            builder.Entity<Notification>()
-                .HasOne(x => x.User)
-                .WithMany(x => x.Notifications)
+            builder.Entity<ApplicationUser>()
+                .HasMany(x => x.Notifications)
+                .WithOne(x => x.User)
                 .HasForeignKey(x => x.UserId);
         }
 

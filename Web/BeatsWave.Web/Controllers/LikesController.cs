@@ -37,7 +37,7 @@
             var beatName = this.beatsService.GetBeatNameByBeatId(input.BeatId);
             if (isLiked == true)
             {
-                await this.notificationsService.SendNotificationAsync(userId, ownerId, string.Format(GlobalConstants.LikeNotification, $"{this.User.Identity.Name}", $"{beatName}"), "Like");
+                await this.notificationsService.SendNotificationAsync(ownerId, string.Format(GlobalConstants.LikeNotification, $"{this.User.Identity.Name}", $"{beatName}"), "Like");
             }
 
             var likes = this.likeService.GetLikes(input.BeatId);

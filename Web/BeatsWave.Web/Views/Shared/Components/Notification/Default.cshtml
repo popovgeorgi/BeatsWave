@@ -1,0 +1,9 @@
+﻿@using BeatsWave.Web.ViewModels.Notification
+@model NotificationViewModel
+
+    <div class="shop_icon">
+        <a asp-area="" asp-controller="Users" asp-action="Notifications" asp-route-userId="@Model.UserId">
+            <i class="far fa-bell" aria-hidden="true"></i>
+            <span id="cartCount" class="card_count">@Model.Count</span>
+        </a>
+    </div>

@@ -36,7 +36,7 @@
 
             var targetId = this.beatsService.FindUserIdByBeatId(inputModel.BeatId);
             var beatName = this.beatsService.GetBeatNameByBeatId(inputModel.BeatId);
-            await this.notificationsService.SendNotificationAsync(userId, targetId, string.Format(GlobalConstants.CommentNotification, $"{this.User.Identity.Name}", $"{beatName}"), "Comment");
+            await this.notificationsService.SendNotificationAsync(targetId, string.Format(GlobalConstants.CommentNotification, $"{this.User.Identity.Name}", $"{beatName}"), "Comment");
 
             return this.RedirectToAction("ByName", "Beats", new { id = inputModel.BeatId });
         }

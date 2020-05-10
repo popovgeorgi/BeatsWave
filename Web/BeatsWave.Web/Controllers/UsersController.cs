@@ -8,6 +8,7 @@
     using BeatsWave.Services.Data;
     using BeatsWave.Services.Mapping;
     using BeatsWave.Web.ViewModels.Beats;
+    using BeatsWave.Web.ViewModels.Notification;
     using BeatsWave.Web.ViewModels.Users;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -19,13 +20,15 @@
         private readonly IBeatsService beatsService;
         private readonly IFollowService followService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly INotificationsService notificationsService;
 
-        public UsersController(IUsersService usersService, IBeatsService beatsService, IFollowService followService, UserManager<ApplicationUser> userManager)
+        public UsersController(IUsersService usersService, IBeatsService beatsService, IFollowService followService, UserManager<ApplicationUser> userManager, INotificationsService notificationsService)
         {
             this.usersService = usersService;
             this.beatsService = beatsService;
             this.followService = followService;
             this.userManager = userManager;
+            this.notificationsService = notificationsService;
         }
 
         public IActionResult Profile(string id)
@@ -71,6 +74,14 @@
         public IActionResult Platform(int roleId)
         {
             return this.View();
+        }
+
+        [Authorize]
+        public IActionResult Notifications(string userId)
+        {
+            var viewModel = this.notificationsService.GetAllNotifications<UserNotificationsViewModel>(userId);
+
+            return this.View(viewModel);
         }
     }
 }

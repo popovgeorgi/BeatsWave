@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Text;
 
     using BeatsWave.Data.Common.Models;
@@ -10,11 +11,7 @@
     {
         public string UserId { get; set; }
 
-        public ApplicationUser User { get; set; }
-
-        public string SenderId { get; set; }
-
-        public ApplicationUser Sender { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public string Message { get; set; }
 

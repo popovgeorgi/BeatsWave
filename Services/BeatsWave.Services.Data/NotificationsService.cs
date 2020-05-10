@@ -8,37 +8,57 @@
 
     using BeatsWave.Data.Common.Repositories;
     using BeatsWave.Data.Models;
+    using BeatsWave.Services.Mapping;
+    using BeatsWave.Web.ViewModels.Notification;
 
     public class NotificationsService : INotificationsService
     {
         private readonly IRepository<Notification> notificationRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
 
-        public NotificationsService(IRepository<Notification> notificationRepository)
+        public NotificationsService(IRepository<Notification> notificationRepository, IDeletableEntityRepository<ApplicationUser> usersRepository)
         {
             this.notificationRepository = notificationRepository;
+            this.usersRepository = usersRepository;
         }
 
-        public async Task SendNotificationAsync(string senderId, string targetId, string message, string type)
+        public T GetAllNotifications<T>(string userId)
+        {
+            var userNotifications = this.usersRepository
+                .All()
+                .Where(x => x.Id == userId)
+                .To<T>()
+                .FirstOrDefault();
+
+            return userNotifications;
+        }
+
+        public int GetUnseenCount(string userId)
+        {
+            var count = this.notificationRepository
+                .All()
+                .Where(x => x.UserId == userId && x.IsSeen == false)
+                .Count();
+
+            return count;
+        }
+
+        public async Task SendNotificationAsync(string targetId, string message, string type)
         {
             if (type == "Like")
             {
-                if (this.notificationRepository.All().Any(x => x.SenderId == senderId & x.UserId == targetId) == false)
+                await this.notificationRepository.AddAsync(new Notification
                 {
-                    await this.notificationRepository.AddAsync(new Notification
-                    {
-                        SenderId = senderId,
-                        UserId = targetId,
-                        Message = message,
-                        Type = NotificationType.Like,
-                        IsSeen = false,
-                    });
-                }
+                    UserId = targetId,
+                    Message = message,
+                    Type = NotificationType.Like,
+                    IsSeen = false,
+                });
             }
             else if (type == "Follow")
             {
                 await this.notificationRepository.AddAsync(new Notification
                 {
-                    SenderId = senderId,
                     UserId = targetId,
                     Message = message,
                     Type = NotificationType.Follow,
@@ -49,7 +69,6 @@
             {
                 await this.notificationRepository.AddAsync(new Notification
                 {
-                    SenderId = senderId,
                     UserId = targetId,
                     Message = message,
                     Type = NotificationType.Comment,

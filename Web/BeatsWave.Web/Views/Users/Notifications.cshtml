@@ -1,0 +1,22 @@
+﻿@using BeatsWave.Web.ViewModels.Notification
+@model UserNotificationsViewModel
+
+@{
+    ViewData["Title"] = "Notifications";
+}
+
+@foreach (var notification in Model.Notifications)
+{
+    <div class="post-author">
+        <div class="author-info">
+            <div class="author-image">
+                <img src="~/images/profilePic.jpg" alt="No Pic" class="no-pic" style="display: none;">
+                <img src="~/images/profilePic.jpg" alt="Eye Spy">
+            </div>
+            <div class="author-name-date">
+                <p>@notification.Message</p>
+                <p>@notification.CreatedOn</p>
+            </div>
+        </div>
+    </div>
+}

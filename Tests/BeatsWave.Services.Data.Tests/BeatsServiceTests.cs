@@ -25,7 +25,8 @@
                 .UseInMemoryDatabase("BeatsWaveVirtual");
             var beatRepository = new EfDeletableEntityRepository<Beat>(new ApplicationDbContext(options.Options));
             var imageRepository = new EfDeletableEntityRepository<CloudinaryImage>(new ApplicationDbContext(options.Options));
-            var service = new BeatsService(beatRepository, imageRepository);
+            var userRepository = new EfDeletableEntityRepository<ApplicationUser>(new ApplicationDbContext(options.Options));
+            var service = new BeatsService(beatRepository, imageRepository, userRepository);
 
             var result = await service.GetCountAsync();
 
@@ -41,6 +42,7 @@
 
             var beatRepository = new EfDeletableEntityRepository<Beat>(new ApplicationDbContext(options.Options));
             var imageRepository = new EfDeletableEntityRepository<CloudinaryImage>(new ApplicationDbContext(options.Options));
+            var userRepository = new EfDeletableEntityRepository<ApplicationUser>(new ApplicationDbContext(options.Options));
 
             await beatRepository.AddAsync(new Beat
             {
@@ -51,7 +53,7 @@
             });
             await beatRepository.SaveChangesAsync();
 
-            var beatService = new BeatsService(beatRepository, imageRepository);
+            var beatService = new BeatsService(beatRepository, imageRepository, userRepository);
             AutoMapperConfig.RegisterMappings(typeof(TestBeat).Assembly);
             var result = await beatService.FindBeatByIdAsync<TestBeat>(1);
 
@@ -72,6 +74,7 @@
 
             var beatRepository = new EfDeletableEntityRepository<Beat>(new ApplicationDbContext(options.Options));
             var imageRepository = new EfDeletableEntityRepository<CloudinaryImage>(new ApplicationDbContext(options.Options));
+            var userRepository = new EfDeletableEntityRepository<ApplicationUser>(new ApplicationDbContext(options.Options));
 
             for (int i = 0; i < 100; i++)
             {
@@ -83,7 +86,7 @@
 
             await beatRepository.SaveChangesAsync();
 
-            var beatService = new BeatsService(beatRepository, imageRepository);
+            var beatService = new BeatsService(beatRepository, imageRepository, userRepository);
             AutoMapperConfig.RegisterMappings(typeof(TestBeat).Assembly);
 
             var result = await beatService.GetAllBeatsAsync<TestBeat>(100);
@@ -98,6 +101,7 @@
 
             var beatRepository = new EfDeletableEntityRepository<Beat>(new ApplicationDbContext(options.Options));
             var imageRepository = new EfDeletableEntityRepository<CloudinaryImage>(new ApplicationDbContext(options.Options));
+            var userRepository = new EfDeletableEntityRepository<ApplicationUser>(new ApplicationDbContext(options.Options));
 
             for (int i = 0; i < 100; i++)
             {
@@ -109,7 +113,7 @@
 
             await beatRepository.SaveChangesAsync();
 
-            var beatService = new BeatsService(beatRepository, imageRepository);
+            var beatService = new BeatsService(beatRepository, imageRepository, userRepository);
             AutoMapperConfig.RegisterMappings(typeof(TestBeat).Assembly);
 
             var result = await beatService.GetAllBeatsAsync<TestBeat>(10);
@@ -134,7 +138,8 @@
 
             var beatRepository = new EfDeletableEntityRepository<Beat>(dbContext);
             var imageRepository = new EfDeletableEntityRepository<CloudinaryImage>(dbContext);
-            var service = new BeatsService(beatRepository, imageRepository);
+            var userRepository = new EfDeletableEntityRepository<ApplicationUser>(dbContext);
+            var service = new BeatsService(beatRepository, imageRepository, userRepository);
 
             await service.UpdateAsync(1, "Blq", 20, "lalala");
 
@@ -158,7 +163,8 @@
 
             var beatRepository = new EfDeletableEntityRepository<Beat>(dbContext);
             var imageRepository = new EfDeletableEntityRepository<CloudinaryImage>(dbContext);
-            var service = new BeatsService(beatRepository, imageRepository);
+            var userRepository = new EfDeletableEntityRepository<ApplicationUser>(dbContext);
+            var service = new BeatsService(beatRepository, imageRepository, userRepository);
 
             await service.Delete(1);
 

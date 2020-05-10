@@ -7,12 +7,7 @@
     <div class="header_items">
         @if (this.SignInManager.IsSignedIn(this.User))
         {
-            <div class="shop_icon">
-                <a asp-area="" asp-controller="Checkout" asp-action="Products">
-                    <i class="far fa-bell" aria-hidden="true"></i>
-                    <span id="cartCount" class="card_count">0</span>
-                </a>
-            </div>
+            <vc:notification></vc:notification>
             <vc:cart></vc:cart>
         }
         <div class="search_icon">

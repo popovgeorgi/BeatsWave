@@ -64,7 +64,7 @@
 
             if (isFollowed == true)
             {
-                await this.notificationsService.SendNotificationAsync(followingUserId, followedUserId, string.Format(GlobalConstants.FollowNotification, followingUser.UserName), "Follow");
+                await this.notificationsService.SendNotificationAsync(followedUserId, string.Format(GlobalConstants.FollowNotification, followingUser.UserName), "Follow");
             }
 
             return isFollowed;

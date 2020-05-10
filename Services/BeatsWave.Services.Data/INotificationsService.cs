@@ -5,8 +5,14 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    using BeatsWave.Web.ViewModels.Notification;
+
     public interface INotificationsService
     {
-        Task SendNotificationAsync(string senderId, string targetId, string message, string type);
+        Task SendNotificationAsync(string targetId, string message, string type);
+
+        int GetUnseenCount(string userId);
+
+        T GetAllNotifications<T>(string userId);
     }
 }

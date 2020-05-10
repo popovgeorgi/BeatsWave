@@ -29,6 +29,14 @@
     <Compile Remove="Migrations\20200424170129_addCartTable.Designer.cs" />
     <Compile Remove="Migrations\20200503123257_addFollowersAndFollowings.cs" />
     <Compile Remove="Migrations\20200503123257_addFollowersAndFollowings.Designer.cs" />
+    <Compile Remove="Migrations\20200506142726_test.cs" />
+    <Compile Remove="Migrations\20200506142726_test.Designer.cs" />
+    <Compile Remove="Migrations\20200506144748_test.cs" />
+    <Compile Remove="Migrations\20200506144748_test.Designer.cs" />
+    <Compile Remove="Migrations\20200506151850_makeNotificationConnection.cs" />
+    <Compile Remove="Migrations\20200506151850_makeNotificationConnection.Designer.cs" />
+    <Compile Remove="Migrations\20200506152214_MakeNotificationConnection.cs" />
+    <Compile Remove="Migrations\20200506152214_MakeNotificationConnection.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
