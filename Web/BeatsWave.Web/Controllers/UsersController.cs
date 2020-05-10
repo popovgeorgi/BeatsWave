@@ -77,9 +77,10 @@
         }
 
         [Authorize]
-        public IActionResult Notifications(string userId)
+        public async Task<IActionResult> NotificationsAsync(string userId)
         {
             var viewModel = this.notificationsService.GetAllNotifications<UserNotificationsViewModel>(userId);
+            await this.notificationsService.MakeAllNotificationsRead(userId);
 
             return this.View(viewModel);
         }

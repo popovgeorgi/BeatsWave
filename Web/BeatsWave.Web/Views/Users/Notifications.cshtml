@@ -5,18 +5,41 @@
     ViewData["Title"] = "Notifications";
 }
 
-@foreach (var notification in Model.Notifications)
+@foreach (var notification in Model.Notifications.OrderByDescending(x => x.CreatedOn))
 {
-    <div class="post-author">
-        <div class="author-info">
-            <div class="author-image">
-                <img src="~/images/profilePic.jpg" alt="No Pic" class="no-pic" style="display: none;">
-                <img src="~/images/profilePic.jpg" alt="Eye Spy">
-            </div>
-            <div class="author-name-date">
-                <p>@notification.Message</p>
-                <p>@notification.CreatedOn</p>
+    @if (notification.IsSeen == false)
+    {
+        <div class="post-author" style="background-color:orange">
+            <div class="author-info">
+                <div class="author-image">
+                    <img src="~/images/profilePic.jpg" alt="No Pic" class="no-pic" style="display: none;">
+                    <img src="~/images/profilePic.jpg" alt="Eye Spy">
+                </div>
+                <div class="author-name-date">
+                    <p>@notification.Message</p>
+                    <p>
+                        <time datetime="@notification.CreatedOn.ToString("O")"></time>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="post-author">
+            <div class="author-info">
+                <div class="author-image">
+                    <img src="~/images/profilePic.jpg" alt="No Pic" class="no-pic" style="display: none;">
+                    <img src="~/images/profilePic.jpg" alt="Eye Spy">
+                </div>
+                <div class="author-name-date">
+                    <p>@notification.Message</p>
+                    <p>
+                        <time datetime="@notification.CreatedOn.ToString("O")"></time>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+
 }

@@ -14,5 +14,7 @@
         int GetUnseenCount(string userId);
 
         T GetAllNotifications<T>(string userId);
+
+        Task MakeAllNotificationsRead(string userId);
     }
 }

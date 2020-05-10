@@ -55,12 +55,3 @@ $("#dropdownCollection li").click(function () {
     var text = $(this).text();
     connection.invoke("SortBeats", text);
 })
-
-//var listItems = document.querySelectorAll("ul li");
-
-//listItems.forEach(function (item) {
-//    item.onclick = function (e) {
-//        var sortCondition = this.innerText.val();
-//        connection.invoke("SortBeats", sortCondition)
-//    }
-//});

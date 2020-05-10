@@ -43,6 +43,21 @@
             return count;
         }
 
+        public async Task MakeAllNotificationsRead(string userId)
+        {
+            var userNotifications = this.notificationRepository
+                .All()
+                .Where(x => x.UserId == userId && x.IsSeen == false)
+                .ToList();
+
+            foreach (var notificaton in userNotifications)
+            {
+                notificaton.IsSeen = true;
+            }
+
+            await this.usersRepository.SaveChangesAsync();
+        }
+
         public async Task SendNotificationAsync(string targetId, string message, string type)
         {
             if (type == "Like")
